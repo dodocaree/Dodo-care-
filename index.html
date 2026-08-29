@@ -32,8 +32,10 @@
         body {
             font-family: 'Comic Sans MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
-            background-image: linear-gradient(rgba(112, 111, 211, 0.04) 1px, transparent 1px);
-            background-size: 100% 32px;
+            /* Flower pattern background overlay */
+            background-image: radial-gradient(rgba(255, 182, 193, 0.25) 2px, transparent 2px), radial-gradient(rgba(112, 111, 211, 0.15) 2px, transparent 2px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
             color: var(--text-main);
             margin: 0;
             padding: 20px;
@@ -136,7 +138,7 @@
 
         .control-group { display: flex; gap: 6px; align-items: center; }
 
-        .theme-toggle, .lang-btn, .color-picker-btn, .notify-btn {
+        .theme-toggle, .color-picker-btn, .notify-btn {
             background: var(--card-bg);
             border: 2px dashed rgba(255,182,193,0.5);
             padding: 8px 12px;
@@ -161,8 +163,8 @@
             background: none;
         }
 
-        h1 { color: var(--accent-purple); font-size: 2.4rem; margin-bottom: 2px; }
-        .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
+        h1 { color: var(--accent-purple); font-size: 2.2rem; margin-bottom: 2px; }
+        .subtitle { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; }
 
         .top-mini-guide {
             background: var(--card-bg);
@@ -185,6 +187,16 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.06);
             border: 2px dashed rgba(255, 182, 193, 0.5);
             text-align: right;
+        }
+
+        /* Compact Header Style inside cards */
+        .card > h3 {
+            font-size: 1.1rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .dodo-box { font-size: 70px; text-align: center; width: 100%; }
@@ -219,13 +231,13 @@
             background: var(--accent-purple);
             border: none;
             color: white;
-            padding: 13px 22px;
+            padding: 11px 18px;
             border-radius: 14px;
             cursor: pointer;
             font-weight: bold;
             margin: 5px 0;
             width: 100%;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         input[type="text"], textarea {
@@ -248,14 +260,23 @@
         }
         .collapsible-content.show { max-height: 1500px; opacity: 1; margin-top: 15px; }
 
+        /* Planner section card-in-card layout */
         .planner-section {
-            background: rgba(255, 182, 193, 0.1);
-            border: 1px dashed rgba(255, 182, 193, 0.4);
-            border-radius: 14px;
+            background: var(--card-bg);
+            border: 2px solid rgba(255, 182, 193, 0.4);
+            border-radius: 16px;
             padding: 14px;
             margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
         }
-        .planner-title { font-weight: bold; color: var(--accent-purple); margin-bottom: 8px; }
+        
+        .planner-section:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+
+        .planner-title { font-weight: bold; color: var(--accent-purple); margin-bottom: 8px; font-size: 0.9rem; }
         .planner-row { display: flex; gap: 10px; align-items: center; }
 
         .reward-box {
@@ -296,10 +317,9 @@
 
     <div id="intro-screen">
         <div class="intro-dodo">🐰</div>
-        <div class="intro-welcome-text" id="dynamic-greeting">خێرهاتن 😊 Welcome</div>
+        <div class="intro-welcome-text" id="dynamic-greeting">خێرهاتن 😊</div>
         <div class="intro-langs">
             <div class="intro-lang-pill">کوردی</div>
-            <div class="intro-lang-pill">English</div>
         </div>
         <button class="enter-site-btn" onclick="openMainSite()">ڤەکرنا دەفتەرێ 📖</button>
     </div>
@@ -307,16 +327,12 @@
 <div class="container" id="main-container">
     <div class="top-bar">
         <div class="control-group">
-            <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌓 گوهۆڕینا مودی</button>
-            <button class="notify-btn" onclick="requestNotificationPermissionDirectly()" id="notify-btn">🔔 چالاککرنا نوتیفیکەیشنا</button>
+            <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌓 مۆد</button>
+            <button class="notify-btn" onclick="requestNotificationPermissionDirectly()" id="notify-btn">🔔 نۆتیفیکەیشن</button>
             <div class="color-picker-btn" title="ڕەنگێ خۆ هەلبژێرە">
                 <span>🎨</span>
                 <input type="color" id="colorPicker" oninput="changeAccentColor(this.value)" value="#706fd3">
             </div>
-        </div>
-        <div class="control-group">
-            <button class="lang-btn" onclick="setLanguage('ku')">KU</button>
-            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
         </div>
     </div>
 
@@ -338,7 +354,7 @@
                 <div class="speech-bubble" id="daily-quote">“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style="opacity:0.8">— مەولانایێ ڕۆمی</small></div>
                 
                 <div class="quote-actions">
-                    <button class="quote-action-btn" onclick="changeRandomQuote()" id="change-quote-btn">⏭️ گۆتنا دی (Skip)</button>
+                    <button class="quote-action-btn" onclick="changeRandomQuote()" id="change-quote-btn">⏭️ گۆتنا دی</button>
                     <button class="quote-action-btn" onclick="saveToFavorites()" id="fav-btn">❤️ دلخواز</button>
                 </div>
             </div>
@@ -421,23 +437,11 @@
         "“بزاڤێ بکە نەکو بتنێ خەونان ببینی، بەڵکو وان خەونان بکەیە ڕاستی.”<br><small style='opacity:0.8'>— Dodocare</small>"
     ];
 
-    const quotesEN = [
-        "“Respect yourself and stay away from any place where you are not valued.”<br><small style='opacity:0.8'>— Rumi</small>",
-        "“Success is walking from failure to failure with no loss of enthusiasm.”<br><small style='opacity:0.8'>— Winston Churchill</small>",
-        "“Believe in yourself, you are braver than you think.”<br><small style='opacity:0.8'>— Motivational</small>",
-        "“Don't wait for tomorrow, start right now!”<br><small style='opacity:0.8'>— Advice</small>",
-        "“Every day is a new beginning. Take a deep breath and start again.”<br><small style='opacity:0.8'>— Dodocare</small>",
-        "“The secret of getting ahead is getting started.”<br><small style='opacity:0.8'>— Mark Twain</small>",
-        "“Life is like riding a bicycle. To keep your balance, you must keep moving.”<br><small style='opacity:0.8'>— Albert Einstein</small>"
-    ];
-
     let currentQuoteIndex = 0;
 
     function changeRandomQuote() {
-        const lang = localStorage.getItem('dodo_lang') || 'ku';
-        const list = lang === 'en' ? quotesEN : quotesKU;
-        currentQuoteIndex = (currentQuoteIndex + 1) % list.length;
-        document.getElementById('daily-quote').innerHTML = list[currentQuoteIndex];
+        currentQuoteIndex = (currentQuoteIndex + 1) % quotesKU.length;
+        document.getElementById('daily-quote').innerHTML = quotesKU[currentQuoteIndex];
     }
 
     function openMainSite() {
@@ -471,13 +475,12 @@
     function saveToFavorites() {
         let favs = JSON.parse(localStorage.getItem('dodo_favorites') || '[]');
         let currentText = document.getElementById('daily-quote').innerHTML;
-        const lang = localStorage.getItem('dodo_lang') || 'ku';
         if(!favs.includes(currentText)) {
             favs.push(currentText);
             localStorage.setItem('dodo_favorites', JSON.stringify(favs));
             renderFavorites();
         } else {
-            alert(lang === 'en' ? "📌 This quote is already in your favorites." : "📌 ئەڤ گۆتنە بەری نوکه د دلخوازێن تە دا هەیە.");
+            alert("📌 ئەڤ گۆتنە بەری نوکه د دلخوازێن تە دا هەیە.");
         }
     }
 
@@ -491,19 +494,16 @@
     function renderFavorites() {
         let favs = JSON.parse(localStorage.getItem('dodo_favorites') || '[]');
         const container = document.getElementById('favorites-container');
-        const lang = localStorage.getItem('dodo_lang') || 'ku';
         if(container) {
             if(favs.length === 0) {
-                const emptyMsg = lang === 'en' ? "No favorite quotes yet." : "چ گۆتن هێشتا نێنە د دلخوازان دا.";
-                container.innerHTML = `<div style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">${emptyMsg}</div>`;
+                container.innerHTML = `<div style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">چ گۆتن هێشتا نێنە د دلخوازان دا.</div>`;
             } else {
                 let html = '';
-                const delText = lang === 'en' ? "🗑️ Delete" : "🗑️ ژێبرن";
                 favs.forEach((item, index) => {
                     html += `
                         <div class="favorite-item">
                             <div>${item}</div>
-                            <button class="delete-fav-btn" onclick="removeFavorite(${index})">${delText}</button>
+                            <button class="delete-fav-btn" onclick="removeFavorite(${index})">🗑️ ژێبرن</button>
                         </div>
                     `;
                 });
@@ -595,28 +595,6 @@
         localStorage.setItem('dodo_color', color);
     }
 
-    function setLanguage(lang) {
-        const htmlRoot = document.getElementById('html-root');
-        htmlRoot.setAttribute('lang', lang);
-
-        if(lang === 'en') {
-            document.body.style.direction = 'ltr';
-            document.body.style.textAlign = 'left';
-            document.querySelectorAll('.card').forEach(el => el.style.textAlign = 'left');
-            document.getElementById('notify-btn').innerText = "🔔 Enable Notifications";
-            document.getElementById('change-quote-btn').innerText = "⏭️ Skip Quote";
-        } else {
-            document.body.style.direction = 'rtl';
-            document.body.style.textAlign = 'center';
-            document.querySelectorAll('.card').forEach(el => el.style.textAlign = 'right');
-            document.getElementById('notify-btn').innerText = "🔔 چالاککرنا نوتیفیکەیشنا";
-            document.getElementById('change-quote-btn').innerText = "⏭️ گۆتنا دی (Skip)";
-        }
-        localStorage.setItem('dodo_lang', lang);
-        renderFavorites();
-        changeRandomQuote();
-    }
-
     window.onload = function() {
         loadPlanner();
         loadNotes();
@@ -630,8 +608,6 @@
             document.documentElement.style.setProperty('--accent-purple', savedColor);
             document.getElementById('colorPicker').value = savedColor;
         }
-        const savedLang = localStorage.getItem('dodo_lang');
-        if(savedLang) { setLanguage(savedLang); }
     };
 </script>
 </body>
