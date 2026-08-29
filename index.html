@@ -24,8 +24,7 @@
         }
 
         [data-theme="dark"] input[type="text"], 
-        [data-theme="dark"] textarea,
-        [data-theme="dark"] input[type="time"] { 
+        [data-theme="dark"] textarea { 
             background: rgba(255, 255, 255, 0.1) !important; 
             color: #ffffff !important; 
         }
@@ -176,17 +175,6 @@
             text-align: right;
             line-height: 1.6;
         }
-        
-        .guide-time-badge {
-            font-size: 0.72rem;
-            color: var(--accent-purple);
-            font-weight: bold;
-            background: rgba(112, 111, 211, 0.08);
-            padding: 4px 10px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 6px;
-        }
 
         .card {
             background-color: var(--card-bg);
@@ -240,7 +228,7 @@
             font-size: 0.95rem;
         }
 
-        input[type="text"], textarea, input[type="time"] {
+        input[type="text"], textarea {
             width: 100%;
             background: rgba(255,255,255,0.7);
             border: 1px solid rgba(112,111,211,0.25);
@@ -269,15 +257,6 @@
         }
         .planner-title { font-weight: bold; color: var(--accent-purple); margin-bottom: 8px; }
         .planner-row { display: flex; gap: 10px; align-items: center; }
-
-        .time-picker-box {
-            background: rgba(112, 111, 211, 0.08);
-            border: 1px dashed var(--accent-purple);
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
 
         .reward-box {
             background: rgba(46, 213, 115, 0.12);
@@ -329,7 +308,7 @@
     <div class="top-bar">
         <div class="control-group">
             <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌓 گوهۆڕینا مودی</button>
-            <button class="notify-btn" onclick="requestNotificationPermissionDirectly()" id="notify-btn">🔔 نوتیفیکەیشن</button>
+            <button class="notify-btn" onclick="requestNotificationPermissionDirectly()" id="notify-btn">🔔 چالاککرنا نوتیفیکەیشنا</button>
             <div class="color-picker-btn" title="ڕەنگێ خۆ هەلبژێرە">
                 <span>🎨</span>
                 <input type="color" id="colorPicker" oninput="changeAccentColor(this.value)" value="#706fd3">
@@ -348,12 +327,6 @@
         <div id="guide-text">
             📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا.
         </div>
-        <div class="guide-time-badge" id="guide-time-badge"></div>
-    </div>
-
-    <div class="time-picker-box">
-        <label style="font-size: 0.85rem; font-weight: bold; display: block; margin-bottom: 8px;" id="notify-time-label">⏰ دەمژمێرا ئاگەهدارکرنا ڕۆژانە دیار بکە:</label>
-        <input type="time" id="custom-notify-time" style="width: auto;" onchange="saveNotifyTime()">
     </div>
 
     <div class="card" style="margin-top: 15px;">
@@ -487,60 +460,6 @@
                     console.log("Notification permission granted.");
                 }
             });
-        }
-    }
-
-    function saveNotifyTime() {
-        const timeVal = document.getElementById('custom-notify-time').value;
-        localStorage.setItem('dodo_notify_time', timeVal);
-        requestNotificationPermissionDirectly();
-        const lang = localStorage.getItem('dodo_lang') || 'ku';
-        alert(lang === 'en' ? "Notification time saved: " + timeVal : "دەمژمێرا بیرئینانێ هاتە تۆمارکرن: " + timeVal);
-    }
-
-    function loadNotifyTime() {
-        const savedTime = localStorage.getItem('dodo_notify_time');
-        if (savedTime) {
-            document.getElementById('custom-notify-time').value = savedTime;
-        }
-    }
-
-    setInterval(() => {
-        const savedTime = localStorage.getItem('dodo_notify_time');
-        if (savedTime) {
-            const now = new Date();
-            const currentFormattedTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-            const todayNotified = localStorage.getItem('dodo_notified_today');
-
-            if (currentFormattedTime === savedTime && todayNotified !== new Date().toDateString()) {
-                if ("Notification" in window && Notification.permission === "granted") {
-                    const lang = localStorage.getItem('dodo_lang') || 'ku';
-                    const list = lang === 'en' ? quotesEN : quotesKU;
-                    const randomQuote = list[Math.floor(Math.random() * list.length)].replace(/<[^>]*>?/gm, '');
-
-                    new Notification("Dodocare ⏰", {
-                        body: randomQuote,
-                        icon: "favicon.png"
-                    });
-                    localStorage.setItem('dodo_notified_today', new Date().toDateString());
-                }
-            }
-        }
-    }, 30000);
-
-    function updateGuideTime() {
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes().toString().padStart(2, '0');
-        const timeString = `${hours}:${minutes}`;
-
-        let timeTextKu = hours < 12 ? `سپێدە باش ☀️ (${timeString})` : `ڕۆژ باش/شەڤ باش 🌙 (${timeString})`;
-        let timeTextEn = hours < 12 ? `Good Morning (${timeString})` : `Good Evening (${timeString})`;
-
-        const badgeElem = document.getElementById('guide-time-badge');
-        const currentLang = localStorage.getItem('dodo_lang') || 'ku';
-        if (badgeElem) {
-            badgeElem.innerText = currentLang === 'en' ? timeTextEn : `${timeTextKu} | ${timeTextEn}`;
         }
     }
 
@@ -684,19 +603,16 @@
             document.body.style.direction = 'ltr';
             document.body.style.textAlign = 'left';
             document.querySelectorAll('.card').forEach(el => el.style.textAlign = 'left');
-            document.getElementById('notify-btn').innerText = "🔔 Notifications";
-            document.getElementById('notify-time-label').innerText = "⏰ Set daily notification time:";
+            document.getElementById('notify-btn').innerText = "🔔 Enable Notifications";
             document.getElementById('change-quote-btn').innerText = "⏭️ Skip Quote";
         } else {
             document.body.style.direction = 'rtl';
             document.body.style.textAlign = 'center';
             document.querySelectorAll('.card').forEach(el => el.style.textAlign = 'right');
-            document.getElementById('notify-btn').innerText = "🔔 نوتیفیکەیشن";
-            document.getElementById('notify-time-label').innerText = "⏰ دەمژمێرا ئاگەهدارکرنا ڕۆژانە دیار بکە:";
+            document.getElementById('notify-btn').innerText = "🔔 چالاککرنا نوتیفیکەیشنا";
             document.getElementById('change-quote-btn').innerText = "⏭️ گۆتنا دی (Skip)";
         }
         localStorage.setItem('dodo_lang', lang);
-        updateGuideTime();
         renderFavorites();
         changeRandomQuote();
     }
@@ -704,10 +620,7 @@
     window.onload = function() {
         loadPlanner();
         loadNotes();
-        loadNotifyTime();
         renderFavorites();
-        updateGuideTime();
-        setInterval(updateGuideTime, 10000);
 
         if (localStorage.getItem('dodo_theme') === 'dark') {
             document.getElementById('body').setAttribute('data-theme', 'dark');
