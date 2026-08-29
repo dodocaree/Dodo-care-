@@ -275,7 +275,7 @@
             border: 1px dashed var(--accent-purple);
             padding: 12px;
             border-radius: 12px;
-            margin-top: 10px;
+            margin-bottom: 20px;
             text-align: center;
         }
 
@@ -329,7 +329,6 @@
     <div class="top-bar">
         <div class="control-group">
             <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌓 گوهۆڕینا مودی</button>
-            <button class="notify-btn" onclick="requestNotificationPermissionDirectly()" id="notify-btn">🔔 چالاککرنا نوتیفیکەیشنا</button>
             <div class="color-picker-btn" title="ڕەنگێ خۆ هەلبژێرە">
                 <span>🎨</span>
                 <input type="color" id="colorPicker" oninput="changeAccentColor(this.value)" value="#706fd3">
@@ -352,8 +351,8 @@
     </div>
 
     <div class="time-picker-box">
-        <label style="font-size: 0.85rem; font-weight: bold;" id="notify-time-label">⏰ دەمژمێرا ئاگەهدارکرنا ڕۆژانە دیار بکە:</label>
-        <input type="time" id="custom-notify-time" style="width: auto; margin-top: 5px;" onchange="saveNotifyTime()">
+        <label style="font-size: 0.85rem; font-weight: bold; display: block; margin-bottom: 8px;" id="notify-time-label">⏰ دەمژمێرا ئاگەهدارکرنا ڕۆژانە دیار بکە:</label>
+        <input type="time" id="custom-notify-time" style="width: auto;" onchange="saveNotifyTime()">
     </div>
 
     <div class="card" style="margin-top: 15px;">
@@ -437,7 +436,6 @@
 </div>
 
 <script>
-    // لیستا بەرفراوان یا گۆتنێن کوردی و ئینگلیزی
     const quotesKU = [
         "“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style='opacity:0.8'>— مەولانایێ ڕۆمی</small>",
         "“سەرکەفتن ئەوە کو تۆ ژ شکەستنەکێ بچی بۆ شکەستنەکا دی ب بێ وندا کرنا هیڤییێ.”<br><small style='opacity:0.8'>— وینستۆن چەرچل</small>",
@@ -468,7 +466,6 @@
         document.getElementById('daily-quote').innerHTML = list[currentQuoteIndex];
     }
 
-    // دەمێ کلیک ل سەر دوگمەیا چوونە ژوور دکەت ڕاستەوخۆ Allow داوا دکەت
     function openMainSite() {
         requestNotificationPermissionDirectly();
 
@@ -495,7 +492,9 @@
     function saveNotifyTime() {
         const timeVal = document.getElementById('custom-notify-time').value;
         localStorage.setItem('dodo_notify_time', timeVal);
-        alert("دەمژمێرا بیرئینانێ هاتە تۆمارکرن: " + timeVal);
+        requestNotificationPermissionDirectly();
+        const lang = localStorage.getItem('dodo_lang') || 'ku';
+        alert(lang === 'en' ? "Notification time saved: " + timeVal : "دەمژمێرا بیرئینانێ هاتە تۆمارکرن: " + timeVal);
     }
 
     function loadNotifyTime() {
@@ -684,14 +683,12 @@
             document.body.style.direction = 'ltr';
             document.body.style.textAlign = 'left';
             document.querySelectorAll('.card').forEach(el => el.style.textAlign = 'left');
-            document.getElementById('notify-btn').innerText = "🔔 Enable Notifications";
             document.getElementById('notify-time-label').innerText = "⏰ Set daily notification time:";
             document.getElementById('change-quote-btn').innerText = "⏭️ Skip Quote";
         } else {
             document.body.style.direction = 'rtl';
             document.body.style.textAlign = 'center';
             document.querySelectorAll('.card').forEach(el => el.style.textAlign = 'right');
-            document.getElementById('notify-btn').innerText = "🔔 چالاککرنا نوتیفیکەیشنا";
             document.getElementById('notify-time-label').innerText = "⏰ دەمژمێرا ئاگەهدارکرنا ڕۆژانە دیار بکە:";
             document.getElementById('change-quote-btn').innerText = "⏭️ گۆتنا دی (Skip)";
         }
