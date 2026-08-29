@@ -32,7 +32,6 @@
         body {
             font-family: 'Comic Sans MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
-            /* Flower pattern background overlay */
             background-image: radial-gradient(rgba(255, 182, 193, 0.25) 2px, transparent 2px), radial-gradient(rgba(112, 111, 211, 0.15) 2px, transparent 2px);
             background-size: 32px 32px;
             background-position: 0 0, 16px 16px;
@@ -189,7 +188,6 @@
             text-align: right;
         }
 
-        /* Compact Header Style inside cards */
         .card > h3 {
             font-size: 1.1rem;
             margin-top: 0;
@@ -260,7 +258,6 @@
         }
         .collapsible-content.show { max-height: 1500px; opacity: 1; margin-top: 15px; }
 
-        /* Planner section card-in-card layout */
         .planner-section {
             background: var(--card-bg);
             border: 2px solid rgba(255, 182, 193, 0.4);
@@ -351,7 +348,7 @@
         <div id="quote-content" class="collapsible-content">
             <div class="dodo-box">🐰</div>
             <div class="quote-container">
-                <div class="speech-bubble" id="daily-quote">“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style="opacity:0.8">— مەولانایێ ڕۆمی</small></div>
+                <div class="speech-bubble" id="daily-quote">“مەزنترین شانازی د ژیانێ دا نە د وێ دا یە کو چ جاران نەکەڤی، لێ د وێ دا یە کو هەر جارەکا بکەڤی بزڤری سەر پێیان.”<br><small style="opacity:0.8">— نێڵسۆن ماندێلا</small></div>
                 
                 <div class="quote-actions">
                     <button class="quote-action-btn" onclick="changeRandomQuote()" id="change-quote-btn">⏭️ گۆتنا دی</button>
@@ -427,14 +424,37 @@
 
 <script>
     const quotesKU = [
-        "“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style='opacity:0.8'>— مەولانایێ ڕۆمی</small>",
-        "“سەرکەفتن ئەوە کو تۆ ژ شکەستنەکێ بچی بۆ شکەستنەکا دی ب بێ وندا کرنا هیڤییێ.”<br><small style='opacity:0.8'>— وینستۆن چەرچل</small>",
-        "“خۆ باوەر بکە، تۆ ژ وەسا مەزنتر کو هزڕ دکەی.”<br><small style='opacity:0.8'>— گۆتنا هاندەر</small>",
-        "“کارێ ئەڤرۆ نەهێڵە بۆ سباهی، هەر نوکە دەست پێبکە!”<br><small style='opacity:0.8'>— ئامۆژگاری</small>",
-        "“هیڤییێن خۆ ل پشت شکەستنان نەڤەشێره، ئەڤرۆ دەرفەتەکا نوویە.”<br><small style='opacity:0.8'>— Dodocare</small>",
-        "“نهێنیا سەرکەفتنێ ئەوە کو دەستپێبکەی ب بێ دوودلی.”<br><small style='opacity:0.8'>— مارک توێن</small>",
-        "“ژیان وەکی پاسکیل هاژۆتنێ یە، بۆ هندێ کو ئارامییا خۆ بپارێزی پێدڤییە بەردەوام د ڕێ دا بی.”<br><small style='opacity:0.8'>— ئەلبرت ئەنشتاین</small>",
-        "“بزاڤێ بکە نەکو بتنێ خەونان ببینی، بەڵکو وان خەونان بکەیە ڕاستی.”<br><small style='opacity:0.8'>— Dodocare</small>"
+        "“مەزنترین شانازی د ژیانێ دا نە د وێ دا یە کو چ جاران نەکەڤی، لێ د وێ دا یە کو هەر جارەکا بکەڤی بزڤری سەر پێیان.”<br><small style='opacity:0.8'>— نێڵسۆن ماندێلا</small>",
+        "“دەستپێکرن، نیڤا کارێ سەرکەفتنێ یە.”<br><small style='opacity:0.8'>— ئەفلاتۆن</small>",
+        "“باوەریا ب خۆ هەبوون، پێنگاڤا ئێکێ یە بەرەف سەرکەفتنێ.”<br><small style='opacity:0.8'>— ڕاڵف واڵدۆ ئێمرسۆن</small>",
+        "“تۆ ١٠٠٪ ژ وان دەرفەتان ژ دەست ددەی یێن کو تۆ تاقی ناکەی.”<br><small style='opacity:0.8'>— وەین گرێتزکی</small>",
+        "“ئەگەر تە دڤێت ژیانەکا بەختەوەر بژی، گرێ بدە ب ئارمانجەکێ ڤە، نەک ب مرۆڤ یان تشتان ڤە.”<br><small style='opacity:0.8'>— ئەلبێرت ئەنیشتاین</small>",
+        "“خۆ ب خۆ بگۆهوڕە ئەگەر تە دڤێت جیهانێ بگۆهوڕی.”<br><small style='opacity:0.8'>— مەهاتما گاندی</small>",
+        "“ئەو تشتێ مە نەکوژیت، مە بهێزتر لێ دکەت.”<br><small style='opacity:0.8'>— فریدریش نیتشە</small>",
+        "“باشترین تۆڵەسەندن، سەرکەفتنەکا مەزنە.”<br><small style='opacity:0.8'>— فرانک سیناترا</small>",
+        "“پاشەڕۆژ یا وان کەسانە یێن باوەری ب جوانییا خەونێن خۆ هەی.”<br><small style='opacity:0.8'>— ئێلینۆر ڕۆزڤێڵت</small>",
+        "“نەهێلە دوهی چاڤ ل سەر ئەڤرۆیا تە بگریت.”<br><small style='opacity:0.8'>— وێڵ ڕۆجەرز</small>",
+        "“ڕەشبین د هەر دەرفەتەکێ دا زەحمەتیێ دبینیت، گەشبین د هەر زەحمەتیەکێ دا دەرفەتێ دبینیت.”<br><small style='opacity:0.8'>— وینستۆن چێرچل</small>",
+        "“گرنگ نینە چەند هێدی دچی، گرنگ ئەوە کو تۆ نەوەستی.”<br><small style='opacity:0.8'>— کۆنفۆشیۆس</small>",
+        "“هەر کارەک مەحاڵ دیار دکەت هەتا کو مرۆڤ ئەنجام ددەت.”<br><small style='opacity:0.8'>— نێڵسۆن ماندێلا</small>",
+        "“خۆ بنیاسە، ل وی دەمی دێ هەمی جیهانێ نیاسیت.”<br><small style='opacity:0.8'>— سۆکرات</small>",
+        "“ئەز باوەریێ ب شانس و بەختی دکەم، بەلێ من دیت کو ئەز چەند پتر کار بکەم، بەختێ من پتر ل گەل من دبیت.”<br><small style='opacity:0.8'>— تۆماس جێفەرسۆن</small>",
+        "“گرنگترین دەم د ژیانا مرۆڤی دا 'نوکە' یە.”<br><small style='opacity:0.8'>— لیۆ تۆڵستۆی</small>",
+        "“چ جاران دەست ژ خەونێن خۆ بەرنەدە، ژبەر کو دەم دێ چیتن، بەلێ خەون دێ مینن.”<br><small style='opacity:0.8'>— ئێڕڵ نایتینجەیڵ</small>",
+        "“نهێنیا پێشڤەچوونێ د دەستپێکرنێ دا یە.”<br><small style='opacity:0.8'>— مارک تواین</small>",
+        "“باشترین بەرهەڤی بۆ سوباهی ئەوە کو ئەڤرۆ هەمی شیانێن خۆ یێن باش پێشکێش بکەی.”<br><small style='opacity:0.8'>— ئێچ جاکسۆن براون</small>",
+        "“ئەو کەسێ چ جاران شاشی نەکرین، چ جاران تشتەکێ نوو تاقی نەکریە.”<br><small style='opacity:0.8'>— ئەلبێرت ئەنیشتاین</small>",
+        "“مۆتیڤەیشن (هاندان) ئەو تشتە یە کو تە ددەتە ڕێ، بەلێ ڕاهاتن و بەردەوامی ئەو تشتە یە کو تە پێش دئێخیت.”<br><small style='opacity:0.8'>— جیم ڕۆن</small>",
+        "“کەسێن مەزن خەونێن مەزن دبینن و وان دکەنە ڕاستی.”<br><small style='opacity:0.8'>— ئەلکساندەرێ مەزن</small>",
+        "“سەرکەفتن نزمترین پۆینت نینە، بەلکو ئاستێ بلندبوونا تە یە پشتی کو تۆ دکەڤی.”<br><small style='opacity:0.8'>— جۆرج پاتۆن</small>",
+        "“تاکە سنوور بۆ هزر و دەستکەفتێن مە یێن سوباهی، گۆمانێن مە یێن ئەڤرۆ نە.”<br><small style='opacity:0.8'>— فرانکلین ڕۆزڤێڵت</small>",
+        "“ڕەخنەیان نەکە، گۆڕانکاریێ دروستکە.”<br><small style='opacity:0.8'>— هێنری فۆرد</small>",
+        "“سەرکەفتن دروست نابیت ژبەر کو تۆ چ جاران نەکەفتیە، بەلکو ژبەر کو تۆ چ جاران ل سەر عەردی نەمای.”<br><small style='opacity:0.8'>— ماری پیکفۆرد</small>",
+        "“دونیایێ ب شێوازێ خۆ بگۆڕە، نە بهێڵی ئاریشن دونیایێ تە بگۆهوڕن.”<br><small style='opacity:0.8'>— نێڵسۆن ماندێلا</small>",
+        "“چ تشت نەشێت ڕێگریێ ل مرۆڤەکێ بکەت کو خودان ئیرادەکا ڕاست و دروستە بۆ گەهشتن ب ئارمانجا خۆ.”<br><small style='opacity:0.8'>— تۆماس جێفەرسۆن</small>",
+        "“کارکرن و پشتبەستن ب خۆ، کلیلا ڕاستەقینە یا ڤەکرنا دەرگەهێن بەختەوەری و سەرکەفتنێ یە.”<br><small style='opacity:0.8'>— پلوتارخ</small>",
+        "“دەست ژ تاقیکرنێ بەرنەدە، ژبەر کو هەر پێنگاڤەک تە بەرەف سەرکەفتنێ پێش دئێخیت.”<br><small style='opacity:0.8'>— تۆماس ئەدیسۆن</small>",
+        "“سەرکەفتن بەرهەمێ کارێن بچووک و بەردەوامە یێن کو ڕۆژانە تێنە دووبارەکرن.”<br><small style='opacity:0.8'>— ڕۆبێرت کۆلیر</small>"
     ];
 
     let currentQuoteIndex = 0;
