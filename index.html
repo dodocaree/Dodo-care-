@@ -329,6 +329,7 @@
     <div class="top-bar">
         <div class="control-group">
             <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌓 گوهۆڕینا مودی</button>
+            <button class="notify-btn" onclick="requestNotificationPermissionDirectly()" id="notify-btn">🔔 نوتیفیکەیشن</button>
             <div class="color-picker-btn" title="ڕەنگێ خۆ هەلبژێرە">
                 <span>🎨</span>
                 <input type="color" id="colorPicker" oninput="changeAccentColor(this.value)" value="#706fd3">
@@ -683,12 +684,14 @@
             document.body.style.direction = 'ltr';
             document.body.style.textAlign = 'left';
             document.querySelectorAll('.card').forEach(el => el.style.textAlign = 'left');
+            document.getElementById('notify-btn').innerText = "🔔 Notifications";
             document.getElementById('notify-time-label').innerText = "⏰ Set daily notification time:";
             document.getElementById('change-quote-btn').innerText = "⏭️ Skip Quote";
         } else {
             document.body.style.direction = 'rtl';
             document.body.style.textAlign = 'center';
             document.querySelectorAll('.card').forEach(el => el.style.textAlign = 'right');
+            document.getElementById('notify-btn').innerText = "🔔 نوتیفیکەیشن";
             document.getElementById('notify-time-label').innerText = "⏰ دەمژمێرا ئاگەهدارکرنا ڕۆژانە دیار بکە:";
             document.getElementById('change-quote-btn').innerText = "⏭️ گۆتنا دی (Skip)";
         }
@@ -704,6 +707,7 @@
         loadNotifyTime();
         renderFavorites();
         updateGuideTime();
+        setInterval(updateGuideTime, 10000);
 
         if (localStorage.getItem('dodo_theme') === 'dark') {
             document.getElementById('body').setAttribute('data-theme', 'dark');
