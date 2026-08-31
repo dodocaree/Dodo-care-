@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ku" id="html-root">
 <head>
@@ -256,7 +257,7 @@
             opacity: 0;
             transition: max-height 0.5s ease, opacity 0.4s ease;
         }
-        .collapsible-content.show { max-height: 1500px; opacity: 1; margin-top: 15px; }
+        .collapsible-content.show { max-height: 2500px; opacity: 1; margin-top: 15px; }
 
         .planner-section {
             background: var(--card-bg);
@@ -275,6 +276,52 @@
 
         .planner-title { font-weight: bold; color: var(--accent-purple); margin-bottom: 8px; font-size: 0.9rem; }
         .planner-row { display: flex; gap: 10px; align-items: center; }
+
+        /* ستایلێن زێدەکری بۆ پلانا حەفتیانە و دەمژمێری */
+        .week-tabs {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        .week-tab-btn {
+            background: rgba(112, 111, 211, 0.1);
+            border: 1px solid rgba(112, 111, 211, 0.2);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        .week-tab-btn.active {
+            background: var(--accent-purple);
+            color: white;
+            font-weight: bold;
+        }
+
+        .timeline-slot {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 8px 10px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(112, 111, 211, 0.15);
+        }
+        .time-badge {
+            background: var(--accent-purple);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            white-space: nowrap;
+            min-width: 100px;
+            text-align: center;
+        }
 
         .reward-box {
             background: rgba(46, 213, 115, 0.12);
@@ -359,6 +406,66 @@
             <div style="margin-top: 20px; border-top: 1px dashed rgba(112,111,211,0.3); padding-top: 10px;">
                 <h4 style="color: var(--accent-purple); font-size: 0.9rem; margin-bottom: 8px;" id="fav-section-title">⭐ گۆتنێن من یێن دلخواز</h4>
                 <div class="favorites-list" id="favorites-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- بەشێ زێدەکری: خشتەیێ دەمژمێری -->
+    <div class="card">
+        <h3>خشتەیێ دەمژمێری ⏰</h3>
+        <button class="btn" onclick="toggleSection('hourly-content')">⏰ ڤەکرنا خشتەیێ دەمژمێری</button>
+        
+        <div id="hourly-content" class="collapsible-content">
+            <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 12px;">
+                کاری بۆ هەر دەمژمێرەکا ڕۆژا خۆ دەستنیشان بکە:
+            </p>
+
+            <div class="timeline-slot">
+                <span class="time-badge">08:00 AM</span>
+                <input type="text" id="time-8am" placeholder="ڕابوون ژ خەوێ..." oninput="saveHourlySchedule()">
+            </div>
+            <div class="timeline-slot">
+                <span class="time-badge">09:00 AM - 12:00 PM</span>
+                <input type="text" id="time-9am" placeholder="دەوام ل قوتابخانێ..." oninput="saveHourlySchedule()">
+            </div>
+            <div class="timeline-slot">
+                <span class="time-badge">12:00 PM - 02:00 PM</span>
+                <input type="text" id="time-12pm" placeholder="کاتێ خوارنێ و بێهنڤەدانێ..." oninput="saveHourlySchedule()">
+            </div>
+            <div class="timeline-slot">
+                <span class="time-badge">02:00 PM - 05:00 PM</span>
+                <input type="text" id="time-2pm" placeholder="خویندن یان دەمێ ئازاد..." oninput="saveHourlySchedule()">
+            </div>
+            <div class="timeline-slot">
+                <span class="time-badge">05:00 PM - 08:00 PM</span>
+                <input type="text" id="time-5pm" placeholder="کۆمبوون دگەل خێزانێ..." oninput="saveHourlySchedule()">
+            </div>
+            <div class="timeline-slot">
+                <span class="time-badge">08:00 PM - 10:00 PM</span>
+                <input type="text" id="time-8pm" placeholder="بەرهەڤبوونا نۆستنێ..." oninput="saveHourlySchedule()">
+            </div>
+        </div>
+    </div>
+
+    <!-- بەشێ زێدەکری: پلانا حەفتیانە -->
+    <div class="card">
+        <h3>پلانا حەفتیانە 📅</h3>
+        <button class="btn" onclick="toggleSection('weekly-content')">📅 ڤەکرنا پلانا حەفتیانە</button>
+        
+        <div id="weekly-content" class="collapsible-content">
+            <div class="week-tabs">
+                <button class="week-tab-btn active" onclick="switchDay('sat')">شەمب</button>
+                <button class="week-tab-btn" onclick="switchDay('sun')">ئێک شەمب</button>
+                <button class="week-tab-btn" onclick="switchDay('mon')">دوو شەمب</button>
+                <button class="week-tab-btn" onclick="switchDay('tue')">سێ شەمب</button>
+                <button class="week-tab-btn" onclick="switchDay('wed')">چوار شەمب</button>
+                <button class="week-tab-btn" onclick="switchDay('thu')">پێنج شەمب</button>
+                <button class="week-tab-btn" onclick="switchDay('fri')">ئینی</button>
+            </div>
+
+            <div class="planner-section">
+                <div class="planner-title" id="current-day-title">ئارمانجێن ڕۆژا شەمبی:</div>
+                <textarea id="weekly-notes" rows="3" placeholder="ئارمانج و کارێن تە یێن ڤێ ڕۆژێ..." oninput="saveWeeklyPlan()"></textarea>
             </div>
         </div>
     </div>
@@ -458,6 +565,11 @@
     ];
 
     let currentQuoteIndex = 0;
+    let selectedDay = 'sat';
+    const dayNames = {
+        sat: 'شەمبی', sun: 'ئێک شەمبی', mon: 'دوو شەمبی',
+        tue: 'سێ شەمبی', wed: 'چوار شەمبی', thu: 'پێنج شەمبی', fri: 'ئینی'
+    };
 
     function changeRandomQuote() {
         currentQuoteIndex = (currentQuoteIndex + 1) % quotesKU.length;
@@ -530,6 +642,55 @@
                 container.innerHTML = html;
             }
         }
+    }
+
+    /* فەنکشنێن زێدەکری بۆ خشتەیێ دەمژمێری و پلانا حەفتیانە */
+    function saveHourlySchedule() {
+        const hourlyData = {
+            t8: document.getElementById('time-8am').value,
+            t9: document.getElementById('time-9am').value,
+            t12: document.getElementById('time-12pm').value,
+            t2: document.getElementById('time-2pm').value,
+            t5: document.getElementById('time-5pm').value,
+            t8p: document.getElementById('time-8pm').value
+        };
+        localStorage.setItem('dodo_hourly', JSON.stringify(hourlyData));
+    }
+
+    function loadHourlySchedule() {
+        const saved = localStorage.getItem('dodo_hourly');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.getElementById('time-8am').value = data.t8 || '';
+                document.getElementById('time-9am').value = data.t9 || '';
+                document.getElementById('time-12pm').value = data.t12 || '';
+                document.getElementById('time-2pm').value = data.t2 || '';
+                document.getElementById('time-5pm').value = data.t5 || '';
+                document.getElementById('time-8pm').value = data.t8p || '';
+            } catch(e) {}
+        }
+    }
+
+    function switchDay(day) {
+        selectedDay = day;
+        const btns = document.querySelectorAll('.week-tab-btn');
+        btns.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        document.getElementById('current-day-title').innerText = `ئارمانجێن ڕۆژا ${dayNames[day]}:`;
+        loadWeeklyPlan();
+    }
+
+    function saveWeeklyPlan() {
+        let weekly = JSON.parse(localStorage.getItem('dodo_weekly') || '{}');
+        weekly[selectedDay] = document.getElementById('weekly-notes').value;
+        localStorage.setItem('dodo_weekly', JSON.stringify(weekly));
+    }
+
+    function loadWeeklyPlan() {
+        let weekly = JSON.parse(localStorage.getItem('dodo_weekly') || '{}');
+        document.getElementById('weekly-notes').value = weekly[selectedDay] || '';
     }
 
     function checkAllCompleted() {
@@ -617,6 +778,8 @@
 
     window.onload = function() {
         loadPlanner();
+        loadHourlySchedule();
+        loadWeeklyPlan();
         loadNotes();
         renderFavorites();
 
@@ -632,3 +795,4 @@
 </script>
 </body>
 </html>
+
