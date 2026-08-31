@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ku" id="html-root">
 <head>
@@ -16,6 +15,7 @@
             --text-main: #5c4033;
             --text-muted: #8c7365;
             --success-color: #2ed573;
+            --fire-color: #ff5252;
         }
         [data-theme="dark"] {
             --bg-color: #12121f;
@@ -152,6 +152,42 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
+        /* ستایلێ ستریکان */
+        .streak-card {
+            background: linear-gradient(135deg, rgba(255,121,121,0.15), rgba(255,82,82,0.05));
+            border: 2px dashed var(--fire-color);
+            border-radius: 18px;
+            padding: 12px 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(255, 82, 82, 0.1);
+        }
+        .streak-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .streak-fire-icon {
+            font-size: 1.8rem;
+            animation: pulseFire 1.5s infinite alternate;
+        }
+        @keyframes pulseFire {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+        .streak-text-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        .streak-count-num {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--fire-color);
+        }
+
         input[type="color"] {
             appearance: none;
             -webkit-appearance: none;
@@ -277,7 +313,6 @@
         .planner-title { font-weight: bold; color: var(--accent-purple); margin-bottom: 8px; font-size: 0.9rem; }
         .planner-row { display: flex; gap: 10px; align-items: center; }
 
-        /* ستایلێن زێدەکری بۆ پلانا حەفتیانە و دەمژمێری */
         .week-tabs {
             display: flex;
             gap: 6px;
@@ -299,28 +334,6 @@
             background: var(--accent-purple);
             color: white;
             font-weight: bold;
-        }
-
-        .timeline-slot {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.4);
-            padding: 8px 10px;
-            border-radius: 12px;
-            margin-bottom: 8px;
-            border: 1px solid rgba(112, 111, 211, 0.15);
-        }
-        .time-badge {
-            background: var(--accent-purple);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            white-space: nowrap;
-            min-width: 100px;
-            text-align: center;
         }
 
         .reward-box {
@@ -383,6 +396,18 @@
     <h1>Dodocare</h1>
     <div class="subtitle" id="site-subtitle">✨</div>
 
+    <!-- کارتێ ستریکا ڕۆژانە -->
+    <div class="streak-card">
+        <div class="streak-info">
+            <span class="streak-fire-icon">🔥</span>
+            <div>
+                <p class="streak-text-title">ستریکا ڕۆژانە</p>
+                <span class="streak-count-num" id="streak-counter">1 ڕۆژ</span>
+            </div>
+        </div>
+        <span style="font-size: 0.8rem; color: var(--text-muted);" id="streak-status-msg">دەستپێکرنا ب هێز! 💪</span>
+    </div>
+
     <div class="top-mini-guide" id="guide-box">
         <div id="guide-text">
             📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا.
@@ -410,44 +435,7 @@
         </div>
     </div>
 
-    <!-- بەشێ زێدەکری: خشتەیێ دەمژمێری -->
-    <div class="card">
-        <h3>خشتەیێ دەمژمێری ⏰</h3>
-        <button class="btn" onclick="toggleSection('hourly-content')">⏰ ڤەکرنا خشتەیێ دەمژمێری</button>
-        
-        <div id="hourly-content" class="collapsible-content">
-            <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 12px;">
-                کاری بۆ هەر دەمژمێرەکا ڕۆژا خۆ دەستنیشان بکە:
-            </p>
-
-            <div class="timeline-slot">
-                <span class="time-badge">08:00 AM</span>
-                <input type="text" id="time-8am" placeholder="ڕابوون ژ خەوێ..." oninput="saveHourlySchedule()">
-            </div>
-            <div class="timeline-slot">
-                <span class="time-badge">09:00 AM - 12:00 PM</span>
-                <input type="text" id="time-9am" placeholder="دەوام ل قوتابخانێ..." oninput="saveHourlySchedule()">
-            </div>
-            <div class="timeline-slot">
-                <span class="time-badge">12:00 PM - 02:00 PM</span>
-                <input type="text" id="time-12pm" placeholder="کاتێ خوارنێ و بێهنڤەدانێ..." oninput="saveHourlySchedule()">
-            </div>
-            <div class="timeline-slot">
-                <span class="time-badge">02:00 PM - 05:00 PM</span>
-                <input type="text" id="time-2pm" placeholder="خویندن یان دەمێ ئازاد..." oninput="saveHourlySchedule()">
-            </div>
-            <div class="timeline-slot">
-                <span class="time-badge">05:00 PM - 08:00 PM</span>
-                <input type="text" id="time-5pm" placeholder="کۆمبوون دگەل خێزانێ..." oninput="saveHourlySchedule()">
-            </div>
-            <div class="timeline-slot">
-                <span class="time-badge">08:00 PM - 10:00 PM</span>
-                <input type="text" id="time-8pm" placeholder="بەرهەڤبوونا نۆستنێ..." oninput="saveHourlySchedule()">
-            </div>
-        </div>
-    </div>
-
-    <!-- بەشێ زێدەکری: پلانا حەفتیانە -->
+    <!-- بەشێ: پلانا حەفتیانە -->
     <div class="card">
         <h3>پلانا حەفتیانە 📅</h3>
         <button class="btn" onclick="toggleSection('weekly-content')">📅 ڤەکرنا پلانا حەفتیانە</button>
@@ -571,6 +559,47 @@
         tue: 'سێ شەمبی', wed: 'چوار شەمبی', thu: 'پێنج شەمبی', fri: 'ئینی'
     };
 
+    /* لۆجیکێ نوی یێ ستریکان (Daily Streak System) */
+    function updateStreak() {
+        const today = new Date().toDateString();
+        let streakData = JSON.parse(localStorage.getItem('dodo_streak_data') || '{}');
+        
+        let count = streakData.count || 0;
+        let lastVisit = streakData.lastVisit || null;
+
+        if (!lastVisit) {
+            // سەردانا ئێکێ
+            count = 1;
+            streakData.lastVisit = today;
+            streakData.count = count;
+        } else if (lastVisit !== today) {
+            // ئەگەر ڕۆژەکا دی هاتە ناڤ سایتی، ۱ زێدە دکەت
+            count += 1;
+            streakData.lastVisit = today;
+            streakData.count = count;
+        }
+
+        localStorage.setItem('dodo_streak_data', JSON.stringify(streakData));
+        
+        // نیشاندانا ل سەر شاشێ
+        const streakEl = document.getElementById('streak-counter');
+        const statusMsgEl = document.getElementById('streak-status-msg');
+        
+        if (streakEl) {
+            streakEl.innerText = count >= 999 ? `999+ ڕۆژ` : `${count} ڕۆژ`;
+        }
+
+        if (statusMsgEl) {
+            if (count > 30) {
+                statusMsgEl.innerText = "تۆ شایستەی خەڵاتەکی مەزنی! 👑";
+            } else if (count > 7) {
+                statusMsgEl.innerText = "بەردەوامبە، تۆ گەلەک باشی! 🔥";
+            } else {
+                statusMsgEl.innerText = "دەستپێکرنا ب هێز! 💪";
+            }
+        }
+    }
+
     function changeRandomQuote() {
         currentQuoteIndex = (currentQuoteIndex + 1) % quotesKU.length;
         document.getElementById('daily-quote').innerHTML = quotesKU[currentQuoteIndex];
@@ -644,39 +673,13 @@
         }
     }
 
-    /* فەنکشنێن زێدەکری بۆ خشتەیێ دەمژمێری و پلانا حەفتیانە */
-    function saveHourlySchedule() {
-        const hourlyData = {
-            t8: document.getElementById('time-8am').value,
-            t9: document.getElementById('time-9am').value,
-            t12: document.getElementById('time-12pm').value,
-            t2: document.getElementById('time-2pm').value,
-            t5: document.getElementById('time-5pm').value,
-            t8p: document.getElementById('time-8pm').value
-        };
-        localStorage.setItem('dodo_hourly', JSON.stringify(hourlyData));
-    }
-
-    function loadHourlySchedule() {
-        const saved = localStorage.getItem('dodo_hourly');
-        if (saved) {
-            try {
-                const data = JSON.parse(saved);
-                document.getElementById('time-8am').value = data.t8 || '';
-                document.getElementById('time-9am').value = data.t9 || '';
-                document.getElementById('time-12pm').value = data.t12 || '';
-                document.getElementById('time-2pm').value = data.t2 || '';
-                document.getElementById('time-5pm').value = data.t5 || '';
-                document.getElementById('time-8pm').value = data.t8p || '';
-            } catch(e) {}
-        }
-    }
-
     function switchDay(day) {
         selectedDay = day;
         const btns = document.querySelectorAll('.week-tab-btn');
         btns.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+        if (event && event.target) {
+            event.target.classList.add('active');
+        }
 
         document.getElementById('current-day-title').innerText = `ئارمانجێن ڕۆژا ${dayNames[day]}:`;
         loadWeeklyPlan();
@@ -777,8 +780,8 @@
     }
 
     window.onload = function() {
+        updateStreak();
         loadPlanner();
-        loadHourlySchedule();
         loadWeeklyPlan();
         loadNotes();
         renderFavorites();
@@ -795,4 +798,3 @@
 </script>
 </body>
 </html>
-
