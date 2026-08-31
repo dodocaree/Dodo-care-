@@ -281,10 +281,18 @@
             border: 1px solid rgba(112,111,211,0.25);
             border-radius: 12px;
             color: var(--text-main);
-            padding: 10px;
+            padding: 12px;
             box-sizing: border-box;
             font-family: inherit;
             outline: none;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ستایلێ نوی بو جهێ نڤیسینا خشتەیێ ڕۆژانە دا کو پەحن و مەزن بیت */
+        .task-input {
+            min-height: 70px;
+            resize: vertical;
         }
 
         .collapsible-content {
@@ -471,7 +479,7 @@
                 <div class="planner-title" id="morning-title">🌅 سپێدەهی</div>
                 <div class="planner-row">
                     <input type="checkbox" class="task-checkbox" id="check-morning" onclick="savePlanner()">
-                    <input type="text" class="task-input" id="input-morning" placeholder="کارێ سپێدەهیا خۆ..." oninput="savePlanner()">
+                    <textarea class="task-input" id="input-morning" placeholder="کارێ سپێدەهیا خۆ..." oninput="savePlanner()"></textarea>
                 </div>
             </div>
 
@@ -479,7 +487,7 @@
                 <div class="planner-title" id="noon-title">☀️ نیڤرۆ</div>
                 <div class="planner-row">
                     <input type="checkbox" class="task-checkbox" id="check-noon" onclick="savePlanner()">
-                    <input type="text" class="task-input" id="input-noon" placeholder="کارێ نیڤرۆیا خۆ..." oninput="savePlanner()">
+                    <textarea class="task-input" id="input-noon" placeholder="کارێ نیڤرۆیا خۆ..." oninput="savePlanner()"></textarea>
                 </div>
             </div>
 
@@ -487,7 +495,7 @@
                 <div class="planner-title" id="afternoon-title">🌇 ئێڤاری</div>
                 <div class="planner-row">
                     <input type="checkbox" class="task-checkbox" id="check-afternoon" onclick="savePlanner()">
-                    <input type="text" class="task-input" id="input-afternoon" placeholder="کارێ ئێڤاریا خۆ..." oninput="savePlanner()">
+                    <textarea class="task-input" id="input-afternoon" placeholder="کارێ ئێڤاریا خۆ..." oninput="savePlanner()"></textarea>
                 </div>
             </div>
 
@@ -495,7 +503,7 @@
                 <div class="planner-title" id="night-title">🌙 ب شەڤ</div>
                 <div class="planner-row">
                     <input type="checkbox" class="task-checkbox" id="check-night" onclick="savePlanner()">
-                    <input type="text" class="task-input" id="input-night" placeholder="کارێ شەڤا خۆ..." oninput="savePlanner()">
+                    <textarea class="task-input" id="input-night" placeholder="کارێ شەڤا خۆ..." oninput="savePlanner()"></textarea>
                 </div>
             </div>
 
@@ -796,3 +804,5 @@
         }
     };
 </script>
+</body>
+</html>
