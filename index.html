@@ -15,7 +15,6 @@
             --text-main: #5c4033;
             --text-muted: #8c7365;
             --success-color: #2ed573;
-            --fire-color: #ff5252;
         }
         [data-theme="dark"] {
             --bg-color: #12121f;
@@ -152,42 +151,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        /* ستایلێ ستریکان */
-        .streak-card {
-            background: linear-gradient(135deg, rgba(255,121,121,0.15), rgba(255,82,82,0.05));
-            border: 2px dashed var(--fire-color);
-            border-radius: 18px;
-            padding: 12px 18px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 15px rgba(255, 82, 82, 0.1);
-        }
-        .streak-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .streak-fire-icon {
-            font-size: 1.8rem;
-            animation: pulseFire 1.5s infinite alternate;
-        }
-        @keyframes pulseFire {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.2); }
-        }
-        .streak-text-title {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-        .streak-count-num {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--fire-color);
-        }
-
         input[type="color"] {
             appearance: none;
             -webkit-appearance: none;
@@ -275,25 +238,82 @@
             font-size: 0.9rem;
         }
 
-        input[type="text"], textarea {
-            width: 100%;
-            background: rgba(255,255,255,0.7);
-            border: 1px solid rgba(112,111,211,0.25);
-            border-radius: 12px;
+        /* Mood Buttons Styling */
+        .mood-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 8px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .mood-btn {
+            background: rgba(112, 111, 211, 0.08);
+            border: 2px solid rgba(112, 111, 211, 0.2);
+            padding: 10px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
             color: var(--text-main);
-            padding: 12px;
-            box-sizing: border-box;
-            font-family: inherit;
-            outline: none;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        .mood-btn:hover, .mood-btn.active {
+            background: var(--accent-purple);
+            color: white;
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
         }
 
-        /* ستایلێ نوی بو جهێ نڤیسینا خشتەیێ ڕۆژانە دا کو پەحن و مەزن بیت */
-        .task-input {
-            min-height: 70px;
-            resize: vertical;
+        .mood-result-box {
+            background: rgba(112, 111, 211, 0.1);
+            border: 1px dashed var(--accent-purple);
+            padding: 15px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-top: 15px;
+            display: none;
         }
+        .mood-result-box.show { display: block; }
+
+        /* Quiz Styling */
+        .quiz-question-box {
+            background: rgba(112, 111, 211, 0.05);
+            border: 1px solid rgba(112, 111, 211, 0.15);
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 12px;
+            text-align: right;
+        }
+        .quiz-q-title {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+            margin-bottom: 8px;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .quiz-opt-label {
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quiz-result-card {
+            background: linear-gradient(135deg, rgba(112,111,211,0.15), rgba(255,121,121,0.1));
+            border: 2px solid var(--accent-purple);
+            border-radius: 16px;
+            padding: 18px;
+            margin-top: 15px;
+            display: none;
+        }
+        .quiz-result-card.show { display: block; }
 
         .collapsible-content {
             max-height: 0;
@@ -301,59 +321,7 @@
             opacity: 0;
             transition: max-height 0.5s ease, opacity 0.4s ease;
         }
-        .collapsible-content.show { max-height: 2500px; opacity: 1; margin-top: 15px; }
-
-        .planner-section {
-            background: var(--card-bg);
-            border: 2px solid rgba(255, 182, 193, 0.4);
-            border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
-        }
-        
-        .planner-section:hover {
-            border-color: var(--accent-purple);
-            transform: translateY(-2px);
-        }
-
-        .planner-title { font-weight: bold; color: var(--accent-purple); margin-bottom: 8px; font-size: 0.9rem; }
-        .planner-row { display: flex; gap: 10px; align-items: center; }
-
-        .week-tabs {
-            display: flex;
-            gap: 6px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
-        }
-        .week-tab-btn {
-            background: rgba(112, 111, 211, 0.1);
-            border: 1px solid rgba(112, 111, 211, 0.2);
-            color: var(--text-main);
-            padding: 6px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            white-space: nowrap;
-        }
-        .week-tab-btn.active {
-            background: var(--accent-purple);
-            color: white;
-            font-weight: bold;
-        }
-
-        .reward-box {
-            background: rgba(46, 213, 115, 0.12);
-            border: 1px dashed var(--success-color);
-            color: var(--success-color);
-            padding: 14px;
-            border-radius: 14px;
-            text-align: center;
-            display: none;
-        }
-        .reward-box.show { display: block; }
+        .collapsible-content.show { max-height: 3500px; opacity: 1; margin-top: 15px; }
 
         .favorites-list { margin-top: 10px; max-height: 220px; overflow-y: auto; }
         .favorite-item {
@@ -402,19 +370,7 @@
     </div>
 
     <h1>Dodocare</h1>
-    <div class="subtitle" id="site-subtitle">✨</div>
-
-    <!-- کارتێ ستریکا ڕۆژانە -->
-    <div class="streak-card">
-        <div class="streak-info">
-            <span class="streak-fire-icon">🔥</span>
-            <div>
-                <p class="streak-text-title">ستریکا ڕۆژانە</p>
-                <span class="streak-count-num" id="streak-counter">1 ڕۆژ</span>
-            </div>
-        </div>
-        <span style="font-size: 0.8rem; color: var(--text-muted);" id="streak-status-msg">دەستپێکرنا ب هێز! 💪</span>
-    </div>
+    <div class="subtitle" id="site-subtitle">هەڤالێ تە یێ دەروونی 🐰✨</div>
 
     <div class="top-mini-guide" id="guide-box">
         <div id="guide-text">
@@ -422,7 +378,24 @@
         </div>
     </div>
 
-    <div class="card" style="margin-top: 15px;">
+    <!-- بەشێ ١: پێڤەرێ مەزاجی (Mood) -->
+    <div class="card">
+        <h3>پێڤەرێ مەزاجێ ئەڤرۆ 🎭</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">🐰 ئەڤرۆ د ناخێ خۆ دا هەست ب چ دکەی؟</p>
+        
+        <div class="mood-buttons-grid">
+            <button class="mood-btn" onclick="selectMood('happy')">😊 کەیفخۆش</button>
+            <button class="mood-btn" onclick="selectMood('tired')">😴 ماندی</button>
+            <button class="mood-btn" onclick="selectMood('bored')">😔 بێزار</button>
+            <button class="mood-btn" onclick="selectMood('anxious')">😰 قەلەق</button>
+            <button class="mood-btn" onclick="selectMood('strong')">🔥 بهێز</button>
+        </div>
+
+        <div id="mood-result-container" class="mood-result-box"></div>
+    </div>
+
+    <!-- بەشێ ٢: گۆتنا ڕۆژێ -->
+    <div class="card">
         <h3 id="quote-card-title">گۆتنا ڕۆژێ 💬</h3>
         <button class="btn" onclick="toggleSection('quote-content')" id="btn-quote-toggle">💬 ڤەکرنا گۆتان</button>
         <div id="quote-content" class="collapsible-content">
@@ -443,82 +416,25 @@
         </div>
     </div>
 
-    <!-- بەشێ: پلانا حەفتیانە -->
+    <!-- بەشێ ٣: ١٢ پرسیارێن دەروونی (کویز) -->
     <div class="card">
-        <h3>پلانا حەفتیانە 📅</h3>
-        <button class="btn" onclick="toggleSection('weekly-content')">📅 ڤەکرنا پلانا حەفتیانە</button>
+        <h3>کویزێ ١٢ پرسیارێن دەروونی 🧠</h3>
+        <button class="btn" onclick="toggleSection('quiz-content')">🧠 ڤەکرنا کویزێ دەروونی</button>
         
-        <div id="weekly-content" class="collapsible-content">
-            <div class="week-tabs">
-                <button class="week-tab-btn active" onclick="switchDay('sat')">شەمب</button>
-                <button class="week-tab-btn" onclick="switchDay('sun')">ئێک شەمب</button>
-                <button class="week-tab-btn" onclick="switchDay('mon')">دوو شەمب</button>
-                <button class="week-tab-btn" onclick="switchDay('tue')">سێ شەمب</button>
-                <button class="week-tab-btn" onclick="switchDay('wed')">چوار شەمب</button>
-                <button class="week-tab-btn" onclick="switchDay('thu')">پێنج شەمب</button>
-                <button class="week-tab-btn" onclick="switchDay('fri')">ئینی</button>
-            </div>
-
-            <div class="planner-section">
-                <div class="planner-title" id="current-day-title">ئارمانجێن ڕۆژا شەمبی:</div>
-                <textarea id="weekly-notes" rows="3" placeholder="ئارمانج و کارێن تە یێن ڤێ ڕۆژێ..." oninput="saveWeeklyPlan()"></textarea>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h3 id="planner-card-title">خشتەیێ ڕۆژانە 🗓️</h3>
-        <button class="btn" onclick="toggleSection('planner-content')" id="btn-planner-toggle">📅 ڤەکرنا خشتەیێ ڕۆژانە</button>
-        
-        <div id="planner-content" class="collapsible-content">
-            <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px;" id="planner-hint">
-                پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
+        <div id="quiz-content" class="collapsible-content">
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; text-align: center;">
+                ڤان پرسیارێن دەروونی بێ لایەنی بەرسڤ بدە دا کەسایەتییا خۆ یا ڕاستەقینە بناسی!
             </p>
 
-            <div class="planner-section">
-                <div class="planner-title" id="morning-title">🌅 سپێدەهی</div>
-                <div class="planner-row">
-                    <input type="checkbox" class="task-checkbox" id="check-morning" onclick="savePlanner()">
-                    <textarea class="task-input" id="input-morning" placeholder="کارێ سپێدەهیا خۆ..." oninput="savePlanner()"></textarea>
-                </div>
-            </div>
+            <div id="quiz-form-container"></div>
 
-            <div class="planner-section">
-                <div class="planner-title" id="noon-title">☀️ نیڤرۆ</div>
-                <div class="planner-row">
-                    <input type="checkbox" class="task-checkbox" id="check-noon" onclick="savePlanner()">
-                    <textarea class="task-input" id="input-noon" placeholder="کارێ نیڤرۆیا خۆ..." oninput="savePlanner()"></textarea>
-                </div>
-            </div>
+            <button class="btn" style="margin-top: 15px;" onclick="calculateQuizResult()">🔍 نیشاندانا ئەنجامێ من</button>
 
-            <div class="planner-section">
-                <div class="planner-title" id="afternoon-title">🌇 ئێڤاری</div>
-                <div class="planner-row">
-                    <input type="checkbox" class="task-checkbox" id="check-afternoon" onclick="savePlanner()">
-                    <textarea class="task-input" id="input-afternoon" placeholder="کارێ ئێڤاریا خۆ..." oninput="savePlanner()"></textarea>
-                </div>
+            <div id="quiz-result-card" class="quiz-result-card">
+                <h4 id="result-title" style="color: var(--accent-purple); margin-top: 0;"></h4>
+                <p id="result-desc" style="font-size: 0.9rem; line-height: 1.6;"></p>
+                <div id="result-traits" style="font-size: 0.85rem; font-weight: bold; color: var(--accent-purple); margin-top: 10px;"></div>
             </div>
-
-            <div class="planner-section">
-                <div class="planner-title" id="night-title">🌙 ب شەڤ</div>
-                <div class="planner-row">
-                    <input type="checkbox" class="task-checkbox" id="check-night" onclick="savePlanner()">
-                    <textarea class="task-input" id="input-night" placeholder="کارێ شەڤا خۆ..." oninput="savePlanner()"></textarea>
-                </div>
-            </div>
-
-            <div id="reward-message" class="reward-box">
-                پیرۆزبایی! تە هەموو کارێن خۆ یێن ئەڤرۆ ب سەرکەفتیانە تەمام کرن 🥳🎉
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h3 id="notes-card-title">تێبینیێن من 📝</h3>
-        <button class="btn" onclick="toggleSection('notes-content')" id="btn-notes-toggle">📝 ڤەکرنا جهێ تێبینیان</button>
-        
-        <div id="notes-content" class="collapsible-content">
-            <textarea id="personal-notes" rows="4" placeholder="تێبینیێن خۆ ل ڤێرێ بنڤیسە..." oninput="saveNotes()"></textarea>
         </div>
     </div>
 
@@ -536,76 +452,146 @@
         "“ئەو تشتێ مە نەکوژیت، مە بهێزتر لێ دکەت.”<br><small style='opacity:0.8'>— فریدریش نیتشە</small>",
         "“باشترین تۆڵەسەندن، سەرکەفتنەکا مەزنە.”<br><small style='opacity:0.8'>— فرانک سیناترا</small>",
         "“پاشەڕۆژ یا وان کەسانە یێن باوەری ب جوانییا خەونێن خۆ هەی.”<br><small style='opacity:0.8'>— ئێلینۆر ڕۆزڤێڵت</small>",
-        "“نەهێلە دوهی چاڤ ل سەر ئەڤرۆیا تە بگریت.”<br><small style='opacity:0.8'>— وێڵ ڕۆجەرز</small>",
-        "“ڕەشبین د هەر دەرفەتەکێ دا زەحمەتیێ دبینیت، گەشبین د هەر زەحمەتیەکێ دا دەرفەتێ دبینیت.”<br><small style='opacity:0.8'>— وینستۆن چێرچل</small>",
-        "“گرنگ نینە چەند هێدی دچی، گرنگ ئەوە کو تۆ نەوەستی.”<br><small style='opacity:0.8'>— کۆنفۆشیۆس</small>",
-        "“هەر کارەک مەحاڵ دیار دکەت هەتا کو مرۆڤ ئەنجام ددەت.”<br><small style='opacity:0.8'>— نێڵسۆن ماندێلا</small>",
-        "“خۆ بنیاسە، ل وی دەمی دێ هەمی جیهانێ نیاسیت.”<br><small style='opacity:0.8'>— سۆکرات</small>",
-        "“ئەز باوەریێ ب شانس و بەختی دکەم، بەلێ من دیت کو ئەز چەند پتر کار بکەم، بەختێ من پتر ل گەل من دبیت.”<br><small style='opacity:0.8'>— تۆماس جێفەرسۆن</small>",
-        "“گرنگترین دەم د ژیانا مرۆڤی دا 'نوکە' یە.”<br><small style='opacity:0.8'>— لیۆ تۆڵستۆی</small>",
-        "“چ جاران دەست ژ خەونێن خۆ بەرنەدە، ژبەر کو دەم دێ چیتن، بەلێ خەون دێ مینن.”<br><small style='opacity:0.8'>— ئێڕڵ نایتینجەیڵ</small>",
-        "“نهێنیا پێشڤەچوونێ د دەستپێکرنێ دا یە.”<br><small style='opacity:0.8'>— مارک تواین</small>",
-        "“باشترین بەرهەڤی بۆ سوباهی ئەوە کو ئەڤرۆ هەمی شیانێن خۆ یێن باش پێشکێش بکەی.”<br><small style='opacity:0.8'>— ئێچ جاکسۆن براون</small>",
-        "“ئەو کەسێ چ جاران شاشی نەکرین، چ جاران تشتەکێ نوو تاقی نەکریە.”<br><small style='opacity:0.8'>— ئەلبێرت ئەنیشتاین</small>",
-        "“مۆتیڤەیشن (هاندان) ئەو تشتە یە کو تە ددەتە ڕێ، بەلێ ڕاهاتن و بەردەوامی ئەو تشتە یە کو تە پێش دئێخیت.”<br><small style='opacity:0.8'>— جیم ڕۆن</small>",
-        "“کەسێن مەزن خەونێن مەزن دبینن و وان دکەنە ڕاستی.”<br><small style='opacity:0.8'>— ئەلکساندەرێ مەزن</small>",
-        "“سەرکەفتن نزمترین پۆینت نینە، بەلکو ئاستێ بلندبوونا تە یە پشتی کو تۆ دکەڤی.”<br><small style='opacity:0.8'>— جۆرج پاتۆن</small>",
-        "“تاکە سنوور بۆ هزر و دەستکەفتێن مە یێن سوباهی، گۆمانێن مە یێن ئەڤرۆ نە.”<br><small style='opacity:0.8'>— فرانکلین ڕۆزڤێڵت</small>",
-        "“ڕەخنەیان نەکە، گۆڕانکاریێ دروستکە.”<br><small style='opacity:0.8'>— هێنری فۆرد</small>",
-        "“سەرکەفتن دروست نابیت ژبەر کو تۆ چ جاران نەکەفتیە، بەلکو ژبەر کو تۆ چ جاران ل سەر عەردی نەمای.”<br><small style='opacity:0.8'>— ماری پیکفۆرد</small>",
-        "“دونیایێ ب شێوازێ خۆ بگۆڕە، نە بهێڵی ئاریشن دونیایێ تە بگۆهوڕن.”<br><small style='opacity:0.8'>— نێڵسۆن ماندێلا</small>",
-        "“چ تشت نەشێت ڕێگریێ ل مرۆڤەکێ بکەت کو خودان ئیرادەکا ڕاست و دروستە بۆ گەهشتن ب ئارمانجا خۆ.”<br><small style='opacity:0.8'>— تۆماس جێفەرسۆن</small>",
-        "“کارکرن و پشتبەستن ب خۆ، کلیلا ڕاستەقینە یا ڤەکرنا دەرگەهێن بەختەوەری و سەرکەفتنێ یە.”<br><small style='opacity:0.8'>— پلوتارخ</small>",
-        "“دەست ژ تاقیکرنێ بەرنەدە، ژبەر کو هەر پێنگاڤەک تە بەرەف سەرکەفتنێ پێش دئێخیت.”<br><small style='opacity:0.8'>— تۆماس ئەدیسۆن</small>",
-        "“سەرکەفتن بەرهەمێ کارێن بچووک و بەردەوامە یێن کو ڕۆژانە تێنە دووبارەکرن.”<br><small style='opacity:0.8'>— ڕۆبێرت کۆلیر</small>"
+        "“نەهێلە دوهی چاڤ ل سەر ئەڤرۆیا تە بگریت.”<br><small style='opacity:0.8'>— وێڵ ڕۆجەرز</small>"
+    ];
+
+    const moodData = {
+        happy: [
+            "ئەڤ هەستێ جوان یێ نوکە د دلێ تە دا، بەرهەمێ پاقژییا ناخێ تەیە. چێژێ ژ ڤێ چرکەیێ وەربگرە و بهێلە رۆناهییا تە دەوروبەرێ تە ژی گەش بکەت.",
+            "چەند جوانە کو تۆ ئەڤرۆ یێ دلخۆشی؛ ئەڤێ ووزەیێ د ناخێ خۆ دا بپارێزە بۆ وان ڕۆژێن کو پێدڤی ب بیرئینانێ دبی کو ژیان هێشتا گەلەک تشتێن جوان تێدانە.",
+            "گرنژینا تە یا ئەڤرۆ جوانترین دیارییە بۆ خۆ و بۆ هەر کەسەکێ تە دبینیت، هەردەم هوسا گەش بمینە."
+        ],
+        tired: [
+            "هەر مەزنە مرۆڤەک پێدڤی ب ڕاوەستان و بێهنڤەدانێ هەیە. ماندیبوونا تە نیشانا لاوازییا تە نینە، بەلکو بەلگەیە ل سەر وێ چەندێ کو تە هەولەکا مەزن دایە.",
+            "ئەڤرۆ خۆ نەچار نەکە کو هەموو تشتان تەمام بکەی. مافێ تەیە بێهنا خۆ ڤەدەی، مێشکێ خۆ ژ هزران ڤالا بکەی، و ب تنێ گرنگییێ ب ئارامییا خۆ بدەی.",
+            "جەستە و مێشکێ تە ئەڤرۆ گەلەک کار کر؛ نوکە دەمێ هندێ یە ب نەرمی سەرەدەرییێ دگەل خۆ بکەی و ڕێکێ بدەیە خۆ بێهنا خۆ بگری."
+        ],
+        bored: [
+            "پێدڤی ناکەت هەردەم خۆ ب هێز نیشان بدەی؛ دڵتەنگی بەشەکێ سروشتی یە ژ مرۆڤبوونێ. بێهنا خۆ فرەهـ بکە، ئەڤ هەورێن تاری ژی دێ بورن و ئەسمانێ تە دێ ساهی بیتەڤە.",
+            "هەر چەندە نوکە هەست ب تەنهایی یان بێزارییێ بکەی، ژبیر نەکە کو تۆ ژ ڤێ قۆناغێ گەلەک ب هێزتری. ئەڤ ئێشە دێ بیتە وانەیەک و دێ تە گهینیتە جهەکێ باشتر.",
+            "هێدی بێهنەکا قووڵ هەڵکێشە؛ پێدڤی ناکەت هەموو تشتان نوکە تێبگەهی. ب تنێ ئەڤرۆ دەرباز بکە، سوبەهی دێ ب چاڤەکێ نوی سەحکەیە ژیانێ."
+        ],
+        anxious: [
+            "مێشکێ خۆ ژ هزرا سوبەهی ڕزگار بکە و بزڤڕە بۆ ڤێ چرکەیێ. تۆ نەشێی هەموو پاشەڕۆژێ د ئێک دەمژمێر دا چارەسەر بکەی، هەر تشتەک د دەمێ خۆ دا دێ رێکا خۆ بینیت.",
+            "ئەو ترس و قەلەقییا د مێشکێ تە دا هەیە، ب تنێ هزرن و نە ڕاستی نە. دەستێ خۆ ل سەر دلێ خۆ دانە، بێهنەکا هێدی هەڵکێشە، تۆ یێ پاراستی یی و هەموو تشت دێ هێنە کۆنترۆلکرن.",
+            "ل سەر خۆ بە هەڤال؛ پێدڤی ناکەت پەلە بکەی. هەر ئاریشەیەک دەرگەهەکێ چارەسەرییێ هەیە، ب تنێ کەمەک ئارامیێ بدە مێشکێ خۆ داکو ببینی."
+        ],
+        strong: [
+            "ئەڤ ووزە و ئیرادەیا د ناخێ تە دا هەی، کلیلەکا زێڕینە بۆ هەموو دەرگەهێن گرتی. ئەڤرۆ باشترین دەرفەتە داکو پێنگاڤەکێ بەر ب خەونێن خۆ بهاڤێژی.",
+            "باوەرییا تە ب خۆ د ڤێ چرکەیێ دا گەلەک مەزنە؛ ڤێ حەماسەتێ بکە کار و بێی ترس دەست پێ بکە، چونکی سەرکەفتن چاڤەڕێی کەسێن ب وێرەکە.",
+            "چ تشت نەشێت ل بەر رێکا کەسەکی بڕاوەستیت کو ب ڤێ ووزەیێ دەست پێ بکەت. ئەڤرۆ ڕۆژا تەیە، نیشانی خۆ بدە کا تۆ چەند ب شیانی!"
+        ]
+    };
+
+    const personalityTypes = [
+        {
+            title: "1. کەسایەتییا ئارام و لۆژیکی",
+            desc: "تۆ کەسەکێ گەلەک ب هزر و هێمن یی. ب مێشکێ خۆ بڕیاران ددەی نەک ب هەستان، و حەز دکەی هەموو تشت د ژیانا تە دا ب پلان و ڕێکوپێکی بن.",
+            traits: "ساخڵەت: واقیعی • ڕێکخستی • بێدەنگ"
+        },
+        {
+            title: "2. کەسایەتییا هەستیار و دلسۆز",
+            desc: "تۆ دڵەکێ گەلەک نەرم و میهرەبان هەیە و پتر ژ خۆ خەما دەوروبەرێ خۆ دخۆی. تۆ ب هەست و دلێ خۆ سەرەدەرییێ دگەل مرۆڤان دکەی و باوەرپێکری یی.",
+            traits: "ساخڵەت: میهرەبان • گوهدار • دلسۆز"
+        },
+        {
+            title: "3. کەسایەتییا خەیاڵاوی و داهێنەر",
+            desc: "تۆ مرۆڤەکێ قووڵ یی و هەردەم هزرا تشتێن جیاواز و نوی دکەی. حەز ژ ئازادییێ دکەی و نەشێی د ناڤ یاسا و ڕۆتینێن ئاسایی دا بژی.",
+            traits: "ساخڵەت: داهێنەر • سەربەخۆ • قووڵ"
+        },
+        {
+            title: "4. کەسایەتییا کۆمەڵایەتی و چالاک",
+            desc: "تۆ کەسەکێ پڕی ووزە و گەشبین یی و حەز ژ تێکەلبوونا خەلکی دکەی. ب ساناهی هەڤالان چێدکەی و ووزەیا ئەرێنی ددەیە دەوروبەرێ خۆ.",
+            traits: "ساخڵەت: گەشبین • چالاک • هەڤال-دۆست"
+        },
+        {
+            title: "5. کەسایەتییا ب ئیرادە و سەرکردە",
+            desc: "تۆ کەسەکێ ب هێز و خۆڕاگر یی و دزانی کا چ دڤێت. ل دەمێ ئاریشەیان ناڕەڤی، بەلکو ب ئاقلانە چارەسەرییێ دبینیت و بەرپرسیارەتییێ هەڵدگری.",
+            traits: "ساخڵەت: ب هێز • بەرپرسیار • بڕیاردەر"
+        },
+        {
+            title: "6. کەسایەتییا ئازاد و سەرکێش",
+            desc: "تۆ حەز ژ ژیانەکا سادە و بێ پلانێن ئاڵۆز دکەی. گرنگییێ ب گاڤا نوکە ددەی و حەز دکەی هەردەم تشتێن نوی د ژیانێ دا تاقی بکەی.",
+            traits: "ساخڵەت: ئازاد • نەرم • سەرکێش"
+        }
+    ];
+
+    const quizQuestions = [
+        { q: "١. پشتی حەفتییەکا گەلەک ماندی، مێشکێ تە ب چ تشتی پتر ئارام دبیت؟", opts: ["مانەڤە ب تنێ د ژوورێ دا", "دەرکەفتن دگەل هەڤالان"], type: [2, 3] },
+        { q: "٢. د ناڤ کۆمبوونەکا مەزن دا کو پتریا وان تۆ نانیاسی، تۆ چ دکەی؟", opts: ["بێدەنگ دمینم هەتا کەسەک دگەل من دئاخڤیت", "ئەز ب خۆ دەست ب ئاخفتنێ دکەم"], type: [0, 3] },
+        { q: "٣. دەمێ تە خەمەک یان ئاریشەیەک هەبیت، ئێکەم پێنگاڤا تە چییە؟", opts: ["د ناخێ خۆ دا دڤەشێرم", "بۆ کەسەکێ نێزیک دبێژم"], type: [1, 3] },
+        { q: "٤. دەمێ تۆ سەحدکەیە تابلۆیەکا هونەری یان دیمەنەکێ سروشتی، چ سەرنجا تە رادکێشیت؟", opts: ["هویرکاریێن تشتێن بەرچاڤ", "ئەو مانا و هەستێ ل پشت دیمەنی"], type: [0, 2] },
+        { q: "٥. تۆ پتر گرنگییێ ب چ ددەی؟", opts: ["ئەزموونێن نوکە و ڕاستیێن بەرچاڤ", "خەون و پلانێن پاشەڕۆژێ"], type: [0, 2] },
+        { q: "٦. د خەون و هزرێن خۆ دا، مێشکێ تە پتر ل کیرێ یە؟", opts: ["ل سەر کارێن ڕۆژانە و پێدڤییان", "ل سەر پرسیارێن قووڵ یێن ژیانێ"], type: [0, 2] },
+        { q: "٧. ئەگەر هەڤالەکێ تە شاشییەکا مەزن کربیت و بهێتە دەف تە، تۆ چ دبێژییێ؟", opts: ["ڕاستییێ ب ڕەقی دبێژمێ دا فێربیت", "دەستپێکێ دلێ وی خۆش دکەم دا نەئێشیت"], type: [0, 1] },
+        { q: "٨. دەمێ بڕیارەکا چارەنووسساز ددەی، کیش ژ ڤان پتر زاڵە ل سەر تە؟", opts: ["حیساباتێن مێشکی و بەرژەوەندی", "ئەو تشتێ دلێ من پێ ئارام دبیت"], type: [0, 1] },
+        { q: "٩. چ تشت پتر تە تووڕە دکەت؟", opts: ["نەدادپەروەری و بێسەروبەری", "شکاندنا هەستێن کەسەکێ بێتاوان"], type: [4, 1] },
+        { q: "١٠. ژوور یان مێزا کارێ تە پتریا دەمان چەوایە؟", opts: ["هەموو تشت ل جهێ خۆ و ب رێکوپێکی", "کەمەک تێکەل بەلێ ئەز دزانم هەر تشت ل کیرێ یە"], type: [0, 5] },
+        { q: "١١. دەمێ گەشتەکێ یان کارەکی دکەی، حەز ژ چ دکەی؟", opts: ["پلانەکا پێشوەخت هەبیت بۆ هەر دەمژمێرەکێ", "ب شێوەیەکێ ئازاد و بێ پلان"], type: [0, 5] },
+        { q: "١٢. ل دوماهییا ڕۆژێ، چ تشت هەستێ سەرکەفتنێ ددەتە تە؟", opts: ["تەمامکرنا هەموو کارێن من یێن پلاندانای", "فێربوون و جەرباندنا تشتەکێ نوی"], type: [4, 2] }
     ];
 
     let currentQuoteIndex = 0;
-    let selectedDay = 'sat';
-    const dayNames = {
-        sat: 'شەمبی', sun: 'ئێک شەمبی', mon: 'دوو شەمبی',
-        tue: 'سێ شەمبی', wed: 'چوار شەمبی', thu: 'پێنج شەمبی', fri: 'ئینی'
-    };
 
-    /* لۆجیکێ نوی یێ ستریکان (Daily Streak System) */
-    function updateStreak() {
-        const today = new Date().toDateString();
-        let streakData = JSON.parse(localStorage.getItem('dodo_streak_data') || '{}');
-        
-        let count = streakData.count || 0;
-        let lastVisit = streakData.lastVisit || null;
+    function renderQuiz() {
+        const container = document.getElementById('quiz-form-container');
+        if(!container) return;
+        let html = '';
+        quizQuestions.forEach((item, qIndex) => {
+            html += `
+                <div class="quiz-question-box">
+                    <div class="quiz-q-title">${item.q}</div>
+                    <div class="quiz-options">
+                        <label class="quiz-opt-label">
+                            <input type="radio" name="q_${qIndex}" value="0" checked> ${item.opts[0]}
+                        </label>
+                        <label class="quiz-opt-label">
+                            <input type="radio" name="q_${qIndex}" value="1"> ${item.opts[1]}
+                        </label>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
 
-        if (!lastVisit) {
-            // سەردانا ئێکێ
-            count = 1;
-            streakData.lastVisit = today;
-            streakData.count = count;
-        } else if (lastVisit !== today) {
-            // ئەگەر ڕۆژەکا دی هاتە ناڤ سایتی، ۱ زێدە دکەت
-            count += 1;
-            streakData.lastVisit = today;
-            streakData.count = count;
-        }
+    function selectMood(mood) {
+        const btns = document.querySelectorAll('.mood-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
 
-        localStorage.setItem('dodo_streak_data', JSON.stringify(streakData));
-        
-        // نیشاندانا ل سەر شاشێ
-        const streakEl = document.getElementById('streak-counter');
-        const statusMsgEl = document.getElementById('streak-status-msg');
-        
-        if (streakEl) {
-            streakEl.innerText = count >= 999 ? `999+ ڕۆژ` : `${count} ڕۆژ`;
-        }
+        const msgs = moodData[mood];
+        const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
+        const box = document.getElementById('mood-result-container');
+        box.innerHTML = `🐰 <strong>پەیاما Dodocare بۆ تە:</strong><br><br>${randomMsg}`;
+        box.classList.add('show');
+    }
 
-        if (statusMsgEl) {
-            if (count > 30) {
-                statusMsgEl.innerText = "تۆ شایستەی خەڵاتەکی مەزنی! 👑";
-            } else if (count > 7) {
-                statusMsgEl.innerText = "بەردەوامبە، تۆ گەلەک باشی! 🔥";
-            } else {
-                statusMsgEl.innerText = "دەستپێکرنا ب هێز! 💪";
+    function calculateQuizResult() {
+        let scores = [0, 0, 0, 0, 0, 0];
+        quizQuestions.forEach((item, qIndex) => {
+            const selected = document.querySelector(`input[name="q_${qIndex}"]:checked`);
+            if(selected) {
+                const val = parseInt(selected.value);
+                const targetTypeIndex = item.type[val];
+                scores[targetTypeIndex]++;
             }
-        }
+        });
+
+        let maxScore = -1;
+        let bestType = 0;
+        scores.forEach((s, idx) => {
+            if(s > maxScore) {
+                maxScore = s;
+                bestType = idx;
+            }
+        });
+
+        const res = personalityTypes[bestType];
+        document.getElementById('result-title').innerText = res.title;
+        document.getElementById('result-desc').innerText = res.desc;
+        document.getElementById('result-traits').innerText = res.traits;
+        document.getElementById('quiz-result-card').classList.add('show');
     }
 
     function changeRandomQuote() {
@@ -615,7 +601,6 @@
 
     function openMainSite() {
         requestNotificationPermissionDirectly();
-
         const intro = document.getElementById('intro-screen');
         const main = document.getElementById('main-container');
         if(intro && main) {
@@ -628,11 +613,7 @@
 
     function requestNotificationPermissionDirectly() {
         if ("Notification" in window) {
-            Notification.requestPermission().then(permission => {
-                if (permission === "granted") {
-                    console.log("Notification permission granted.");
-                }
-            });
+            Notification.requestPermission().then(permission => {});
         }
     }
 
@@ -681,96 +662,6 @@
         }
     }
 
-    function switchDay(day) {
-        selectedDay = day;
-        const btns = document.querySelectorAll('.week-tab-btn');
-        btns.forEach(btn => btn.classList.remove('active'));
-        if (event && event.target) {
-            event.target.classList.add('active');
-        }
-
-        document.getElementById('current-day-title').innerText = `ئارمانجێن ڕۆژا ${dayNames[day]}:`;
-        loadWeeklyPlan();
-    }
-
-    function saveWeeklyPlan() {
-        let weekly = JSON.parse(localStorage.getItem('dodo_weekly') || '{}');
-        weekly[selectedDay] = document.getElementById('weekly-notes').value;
-        localStorage.setItem('dodo_weekly', JSON.stringify(weekly));
-    }
-
-    function loadWeeklyPlan() {
-        let weekly = JSON.parse(localStorage.getItem('dodo_weekly') || '{}');
-        document.getElementById('weekly-notes').value = weekly[selectedDay] || '';
-    }
-
-    function checkAllCompleted() {
-        const m = document.getElementById('check-morning').checked;
-        const n = document.getElementById('check-noon').checked;
-        const a = document.getElementById('check-afternoon').checked;
-        const ni = document.getElementById('check-night').checked;
-        const rewardBox = document.getElementById('reward-message');
-
-        if (m && n && a && ni) {
-            rewardBox.classList.add('show');
-            const alreadyNotified = localStorage.getItem('dodo_reward_notified');
-            if (!alreadyNotified) {
-                if ("Notification" in window && Notification.permission === "granted") {
-                    new Notification("Dodocare 🥳", {
-                        body: "پیرۆزبایی! تە هەموو کارێن خۆ یێن ئەڤرۆ تەمام کرن!",
-                        icon: "favicon.png"
-                    });
-                }
-                localStorage.setItem('dodo_reward_notified', 'true');
-            }
-        } else {
-            rewardBox.classList.remove('show');
-            localStorage.removeItem('dodo_reward_notified');
-        }
-    }
-
-    function savePlanner() {
-        const data = {
-            mCheck: document.getElementById('check-morning').checked,
-            mText: document.getElementById('input-morning').value,
-            nCheck: document.getElementById('check-noon').checked,
-            nText: document.getElementById('input-noon').value,
-            aCheck: document.getElementById('check-afternoon').checked,
-            aText: document.getElementById('input-afternoon').value,
-            niCheck: document.getElementById('check-night').checked,
-            niText: document.getElementById('input-night').value,
-        };
-        localStorage.setItem('dodo_planner', JSON.stringify(data));
-        checkAllCompleted();
-    }
-
-    function loadPlanner() {
-        const saved = localStorage.getItem('dodo_planner');
-        if (saved) {
-            try {
-                const data = JSON.parse(saved);
-                document.getElementById('check-morning').checked = data.mCheck;
-                document.getElementById('input-morning').value = data.mText || '';
-                document.getElementById('check-noon').checked = data.nCheck;
-                document.getElementById('input-noon').value = data.nText || '';
-                document.getElementById('check-afternoon').checked = data.aCheck;
-                document.getElementById('input-afternoon').value = data.aText || '';
-                document.getElementById('check-night').checked = data.niCheck;
-                document.getElementById('input-night').value = data.niText || '';
-                checkAllCompleted();
-            } catch(e) {}
-        }
-    }
-
-    function saveNotes() {
-        localStorage.setItem('dodo_personal_notes', document.getElementById('personal-notes').value);
-    }
-
-    function loadNotes() {
-        const savedNotes = localStorage.getItem('dodo_personal_notes');
-        if (savedNotes) { document.getElementById('personal-notes').value = savedNotes; }
-    }
-
     function toggleTheme() {
         const body = document.getElementById('body');
         if (body.getAttribute('data-theme') === 'dark') {
@@ -788,10 +679,7 @@
     }
 
     window.onload = function() {
-        updateStreak();
-        loadPlanner();
-        loadWeeklyPlan();
-        loadNotes();
+        renderQuiz();
         renderFavorites();
 
         if (localStorage.getItem('dodo_theme') === 'dark') {
@@ -806,3 +694,4 @@
 </script>
 </body>
 </html>
+
