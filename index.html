@@ -238,31 +238,57 @@
             font-size: 0.9rem;
         }
 
-        /* Mood Buttons Styling */
+        /* Modern Mood Buttons with Animation */
         .mood-buttons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
             margin-top: 15px;
             margin-bottom: 15px;
         }
         .mood-btn {
             background: rgba(112, 111, 211, 0.08);
             border: 2px solid rgba(112, 111, 211, 0.2);
-            padding: 10px;
-            border-radius: 14px;
+            padding: 12px 6px;
+            border-radius: 16px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: bold;
             color: var(--text-main);
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
         }
-        .mood-btn:hover, .mood-btn.active {
+        .mood-emoji {
+            font-size: 1.8rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .mood-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: var(--accent-purple);
+            background: rgba(112, 111, 211, 0.15);
+        }
+        .mood-btn:hover .mood-emoji {
+            animation: bounceEmoji 0.6s infinite alternate ease-in-out;
+        }
+        .mood-btn.active {
             background: var(--accent-purple);
             color: white;
             border-color: var(--accent-purple);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(112,111,211,0.4);
+        }
+        .mood-btn.active .mood-emoji {
+            animation: bounceEmoji 0.6s infinite alternate ease-in-out;
+        }
+
+        @keyframes bounceEmoji {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-6px) scale(1.15); }
         }
 
         .mood-result-box {
@@ -274,28 +300,34 @@
             line-height: 1.7;
             margin-top: 15px;
             display: none;
+            animation: fadeIn 0.4s ease;
         }
         .mood-result-box.show { display: block; }
 
-        /* Quiz Styling */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Quiz Styling (30 Qs, 3 Options) */
         .quiz-question-box {
-            background: rgba(112, 111, 211, 0.05);
+            background: rgba(112, 111, 211, 0.04);
             border: 1px solid rgba(112, 111, 211, 0.15);
             border-radius: 14px;
-            padding: 12px;
-            margin-bottom: 12px;
+            padding: 14px;
+            margin-bottom: 14px;
             text-align: right;
         }
         .quiz-q-title {
             font-weight: bold;
             font-size: 0.9rem;
             color: var(--accent-purple);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .quiz-options {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
         .quiz-opt-label {
             font-size: 0.85rem;
@@ -303,25 +335,73 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            background: rgba(255,255,255,0.6);
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(112,111,211,0.1);
+            transition: background 0.2s;
+        }
+        [data-theme="dark"] .quiz-opt-label {
+            background: rgba(255,255,255,0.05);
+        }
+        .quiz-opt-label:hover {
+            background: rgba(112, 111, 211, 0.1);
         }
 
+        /* Result Card Design */
         .quiz-result-card {
-            background: linear-gradient(135deg, rgba(112,111,211,0.15), rgba(255,121,121,0.1));
-            border: 2px solid var(--accent-purple);
-            border-radius: 16px;
-            padding: 18px;
-            margin-top: 15px;
+            background: linear-gradient(135deg, rgba(112,111,211,0.18), rgba(255,121,121,0.12));
+            border: 3px solid var(--accent-purple);
+            border-radius: 20px;
+            padding: 22px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(112,111,211,0.2);
             display: none;
+            text-align: right;
+            position: relative;
+            overflow: hidden;
         }
         .quiz-result-card.show { display: block; }
+        
+        .result-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed rgba(112,111,211,0.3);
+            padding-bottom: 10px;
+        }
+        .result-card-icon { font-size: 2.5rem; }
+        .result-card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .card-action-btn {
+            background: var(--accent-purple);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .card-action-btn.share {
+            background: #2ed573;
+        }
 
         .collapsible-content {
             max-height: 0;
             overflow: hidden;
             opacity: 0;
-            transition: max-height 0.5s ease, opacity 0.4s ease;
+            transition: max-height 0.6s ease, opacity 0.4s ease;
         }
-        .collapsible-content.show { max-height: 3500px; opacity: 1; margin-top: 15px; }
+        .collapsible-content.show { max-height: 12000px; opacity: 1; margin-top: 15px; }
 
         .favorites-list { margin-top: 10px; max-height: 220px; overflow-y: auto; }
         .favorite-item {
@@ -378,17 +458,32 @@
         </div>
     </div>
 
-    <!-- بەشێ ١: پێڤەرێ مەزاجی (Mood) -->
+    <!-- بەشێ ١: پێڤەرێ مەزاجی (Mood) ب ئیموجییێن ئەنیمەیشن -->
     <div class="card">
         <h3>پێڤەرێ مەزاجێ ئەڤرۆ 🎭</h3>
         <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">🐰 ئەڤرۆ د ناخێ خۆ دا هەست ب چ دکەی؟</p>
         
         <div class="mood-buttons-grid">
-            <button class="mood-btn" onclick="selectMood('happy')">😊 کەیفخۆش</button>
-            <button class="mood-btn" onclick="selectMood('tired')">😴 ماندی</button>
-            <button class="mood-btn" onclick="selectMood('bored')">😔 بێزار</button>
-            <button class="mood-btn" onclick="selectMood('anxious')">😰 قەلەق</button>
-            <button class="mood-btn" onclick="selectMood('strong')">🔥 بهێز</button>
+            <button class="mood-btn" onclick="selectMood('happy')">
+                <span class="mood-emoji">😊</span>
+                <span>کەیفخۆش</span>
+            </button>
+            <button class="mood-btn" onclick="selectMood('tired')">
+                <span class="mood-emoji">😴</span>
+                <span>ماندی</span>
+            </button>
+            <button class="mood-btn" onclick="selectMood('bored')">
+                <span class="mood-emoji">😔</span>
+                <span>بێزار</span>
+            </button>
+            <button class="mood-btn" onclick="selectMood('anxious')">
+                <span class="mood-emoji">😰</span>
+                <span>قەلەق</span>
+            </button>
+            <button class="mood-btn" onclick="selectMood('strong')">
+                <span class="mood-emoji">🔥</span>
+                <span>بهێز</span>
+            </button>
         </div>
 
         <div id="mood-result-container" class="mood-result-box"></div>
@@ -416,24 +511,36 @@
         </div>
     </div>
 
-    <!-- بەشێ ٣: ١٢ پرسیارێن دەروونی (کویز) -->
+    <!-- بەشێ ٣: ٣٠ پرسیارێن دەروونی (کویز) -->
     <div class="card">
-        <h3>کویزێ ١٢ پرسیارێن دەروونی 🧠</h3>
-        <button class="btn" onclick="toggleSection('quiz-content')">🧠 ڤەکرنا کویزێ دەروونی</button>
+        <h3>کویزێ ٣٠ پرسیارێن دەروونی 🧠</h3>
+        <button class="btn" onclick="toggleSection('quiz-content')">🧠 ڤەکرنا کویزا بەرفرهەڤ</button>
         
         <div id="quiz-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; text-align: center;">
-                ڤان پرسیارێن دەروونی بێ لایەنی بەرسڤ بدە دا کەسایەتییا خۆ یا ڕاستەقینە بناسی!
+                ڤان ٣٠ پرسیارێن دەروونی بێ لایەنی بەرسڤ بدە دا کارتەکا تایبەت و ڕوونکردنەکا کوشتۆتی ل سەر کەسایەتییا خۆ ببیینی!
             </p>
 
             <div id="quiz-form-container"></div>
 
-            <button class="btn" style="margin-top: 15px;" onclick="calculateQuizResult()">🔍 نیشاندانا ئەنجامێ من</button>
+            <button class="btn" style="margin-top: 15px;" onclick="calculateQuizResult()">🔍 نیشاندانا کارتا ئەنجامێ من</button>
 
+            <!-- کارتا ئەنجامی (Result Card) -->
             <div id="quiz-result-card" class="quiz-result-card">
-                <h4 id="result-title" style="color: var(--accent-purple); margin-top: 0;"></h4>
-                <p id="result-desc" style="font-size: 0.9rem; line-height: 1.6;"></p>
-                <div id="result-traits" style="font-size: 0.85rem; font-weight: bold; color: var(--accent-purple); margin-top: 10px;"></div>
+                <div class="result-card-header">
+                    <div class="result-card-icon" id="card-icon">👑</div>
+                    <div>
+                        <h4 id="result-title" style="color: var(--accent-purple); margin: 0; font-size: 1.1rem;"></h4>
+                        <div id="result-traits" style="font-size: 0.8rem; font-weight: bold; color: var(--accent-purple); margin-top: 4px;"></div>
+                    </div>
+                </div>
+                <p id="result-desc" style="font-size: 0.88rem; line-height: 1.7; margin-bottom: 10px;"></p>
+                <div id="result-growth-tip" style="background: rgba(112,111,211,0.1); padding: 10px; border-radius: 10px; font-size: 0.83rem; line-height: 1.6; border-right: 3px solid var(--accent-purple);"></div>
+                
+                <div class="result-card-actions">
+                    <button class="card-action-btn" onclick="saveQuizResultCard()">💾 سەیڤکرنا کارتێ</button>
+                    <button class="card-action-btn share" onclick="shareQuizResultCard()">🔗 شێرکرنا ئەنجامی</button>
+                </div>
             </div>
         </div>
     </div>
@@ -447,12 +554,7 @@
         "“دەستپێکرن، نیڤا کارێ سەرکەفتنێ یە.”<br><small style='opacity:0.8'>— ئەفلاتۆن</small>",
         "“باوەریا ب خۆ هەبوون، پێنگاڤا ئێکێ یە بەرەف سەرکەفتنێ.”<br><small style='opacity:0.8'>— ڕاڵف واڵدۆ ئێمرسۆن</small>",
         "“تۆ ١٠٠٪ ژ وان دەرفەتان ژ دەست ددەی یێن کو تۆ تاقی ناکەی.”<br><small style='opacity:0.8'>— وەین گرێتزکی</small>",
-        "“ئەگەر تە دڤێت ژیانەکا بەختەوەر بژی، گرێ بدە ب ئارمانجەکێ ڤە، نەک ب مرۆڤ یان تشتان ڤە.”<br><small style='opacity:0.8'>— ئەلبێرت ئەنیشتاین</small>",
-        "“خۆ ب خۆ بگۆهوڕە ئەگەر تە دڤێت جیهانێ بگۆهوڕی.”<br><small style='opacity:0.8'>— مەهاتما گاندی</small>",
-        "“ئەو تشتێ مە نەکوژیت، مە بهێزتر لێ دکەت.”<br><small style='opacity:0.8'>— فریدریش نیتشە</small>",
-        "“باشترین تۆڵەسەندن، سەرکەفتنەکا مەزنە.”<br><small style='opacity:0.8'>— فرانک سیناترا</small>",
-        "“پاشەڕۆژ یا وان کەسانە یێن باوەری ب جوانییا خەونێن خۆ هەی.”<br><small style='opacity:0.8'>— ئێلینۆر ڕۆزڤێڵت</small>",
-        "“نەهێلە دوهی چاڤ ل سەر ئەڤرۆیا تە بگریت.”<br><small style='opacity:0.8'>— وێڵ ڕۆجەرز</small>"
+        "“ئەگەر تە دڤێت ژیانەکا بەختەوەر بژی، گرێ بدە ب ئارمانجەکێ ڤە، نەک ب مرۆڤ یان تشتان ڤە.”<br><small style='opacity:0.8'>— ئەلبێرت ئەنیشتاین</small>"
     ];
 
     const moodData = {
@@ -486,49 +588,80 @@
     const personalityTypes = [
         {
             title: "1. کەسایەتییا ئارام و لۆژیکی",
+            emoji: "🧘‍♂️",
             desc: "تۆ کەسەکێ گەلەک ب هزر و هێمن یی. ب مێشکێ خۆ بڕیاران ددەی نەک ب هەستان، و حەز دکەی هەموو تشت د ژیانا تە دا ب پلان و ڕێکوپێکی بن.",
-            traits: "ساخڵەت: واقیعی • ڕێکخستی • بێدەنگ"
+            traits: "ساخڵەت: واقیعی • ڕێکخستی • بێدەنگ",
+            growth: "💡 **چەوا خۆ بگۆھوڕی؟** ئەگەر هەست بکەی گەلەک د حەفتیا مۆتین و یاسایان دایە، هندەکێ دەست ب نەرەمی و وەرگرتنا گوهۆڕینێن لەز بکە داکو ژیانا تە نەبییە ڕؤتین."
         },
         {
             title: "2. کەسایەتییا هەستیار و دلسۆز",
+            emoji: "🤍",
             desc: "تۆ دڵەکێ گەلەک نەرم و میهرەبان هەیە و پتر ژ خۆ خەما دەوروبەرێ خۆ دخۆی. تۆ ب هەست و دلێ خۆ سەرەدەرییێ دگەل مرۆڤان دکەی و باوەرپێکری یی.",
-            traits: "ساخڵەت: میهرەبان • گوهدار • دلسۆز"
+            traits: "ساخڵەت: میهرەبان • گوهدار • دلسۆز",
+            growth: "💡 **چەوا خۆ بگۆھوڕی؟** هندەکجار ژبەر خەما خەلکی، خۆ ژبیر دکەی. فێرببە ل جهەکێ گونجای بێژی 'نەخێر' داکو سنورەک بۆ ماندووبوونا دەروونییا خۆ دانەی."
         },
         {
             title: "3. کەسایەتییا خەیاڵاوی و داهێنەر",
+            emoji: "✨",
             desc: "تۆ مرۆڤەکێ قووڵ یی و هەردەم هزرا تشتێن جیاواز و نوی دکەی. حەز ژ ئازادییێ دکەی و نەشێی د ناڤ یاسا و ڕۆتینێن ئاسایی دا بژی.",
-            traits: "ساخڵەت: داهێنەر • سەربەخۆ • قووڵ"
+            traits: "ساخڵەت: داهێنەر • سەربەخۆ • قووڵ",
+            growth: "💡 **چەوا خۆ بگۆھوڕی؟** خەونێن مەزن پیرۆزن، لێ پێدڤییە وان بکەی بەش بەش و ب کارێن پراکتیکی ڕاستەقینە بکەی دا خەونێن تە نەبڕێن."
         },
         {
             title: "4. کەسایەتییا کۆمەڵایەتی و چالاک",
+            emoji: "🎉",
             desc: "تۆ کەسەکێ پڕی ووزە و گەشبین یی و حەز ژ تێکەلبوونا خەلکی دکەی. ب ساناهی هەڤالان چێدکەی و ووزەیا ئەرێنی ددەیە دەوروبەرێ خۆ.",
-            traits: "ساخڵەت: گەشبین • چالاک • هەڤال-دۆست"
+            traits: "ساخڵەت: گەشبین • چالاک • هەڤال-دۆست",
+            growth: "💡 **چەوا خۆ بگۆھوڕی؟** پتریا ووزەیا خۆ ددەیە دەوروبەری، لێ هێلەکێ بۆ تەنیها مانا خۆ دانە داکو پاترییا دەروونییا خۆ ڕێژەیا وێ بلند بکەی."
         },
         {
             title: "5. کەسایەتییا ب ئیرادە و سەرکردە",
+            emoji: "🦁",
             desc: "تۆ کەسەکێ ب هێز و خۆڕاگر یی و دزانی کا چ دڤێت. ل دەمێ ئاریشەیان ناڕەڤی، بەلکو ب ئاقلانە چارەسەرییێ دبینیت و بەرپرسیارەتییێ هەڵدگری.",
-            traits: "ساخڵەت: ب هێز • بەرپرسیار • بڕیاردەر"
+            traits: "ساخڵەت: ب هێز • بەرپرسیار • بڕیاردەر",
+            growth: "💡 **چەوا خۆ بگۆھوڕی؟** پێدڤی ناکەت هەردەم هەموو باری ل سەر ملێن خۆ هەڵگرەی؛ هەڤکاریکرن دگەل کەسێن دی بارێ تەنهایییا سەرکردایەتییا تە سووکتر دکەت."
         },
         {
             title: "6. کەسایەتییا ئازاد و سەرکێش",
+            emoji: "🦅",
             desc: "تۆ حەز ژ ژیانەکا سادە و بێ پلانێن ئاڵۆز دکەی. گرنگییێ ب گاڤا نوکە ددەی و حەز دکەی هەردەم تشتێن نوی د ژیانێ دا تاقی بکەی.",
-            traits: "ساخڵەت: ئازاد • نەرم • سەرکێش"
+            traits: "ساخڵەت: ئازاد • نەرم • سەرکێش",
+            growth: "💡 **چەوا خۆ بگۆھوڕی؟** سەرکێشی خوشە، لێ دانانا هندەک پلانێن پێشوەخت بۆ پاشەڕوژا خۆ دێ پاشەڕوژا تە بێ کێشەتر و ئارامتر لێ کەت."
         }
     ];
 
+    // ٣٠ پرسیار دگەل ٣ بژاردە ($\text{3 Options}$)
     const quizQuestions = [
-        { q: "١. پشتی حەفتییەکا گەلەک ماندی، مێشکێ تە ب چ تشتی پتر ئارام دبیت؟", opts: ["مانەڤە ب تنێ د ژوورێ دا", "دەرکەفتن دگەل هەڤالان"], type: [2, 3] },
-        { q: "٢. د ناڤ کۆمبوونەکا مەزن دا کو پتریا وان تۆ نانیاسی، تۆ چ دکەی؟", opts: ["بێدەنگ دمینم هەتا کەسەک دگەل من دئاخڤیت", "ئەز ب خۆ دەست ب ئاخفتنێ دکەم"], type: [0, 3] },
-        { q: "٣. دەمێ تە خەمەک یان ئاریشەیەک هەبیت، ئێکەم پێنگاڤا تە چییە؟", opts: ["د ناخێ خۆ دا دڤەشێرم", "بۆ کەسەکێ نێزیک دبێژم"], type: [1, 3] },
-        { q: "٤. دەمێ تۆ سەحدکەیە تابلۆیەکا هونەری یان دیمەنەکێ سروشتی، چ سەرنجا تە رادکێشیت؟", opts: ["هویرکاریێن تشتێن بەرچاڤ", "ئەو مانا و هەستێ ل پشت دیمەنی"], type: [0, 2] },
-        { q: "٥. تۆ پتر گرنگییێ ب چ ددەی؟", opts: ["ئەزموونێن نوکە و ڕاستیێن بەرچاڤ", "خەون و پلانێن پاشەڕۆژێ"], type: [0, 2] },
-        { q: "٦. د خەون و هزرێن خۆ دا، مێشکێ تە پتر ل کیرێ یە؟", opts: ["ل سەر کارێن ڕۆژانە و پێدڤییان", "ل سەر پرسیارێن قووڵ یێن ژیانێ"], type: [0, 2] },
-        { q: "٧. ئەگەر هەڤالەکێ تە شاشییەکا مەزن کربیت و بهێتە دەف تە، تۆ چ دبێژییێ؟", opts: ["ڕاستییێ ب ڕەقی دبێژمێ دا فێربیت", "دەستپێکێ دلێ وی خۆش دکەم دا نەئێشیت"], type: [0, 1] },
-        { q: "٨. دەمێ بڕیارەکا چارەنووسساز ددەی، کیش ژ ڤان پتر زاڵە ل سەر تە؟", opts: ["حیساباتێن مێشکی و بەرژەوەندی", "ئەو تشتێ دلێ من پێ ئارام دبیت"], type: [0, 1] },
-        { q: "٩. چ تشت پتر تە تووڕە دکەت؟", opts: ["نەدادپەروەری و بێسەروبەری", "شکاندنا هەستێن کەسەکێ بێتاوان"], type: [4, 1] },
-        { q: "١٠. ژوور یان مێزا کارێ تە پتریا دەمان چەوایە؟", opts: ["هەموو تشت ل جهێ خۆ و ب رێکوپێکی", "کەمەک تێکەل بەلێ ئەز دزانم هەر تشت ل کیرێ یە"], type: [0, 5] },
-        { q: "١١. دەمێ گەشتەکێ یان کارەکی دکەی، حەز ژ چ دکەی؟", opts: ["پلانەکا پێشوەخت هەبیت بۆ هەر دەمژمێرەکێ", "ب شێوەیەکێ ئازاد و بێ پلان"], type: [0, 5] },
-        { q: "١٢. ل دوماهییا ڕۆژێ، چ تشت هەستێ سەرکەفتنێ ددەتە تە؟", opts: ["تەمامکرنا هەموو کارێن من یێن پلاندانای", "فێربوون و جەرباندنا تشتەکێ نوی"], type: [4, 2] }
+        { q: "١. پشتی حەفتییەکا پڕی کار، چاوا بێهنا خۆ ددەیێ؟", opts: ["مانەڤە ب تنێ ل مال و ژوورا خۆ", "دەرکەڤتن دگەل هەڤالان بۆ جهەکێ خۆش", "ئەنجامدانا کارێن وەرزشی یان داهێنەرانە"], type: [0, 3, 2] },
+        { q: "٢. د کۆمبوونەکا مەزن دا کو کەسان نانیاسی، ڕۆلا تە چەوایە؟", opts: ["بێدەنگ دمینم هەتا کەسەک دگەل من دئاخڤیت", "ب خۆ دەست ب ناسین و ئاخفتنێ دکەم", "ب هێمنی سەحکا ڕەفتارێن دەوروبەری دکەم"], type: [0, 3, 2] },
+        { q: "٣. دەمێ خەمەک یان فشارەک ل سەر تە هەبیت، چ دکەی؟", opts: ["د ناخێ خۆ دا دڤەشێرم و ب تنێ بیر دکەم", "بۆ ئێکێ نێزیک و متمانەپێکری دبێژم", "ب کارەکێ جیاواز مێشکێ خۆ مژوول دکەم"], type: [1, 3, 2] },
+        { q: "٤. دەمێ سەحکا دیمەنەکێ سروشتی یان تابلۆیەکێ دکەی، چ سەرنجا تە ڕادکێشیت؟", opts: ["هویرکاری و ڕەنگێن وێ یێن دروست", "ئەو مانا قووڵ و هەستێ ل پاش هەی", "شێوازێ چێکرن و ڕێزبەندیا وێ"], type: [0, 2, 4] },
+        { q: "٥. تۆ پتر گرنگییێ ب چ ددەی د ژیانێ دا؟", opts: ["ڕاستیێن بەرچاڤ و ئەزموونێن نوکە", "خەونێن مەزن و پلانێن پاشەڕۆژێ", "سەرکەفتن و جهێ خۆ یێ جڤاکی"], type: [0, 2, 4] },
+        { q: "٦. دەمێ تنێ دبی، مێشکێ تە پتر ل کیرێ یە؟", opts: ["ل سەر کارێن ڕۆژانە و پێدڤییێن ماڵی", "ل سەر پرسیارێن مەزن یێن ژیانێ و گەردونی", "ل سەر ئارمانج و پلانا داهاتوو"], type: [0, 2, 4] },
+        { q: "٧. هەڤالەکێ تە شاشییەکا گەورە کر، تۆ چ پێدکەی؟", opts: ["ڕاستییێ ب توندی و ڕەقی بۆ دبێژم دا فێربیت", "ب نەرمی دلێ وی خۆش دکەم و ئامۆژگاری دکەم", "ب شێوەیەکێ لۆژیکی ڕێکا ڕاست نیشا ددەم"], type: [4, 1, 0] },
+        { q: "٨. دەمێ بڕیارەکا چارەنووسساز ددەی، چ پتر زاڵە؟", opts: ["حیساباتێن مێشکی و بەرژەوەندییا ڕاستەقینە", "ئەو تشتێ دلێ من پێ ئارام دبیت", "بڕیارەکا گشتگیر دگەل ڕاوێژکاران"], type: [0, 1, 4] },
+        { q: "٩. چ تشت پتر تە تووڕە دکەت؟", opts: ["نەدادپەروەری و بێسەروبەرییا مەزن", "شکاندنا هەستێن کەسەکێ بێتاوان و لاواز", "شکەستن د گەهشتن ب ئارمانجان دا"], type: [4, 1, 4] },
+        { q: "١٠. مێز یان ژوورا کارێ تە چەوایە پتریا دەمان؟", opts: ["هەموو تشت ل جهێ خۆ و ب ڕێکوپێکییا تەمام", "کەمەک تێکەل، بەلێ ئەز دزانم هەر تشت ل کیرێ یە", "بەردەوام دگوهۆڕیت ل دوڤ کارێ ئەڤرۆ"], type: [0, 5, 2] },
+        { q: "١١. دەمێ گەشتەکێ ئەنجام ددەی، حەز ژ چ دکەی؟", opts: ["پلانەکا پێشوەخت هەبیت بۆ هەر دەمژمێرەکێ", "ب شێوەیەکێ ئازاد و بێ پلان بگەڕێم", "سەرکێشی و تاقیکرنا تشتێن ناتشیس"], type: [0, 5, 5] },
+        { q: "١٢. ل دوماهییا ڕۆژێ، چ تشت هەستێ سەرکەفتنێ ددەتە تە؟", opts: ["تەمامکرنا هەموو کارێن ل سەر لیستا من", "فێربوونا تشتەکێ نوی یێ سەرنجڕاکێش", "کرنا کارەکێ خێرخواز یان هاریکاریا ئێکی"], type: [0, 2, 1] },
+        { q: "١٣. د دەمێن فشارێ دا، تۆ پتر چ دکەی؟", opts: ["کۆنترۆلا خۆ ژ دەست نادەم و پلانێ ددانم", "پەنا بۆ کەسێن نێزیک دبرم بۆ هاریکاریێ", "بۆ دەمەکی پاشەکێشێ دکەم و بێدەنگ دبین"], type: [4, 1, 0] },
+        { q: "١٤. چاوا سەیری هەڵەیێن خۆ دکەی؟", opts: ["وەک وانەیەکا بهای بۆ پاشەڕوژێ", "ب گرانى کاریگەری ل سەر من دکەن", "ب بێ باوەری ب سەر دەرباز دبین"], type: [4, 1, 5] },
+        { q: "١٥. ل جهێ کارێ یان خواندنێ، حەز دکەی چ ڕۆل هەبیت؟", opts: ["سەرکردە و ڕێڤەبەرێ گروپێ", "ئەندامەکێ چالاک و هەڤکار", "کەسەکێ بێدەنگ لێ کارێ خۆ ب جوانی بدەتە دیارکرن"], type: [4, 3, 0] },
+        { q: "١٦. پەیوەندییا تە دگەل تەکنەلۆژیایێ و مۆبایلێ چەوایە؟", opts: ["ب تەمامی بۆ کار و پێدڤییان بەکارئینان", "بۆ پەیوەندی و ڤەکرنا دونیایێ و گەشبینیێ", "وەک ئامرازەک بۆ ڕەڤین ژ ڕۆتینێ"], type: [0, 3, 2] },
+        { q: "١٧. پێناسەیا تە بۆ سەرکەفتنێ چییە؟", opts: ["گەهشتن ب پلەیا بلند و ئارامیا مالی", "دلخۆشییا خێزانێ و ئارامیا درونێ", "ئازادییا ئافراندنێ و ژیانەکا تایبەت"], type: [4, 1, 2] },
+        { q: "١٨. ئایا حەز دکەی گوهۆڕین د ژیانا خۆ دا بکەی؟", opts: ["ب تنێ ئەگەر پێدڤی بکەت و ل دوڤ پلانێ بیت", "بەلێ، حەز ژ گوهۆڕینێن بەردەوام دکەم", "دەستپێکێ قەلەق دبین، لێ قەبوول دکەم"], type: [0, 5, 1] },
+        { q: "١٩. ئاریشەیێن قورس چاوا چارەسەر دکەی؟", opts: ["ب پارچەکرنا ئاریشەی بۆ چەند پشکێن بچووک", "ب وەرگرتنا راوێژا کەسێن خودان ئەزموون", "ب پشتبەستن ب هەست و بڕیارا دلێ خۆ"], type: [0, 1, 1] },
+        { q: "٢٠. هەستێ تەنهاییێ بۆ تە چییە؟", opts: ["دەرفەتەک بۆ بیرکرنێ و ڤەسەنگاندنێ", "حەفتەکا بێزارکەر و پڕی بێ دەنگی", "رەوشەکا سروشتی بۆ وەرگرتنا ووزەیا نوو"], type: [0, 3, 2] },
+        { q: "٢١. ل بەرامبەر ڕەخنەیێن خەلکی، ڕەفتارا تە چەوایە؟", opts: ["ل دوڤ لۆژیکێ سەرەدەریێ دگەل دکەم، ئەگەر ڕاست بیت مفای ژێ وەردگرم", "پێ ئارام نینم و دلێ من دئێشیت", "ب کەنف ئەڤی تێپەڕ دکەم و گرنگیێ نادەمێ"], type: [0, 1, 5] },
+        { q: "٢٢. دەمێ هەڤالەک ڕازەکێ تەسلیمێ تە دکەت، تۆ چ دکەی؟", opts: ["ب چ ڕەنگان بەلاڤ ناکەم و بڕاوا وی پارێزم", "تەنێ بۆ هەڤالەکێ زۆر نێزیک دەربڕینێ ژێ دکەم", "بێی مەبەست هندەکجار ئاماژەی پێ ددەم"], type: [4, 1, 5] },
+        { q: "٢٣. ئایا تۆ کەسەکێ حەز ژ ئالنگارییان (Challenge) دکەی؟", opts: ["بەلێ، ئالنگاری من پێش دئێخن", "تنێ ئەگەر د سەروەریا شیانێن من دا بن", "نەخێر، حەز ژ ژیانەکا بێ ئالنگاری دکەم"], type: [4, 2, 0] },
+        { q: "٢٤. د خوارن و خەو و کارێن ڕۆژانە دا، تۆ چەوایە؟", opts: ["سیستماتیک و د دەمێ خۆ دا", "ل دوڤ حەزا ووزەیا خۆ د وێ چرکەیێ دا", "گوهۆڕین دکەڤنە د ناڤ دا ل دوڤ سەرقاڵییان"], type: [0, 5, 1] },
+        { q: "٢٥. حەز دکەی پاشەڕوژا خۆ چەندە ببینی؟", opts: ["ئارام، زه‌مینه‌ساز و دیارکری", "پڕی سەرکێشی و تشتێن ناتەخمین", "پڕی بەروبووم ژ کارێن باش و داهێنەرانە"], type: [0, 5, 2] },
+        { q: "٢٦. دەمێ تو فێری تشتەکێ نوی دبی، چاوا باشتر فێر دبی؟", opts: ["ب خوەندنا پەرتوک و سەرنجدان ل هویرکاریان", "ب تاقیکرن و شاشیڤەکرنێ ب خۆ", "ب گوهداریکرن و فێربوونێ ژ کەسێن شارەزا"], type: [0, 5, 1] },
+        { q: "٢٧. ڕەفتارا تە دگەل پارەی و داراییێ چەوایە؟", opts: ["پلان بۆ هەموو فلسەکێ هەیە و کۆنترۆلکری یە", "ل دوڤ پێدڤییێن نوکە و ب بێ پلانیا سادە", "پاراستن بۆ دەمێن پێدڤی دگەل هندەک خەرجیێن خوشی"], type: [0, 5, 4] },
+        { q: "٢٨. تشتێ هەرە مەزن یێ کو تە ددەتە پێشڤە چییە؟", opts: ["باوەرییا ب شیانێن خۆ", "خەما مالبات و کەسێن نێزیک", "خەونێن من یێن مەزن بۆ پاشەڕۆژێ"], type: [4, 1, 2] },
+        { q: "٢٩. تۆ چەندە متمانە ب پاشەڕوژێ دکەی؟", opts: ["گەلەک، چونکی کار بۆ دکەم", "ب دەستێ خودێ هێلایە و گەشبینم", "ترسەکا کێم هەیە لێ بێهنا خۆ فراوان دکەم"], type: [4, 3, 1] },
+        { q: "٣٠. پاشاییا دەروونا خۆ ب چ دچوینی؟", opts: ["کەلەکەکێ ب هێز یێ ل سەر ئارامیا ڕێبەریێ دکەت", "باخچەیەکێ گوڵان یێ پڕی هەست و سۆز", "ئەسمانەکێ فراوان یێ پڕی خەونێن ڕوناهی"], type: [4, 1, 2] }
     ];
 
     let currentQuoteIndex = 0;
@@ -548,6 +681,9 @@
                         <label class="quiz-opt-label">
                             <input type="radio" name="q_${qIndex}" value="1"> ${item.opts[1]}
                         </label>
+                        <label class="quiz-opt-label">
+                            <input type="radio" name="q_${qIndex}" value="2"> ${item.opts[2]}
+                        </label>
                     </div>
                 </div>
             `;
@@ -558,7 +694,7 @@
     function selectMood(mood) {
         const btns = document.querySelectorAll('.mood-btn');
         btns.forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+        event.currentTarget.classList.add('active');
 
         const msgs = moodData[mood];
         const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
@@ -567,13 +703,16 @@
         box.classList.add('show');
     }
 
+    let lastResultText = "";
+
     function calculateQuizResult() {
         let scores = [0, 0, 0, 0, 0, 0];
         quizQuestions.forEach((item, qIndex) => {
             const selected = document.querySelector(`input[name="q_${qIndex}"]:checked`);
             if(selected) {
                 const val = parseInt(selected.value);
-                const targetTypeIndex = item.type[val];
+                // ئەگەر بژارەی ۳ هەبیت و تایبەتمەندیا وی هەمەهەنگ بیت
+                const targetTypeIndex = item.type[val] !== undefined ? item.type[val] : (val % 6);
                 scores[targetTypeIndex]++;
             }
         });
@@ -588,10 +727,39 @@
         });
 
         const res = personalityTypes[bestType];
+        document.getElementById('card-icon').innerText = res.emoji;
         document.getElementById('result-title').innerText = res.title;
-        document.getElementById('result-desc').innerText = res.desc;
         document.getElementById('result-traits').innerText = res.traits;
+        document.getElementById('result-desc').innerText = res.desc;
+        document.getElementById('result-growth-tip').innerHTML = res.growth;
         document.getElementById('quiz-result-card').classList.add('show');
+
+        lastResultText = `ئەنجامێ کویزێ من ل Dodocare:\n${res.title}\n${res.desc}\n${res.traits}`;
+        
+        // برنا شاشەیێ بەرەف کارتێ ب هێمنی
+        document.getElementById('quiz-result-card').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function saveQuizResultCard() {
+        if(!lastResultText) return;
+        const blob = new Blob([lastResultText], { type: 'text/plain;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'DodoCare_Personality_Result.txt';
+        link.click();
+    }
+
+    function shareQuizResultCard() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Dodocare Personality Result',
+                text: lastResultText,
+                url: window.location.href,
+            }).catch(() => {});
+        } else {
+            navigator.clipboard.writeText(lastResultText);
+            alert("🔗 ئەنجام هاتە کۆپیکردن بۆ سەرلیستا تە! دشەی ل هەر جهەکی ب کەی.");
+        }
     }
 
     function changeRandomQuote() {
@@ -694,4 +862,3 @@
 </script>
 </body>
 </html>
-
