@@ -398,7 +398,7 @@
             opacity: 0;
             transition: max-height 0.6s ease, opacity 0.4s ease;
         }
-        .collapsible-content.show { max-height: 25000px; opacity: 1; margin-top: 15px; }
+        .collapsible-content.show { max-height: 35000px; opacity: 1; margin-top: 15px; }
 
         .favorites-list { margin-top: 10px; max-height: 220px; overflow-y: auto; }
         .favorite-item {
@@ -508,7 +508,7 @@
         </div>
     </div>
 
-    <!-- بەشێ ٣: ٣٠ پرسیارێن دەروونی دگەل کەسایەتیێن جۆراوجۆر -->
+    <!-- بەشێ ٣: ٣٠ پرسیارێن دەروونی دگەل کەسایەتیێن پۆزەتیڤ و نێگەتیڤ -->
     <div class="card">
         <h3>کویزێ ٣٠ پرسیارێن دەروونی 🧠</h3>
         <button class="btn" onclick="toggleSection('quiz-content')">🧠 ڤەکرنا کویزا بەرفرهەڤ</button>
@@ -545,12 +545,13 @@
 </div>
 
 <script>
+    // ٥ گۆتنێن سەرەکی و هاندەر
     const quotesKU = [
         "“مەزنترین شانازی د ژیانێ دا نە د وێ دا یە کو چ جاران نەکەڤی، لێ د وێ دا یە کو هەر جارەکا بکەڤی بزڤری سەر پێیان.”<br><small style='opacity:0.8'>— نێڵسۆن ماندێلا</small>",
-        "“دەستپێکرن، نیڤا کارێ سەرکەفتنێ یە.”<br><small style='opacity:0.8'>— ئەفلاتۆن</small>",
-        "“باوەریا ب خۆ هەبوون، پێنگاڤا ئێکێ یە بەرەف سەرکەفتنێ.”<br><small style='opacity:0.8'>— ڕاڵف واڵدۆ ئێمرسۆن</small>",
-        "“تۆ ١٠٠٪ ژ وان دەرفەتان ژ دەست ددەی یێن کو تۆ تاقی ناکەی.”<br><small style='opacity:0.8'>— وەین گرێتزکی</small>",
-        "“ئەگەر تە دڤێت ژیانەکا بەختەوەر بژی، گرێ بدە ب ئارمانجەکێ ڤە، نەک ب مرۆڤ یان تشتان ڤە.”<br><small style='opacity:0.8'>— ئەلبێرت ئەنیشتاین</small>"
+        "“دەستپێکرن، نیڤا کارێ سەرکەفتنێ یە؛ پێنگاڤا ئێکێ بڤە و ترسێ ژ ناڤ ببە.”<br><small style='opacity:0.8'>— ئەفلاتۆن</small>",
+        "“باوەریا ب خۆ هەبوون، کلیلا مەزنە بۆ ڤەکرنا دەرگەهێن نەدیار.”<br><small style='opacity:0.8'>— ڕاڵف واڵدۆ ئێمرسۆن</small>",
+        "“تۆ ١٠٠٪ ژ وان دەرفەتان ژ دەست ددەی یێن کو تۆ تاقی ناکەی؛ هەردەم بێرەوەر و ب وێرەکی بە.”<br><small style='opacity:0.8'>— وەین گرێتزکی</small>",
+        "“ئەگەر تە دڤێت ژیانەکا بەختەوەر بژی، گرێ بدە ب ئارمانجەکێ ڤە، نەک ب مرۆڤ یان تشتێن دەمکی ڤە.”<br><small style='opacity:0.8'>— ئەلبێرت ئەنیشتاین</small>"
     ];
 
     const moodData = {
@@ -648,38 +649,38 @@
         }
     ];
 
-    // ٣٠ پرسیار دگەل mappingـا درست بۆ جۆرێن کەسایەتییێ
+    // ٣٠ پرسیار ب بژارەیێن پرۆفیشناڵ، زانستی و ژیرانە (وەک سایتێن جیهانی)
     const quizQuestions = [
-        { q: "١. پشتی حەفتییەکا پڕی ماندووبوون، حەز دکەی چ بکەی؟", opts: ["ب تنێ ل مال و د ژوورا خۆ دا بمینم", "دەرکەفتن دگەل هەڤالان بۆ جهەکێ خۆش", "دلگرانم و گەلەک زوو دگریم ژبەر ماندووبوونێ", "ئەز ب خۆ مەزنترین کەسم، پێدڤی ب بێهنڤەدانێ نینم!"], type: [0, 6, 1, 3] },
-        { q: "٢. دەمێ د ناڤ کۆمبوونەکا مەزن دا دبی و کەسێن دەوروبەر نانیاسی، تۆ چ دکەی؟", opts: ["بێدەنگ دمینم هەتا کەسەک دگەل من دئاخڤیت", "ب خۆ دەست ب ناسین و ئاخفتنێ دکەم", "دترسم کەس سەیری من نەکەت یان شاشییەکێ بکەم", "ئەڤ کەسە ئاستێ وان ژ من نزمترە، حەز ناکەم ئاخڤم!"], type: [0, 6, 2, 3] },
-        { q: "٣. دەمێ خەمەک یان ڕەوشەکا گران ل سەر تە هەبیت، چ دکەی؟", opts: ["د ناخێ خۆ دا دڤەشێرم و ب تنێ بیر لێ دکەم", "بۆ کەسەکێ نێزیک باس دکەم", "بێ هێز دبین و پێدڤییە ئێک هەوارا من بێت", "خەڵک نەشێن هزرێن من تێبگەهن، چونکی ئەز ژ هەمیان باشتر بیری دکەم!"], type: [5, 4, 1, 3] },
-        { q: "٤. دەمێ سەحکا دیمەنەکێ سروشتی یان تابلۆیەکێ دکەی، چ سەرنجا تە ڕادکێشیت؟", opts: ["هویرکاری و ڕەنگێن وێ", "ئەو مانا قووڵ و هەستێ ل پاش هەی", "دترسم چاڤێن خەلکی ل سەر من بن دەمێ سەحکەمێ", "ئەز بشێم هزار تابلۆیان ژ ڤێ باشتر بکێشم!"], type: [0, 5, 2, 3] },
-        { q: "٥. تۆ پتر گرنگییێ ب چ ددەی د ژیانێ دا؟", opts: ["ڕاستیێن بەرچاڤ و ئەزموونێن نوکە", "خەونێن مەزن و پلانێن پاشەڕۆژێ", "ڕازیبوونا خەلکی ل سەر من و نەشکاندنا دلێن وان", "ناڤ و دەنگ و سەرکەفتنا من یا تنێ!"], type: [0, 5, 4, 3] },
-        { q: "٦. دەمێ تنێ دبی، مێشکێ تە پتر ل کیرێ یە؟", opts: ["ل سەر کارێن ڕۆژانە و پێدڤییێن ماڵی", "ل سەر پرسیارێن مەزن یێن ژیانێ", "ل سەر هەموو شاشییێن من کرین و ترسا پاشەڕۆژێ", "ل سەر وێ چەندێ چاوا خەلک حەز ژ من دکەن و مەزنا من دبینن"], type: [0, 5, 2, 3] },
-        { q: "٧. هەڤالەکێ تە شاشییەکا مەزن کر، تۆ چ دکەی؟", opts: ["ڕاستییێ بۆ دبێژم دا فێربیت", "ب نەرمی دلێ وی خۆش دکەم", "دترسم بڕیارێ بدەم و دلێ وی بشکێنم", "وی ب خۆ نەزانینە، چونکی ئەز ژ هەمیان زیرەکتر بم!"], type: [7, 4, 2, 3] },
-        { q: "٨. دەمێ بڕیارەکا چارەنووسساز ددەی، چ پتر زاڵە ل سەر تە؟", opts: ["حیساباتێن مێشکی و بەرژەوەندییا ڕاستەقینە", "ئەو تشتێ دلێ من پێ ئارام دبیت", "ترسەکا مەزن هەیە کو ئەز بڕیارا شاش بدەم", "ئەز چ جاران شاشییان ناکەم، بڕیارا من یا دەستپێکی ب تەمامی ڕاستە!"], type: [0, 4, 2, 3] },
-        { q: "٩. چ تشت پتر تە تووڕە دکەت؟", opts: ["نەدادپەروەری و بێسەروبەرییا مەزن", "شکاندنا هەستێن من و زوو ئیشاندنا دلێ من", "شکەستن د گەهشتن ب ئارمانجان دا", "کو کەسەک ڕێزێ ل مێژوو و مەزناهیا من نەگرێت!"], type: [7, 1, 5, 3] },
-        { q: "١٠. مێز یان ژوورا کارێ تە چەوایە پتریا دەمان؟", opts: ["هەموو تشت ل جهێ خۆ و ب ڕێکوپێکی", "کەمەک تێکەل، بەلێ ئەز دزانم هەر تشت ل کیرێ یە", "ئەز نەشێم ڕێزبەند بکەم و هەمیشە کەسەک بۆ من دکەت", "ژوورا من پڕی نیشانێن سەرکەفتن و مەزناهیا منە!"], type: [0, 8, 2, 3] },
-        { q: "١١. دەمێ گەشتەکێ ئەنجام ددەی، حەز ژ چ دکەی؟", opts: ["پلانەکا پێشوەخت هەبیت بۆ هەر دەمژمێرەکێ", "ب شێوەیەکێ ئازاد و بێ پلان بگەڕێم", "دترسم تووشی ئاریشەیەکێ ببم د گەشتێ دا", "ئەز دەڤەرێ کۆنترۆل دکەم و هەمی خەلک دڤێت ل گەل من بن"], type: [0, 8, 2, 3] },
-        { q: "١٢. ل دوماهییا ڕۆژێ، چ تشت هەستێ سەرکەفتنێ ددەتە تە؟", opts: ["تەمامکرنا هەموو کارێن ل سەر لیستا من", "فێربوونا تشتەکێ نوی", "کو چ کەس ژ من نەڕازی نەبووبن و دڵێ کەسی نەشکەستییە", "وێ چەندێ چەند کەسێن دی ژ من کێمتر بوون"], type: [0, 5, 4, 3] },
-        { q: "١٣. د دەمێن فشارێ دا، تۆ پتر چ دکەی؟", opts: ["کۆنترۆلا خۆ ژ دەست نادەم", "پەنا بۆ کەسێن نێزیک دبرم", "دگریم و زوو بێ هیڤی دبین", "خەڵک دەوروبەرێ من درست نەکرن، ئەز ب تنێ دێ چارەسەر کەرم"], type: [7, 4, 1, 3] },
-        { q: "١٤. چاوا سەیری هەڵەیێن خۆ دکەی؟", opts: ["وەک وانەیەکا بهای بۆ پاشەڕۆژێ", "ب گرانى کاریگەری ل سەر من دکەن و خۆ تاوانبار دکەم", "ئەز چ جاران شاشییان ناکەم، ئەگەر هەبیت ژی یێ دی یە!", "هەڵە تەنها بۆ کەسێن لاواز چێدبن، نە بۆ من"], type: [0, 1, 2, 3] },
-        { q: "١٥. ل جهێ کارێ یان خواندنێ، حەز دکەی چ ڕۆل هەبیت؟", opts: ["سەرکردە و ڕێڤەبەرێ گروپێ", "ئەندامەکێ چالاک و هەڤکار", "کەسەکێ بێ دەنگ کەسی خۆ نە ئێکەم", "تاکە کەسێ بڕیار لە دەست من بن!"], type: [7, 6, 2, 3] },
-        { q: "١٦. پەیوەندییا تە دگەل تەکنەلۆژیایێ و مۆبایلێ چەوایە؟", opts: ["ب تەمامی بۆ کار بەکارئینان", "بۆ ڤەکرنا دونیایێ و گەشبینیێ", "تۆڕێن جڤاکی دکەنە جهێ دڵتەنگییا من چونکی هەمی کەس ژ من سەرکەفتی ترن", "پەنجەرییا منە بۆ نیشادانا جوانی و مەزناهیا خۆ بۆ خەلکی"], type: [0, 6, 1, 3] },
-        { q: "١٧. پێناسەیا تە بۆ سەرکەفتنێ چییە؟", opts: ["گەهشتن ب پلەیا بلند و ئارامیا مالی", "دلخۆشییا خێزانێ و ئارامیا درونێ", "ئەو کو کەس نەبینێت من بشکێنێت یان بێ رێزێ ل من بکەت", "ل ژوورا لوتکەیێ بم و هەمی کەس تەماشەی من بکەن"], type: [7, 4, 1, 3] },
-        { q: "١٨. ئایا حەز دکەی گوهۆڕین د ژیانا خۆ دا بکەی؟", opts: ["ب تنێ ئەگەر پێدڤی بکەت", "بەلێ، حەز ژ گوهۆڕینان دکەم", "دترسم ژ گوهۆڕینێ چونکی نەشیانێن من هەین", "گوهۆڕین بۆ خەلکی یە، نە بۆ کەسەکی مەزن وەک من!"], type: [0, 8, 2, 3] },
-        { q: "١٩. ئاریشەیێن قورس چاوا چارەسەر دکەی؟", opts: ["ب پارچەکرنا ئاریشەی بۆ چەند پشکێن بچووک", "ب پشتبەستن ب کەسێن دی", "دترسم و پاشەکێشێ دکەم", "ب بڕیارەکا توند کەس نکارێت ل بەر من ڕاوەستێت"], type: [7, 4, 2, 3] },
-        { q: "٢٠. هەستێ تەنهاییێ بۆ تە چییە؟", opts: ["دەرفەتەک بۆ بیرکرنێ", "حەفتەکا بێزارکەر و پێدڤی ب مە هەڤالان هەی", "نیشانا وێ چەندێ کو کەس حەز ژ من ناکەت و لاوازم", "تەنهایی یا پاشایانە، خەڵک شایستەی دیتنا من نینن"], type: [0, 6, 1, 3] },
-        { q: "٢١. ل بەرامبەر ڕەخنەیێن خەلکی، ڕەفتارا تە چەوایە؟", opts: ["ئەگەر ڕاست بیت مفای ژێ وەردگرم", "دلێ من زوو دئێشیت و دگریم", "ڕەخنە من دکوژیت و وێ چەندێ دبینم کو من چ زەرفەت نینن", "ئەو کەسێ ڕەخنەی ل من دگریت کەسەکێ نەزانە و کاڵفامە!"], type: [7, 1, 2, 3] },
-        { q: "٢٢. دەمێ راز و گۆتنەکا گران تەسلیمی تە دکەن، تۆ چ دکەی؟", opts: ["ب چ ڕەنگان بەلاڤ ناکەم", "تەنێ بۆ کەسەکێ زۆر نێزیک باس دکەم", "دترسم ئەو رازە دەردکەڤیت و من تاوانبار کەن", "ئەو رازە دێ بۆ بەرژەوەندییا خۆ بکارئینم!"], type: [7, 6, 2, 3] },
-        { q: "٢٣. ئایا تۆ کەسەکێ حەز ژ ئالنگارییان دکەی؟", opts: ["بەلێ، ئالنگاری من پێش دئێخن", "تنێ ئەز باوەر بم", "نەخێر، دترسم شاشی بکەم و بێ بڕاوا بم", "ئالنگاری بۆ من کەیفە چونکی ئەز هەمیشە یێ بریندم!"], type: [7, 8, 2, 3] },
-        { q: "٢٤. د خوارن و خەو و کارێن ڕۆژانە دا، تۆ چەوایە؟", opts: ["سیستماتیک و د دەمێ خۆ دا", "ل دوڤ حەزا ووزەیا خۆ", "زێدە هەستیارم، کەمەک فشار هەبیت خەو ژ دەست من دچێت", "ئەز گرنگییێ ب ڤان تشتێن بچووک نادەم"], type: [0, 6, 1, 3] },
-        { q: "٢٥. حەز دکەی پاشەڕوژا خۆ چەندە ببینی؟", opts: ["ئارام و زەمینەساز", "پڕی سەرکێشی", "ترسەکا مەزن هەیە کو نەگەهم و بێ هیڤی بم", "ب پاشایەتی و سەروەرییا تەمام ل سەر هەمیان"], type: [0, 8, 2, 3] },
-        { q: "٢٦. دەمێ تو فێری تشتەکێ نوی دبی، چاوا باشتر فێر دبی؟", opts: ["ب خوەندنا پەرتۆکان", "ب تاقیکرنێ ب خۆ", "دترسم نەشێم تێبگەهم و د شاشییان دا بمینم", "ئەز هەمی تشتان بێ فێربوون ب خۆ زانم!"], type: [0, 8, 2, 3] },
-        { q: "٢٧. ڕەفتارا تە دگەل پارەی و داراییێ چەوایە؟", opts: ["پلان بۆ هەموو فلسەکێ هەیە", "ل دوڤ پێدڤییێن نوکە", "ترسا برسیبوونێ و نەبوونیێ هەمیشە ل دەف منە", "پارە هەنە بۆ خۆنیشادان و مەزناهیا من!"], type: [0, 6, 2, 3] },
-        { q: "٢٨. تشتێ هەرە مەزن یێ کو تە ددەتە پێشڤە چییە؟", opts: ["باوەرییا ب شیانێن خۆ", "خەما مالبات و کەسێن نێزیک", "ترسا ژ ناکامبوونێ و بێبڕاۋییێ", "حەزا بۆ کۆنترۆلکرنا هەمیان و ناڤداربوونێ"], type: [7, 4, 2, 3] },
-        { q: "٢٩. تۆ چەندە متمانە ب پاشەڕوژێ دکەی؟", opts: ["گەلەک، چونکی کار بۆ دکەم", "ب دەستێ خودێ هێلایە", "ئەز گەلەک بترس و ڕەشبینم", "پاشەڕۆژ ب خوە دێ ل ژێر ڕکێشا من بە!"], type: [7, 6, 2, 3] },
-        { q: "٣٠. دەروونا خۆ ب چ دچوینی؟", opts: ["کەلەکەکێ ب هێز یێ ل سەر ئارامیا ڕێبەریێ", "باخچەیەکێ گوڵان یێ پڕی هەست", "مالەکا وێرانی یا پڕی ترس و بێباوەریێ", "قەسرەکا پاشایەتی یا مەزن و بێ وێنە!"], type: [7, 6, 2, 3] }
+        { q: "١. ل دەمێ بڕیارێن گرنگ د ژیانێ دا، تۆ پتر پشتبەستنێ ب چی دکەی؟", opts: ["لۆژیک، داتا و هەڵسەنگاندنا واقیعی", "هەست و کاریگەریا ل سەر دلێ دەوروبەری", "ترس ژ شاشیکرنێ و پاشەکێشێ", "باوەرییا تەمام ب شیانێن بێوێنەیێن خۆ"], type: [0, 4, 2, 3] },
+        { q: "٢. دەمێ تو تووشی چەند ئەندیشە و فشارێن کار یان خواندنێ دبی، ڕەفتارا تە چەوایە؟", opts: ["کاران دپارچەم و ب سەربردن چارەسەر دکەم", "زەخت کاریگەریێ ل سەر دەروونا من دکەت و زوو ماندوو دبین", "پەنا بۆ کەسێن نێزیک دبرم داکو هاریکاریا من بکەن", "کەس شیانێن وەک یێن من نینن بۆ کۆنترۆلکرنا فشارێ"], type: [7, 1, 6, 3] },
+        { q: "٣. ئارمانجا تە یا سەرەکی د ڤێ جیهانێ دا چییە؟", opts: ["گەهشتن ب سەقامگیری و سەرکەفتنا پیشەیی", "پاراستنا ئارامیا دروونی و دڵخۆشییا کەسێن نێزیک", "ب دەستخستنا پێگەیەکێ بلند کو هەمی کەس ڕێزێ ل من بگرن", "ئازادیا تەمام و نەبوونا چ سنور و ڕۆتینان ل سەر ژیانا من"], type: [0, 4, 3, 8] },
+        { q: "٤. هەڵوێستا تە ل بەرامبەر گۆهۆڕینێن ناڤخوەیی و کتوپڕ د ژیانێ دا چییە؟", opts: ["پلانێ بۆ ددانم و زوی خۆ لێ دگونجینم", "کەمەک ب گومان سەیری گۆهۆڕینێ دکەم چونکی حەز ژ ڕووتینێ دکەم", "گۆهۆڕین من تووشی بێسەروبەری و ترسێ دکەت", "هەر گۆڕانکاریەک دڤێت ل ژێر ڕکێشا من و بەرژەوەندییا من دا بیت"], type: [0, 0, 2, 3] },
+        { q: "٥. پێگەیێ خۆ د ناڤ هەڤال و جهێ کارێ دا چەوایە؟", opts: ["ڕێڤەبەر یان یێ پشتراست ل سەر کاران", "کەسەکێ نەرم و میهرەبان کو گوهـ ددەتە هەمیان", "کەسەکێ بێدەنگ کو پتر حەز ژ تنێبوونێ دکەت", "سەنتەرێ سەرنجێ و ئەڤ کەسەیێ کۆنترۆلا گشتی دکەت"], type: [7, 4, 0, 3] },
+        { q: "٦. دەمێ ڕەخنەیەک ل سەر کارێ تە دهێتە گۆتن، بەرسڤا تە چەوایە؟", opts: ["ب شێوەیەکێ زانستی مفای ژ ڕەخنەی وەردگرم", "دلێ من زوو دئێشیت و گەلەک بیر لێ دکەم", "ڕەخنە باوەرییا من ب خۆ دکوژیت", "ئەو کەسێ ڕەخنە گرتن کەسەکێ نەزانە و شایستەی بەرسڤێ نینە"], type: [7, 1, 2, 3] },
+        { q: "٧. حەز ژ جورێن چ کلتۆر و چالاکی لە دەمێن ڤەشواردنا خۆ دکەی؟", opts: ["خوێندنا پەرتۆکێن فیکری و زانستی", "پەیوەندیکردن ب هەڤالان و پشکداریکردن د جڤاتا دا", "مەندەهۆشی و تنێبوون د ژوورا خۆ دا", "چالاکیێن پرۆفیشناڵ یێن ب دەنگەدەنگ و نیشادانا شیانان"], type: [0, 6, 0, 3] },
+        { q: "٨. هەستێ تەنهاییێ بۆ تە پتر چ رامانەکێ دگەهینیت؟", opts: ["فرسەتەک بۆ هزرکرن و پێشڤەبرنا خۆ", "نیشانا وێ چەندێ کو کەس پشتبەستنێ ل سەر من ناکەت", "دڵتەنگی و پێدڤیبوون ب مرۆڤێن دی", "لوتكەیا سەربووری و نەبوونا کەسەکێ شایستەی دیتنا من"], type: [0, 1, 6, 3] },
+        { q: "٩. تو چەندە متمانە ب پاشەڕۆژا خۆ دکەی؟", opts: ["تەڤایا بڕیاران ل سەر بناغەیەکێ زانستی نڤیسینە", "ب تەواوی سپاردەیە ب دەستێ چەندان هەستان و چارەنڤیسی", "ترسەکا مەزن هەیە کو نەگەهم و بێ هیڤی بم", "پاشەڕۆژ ب خوە دێ ل ژێر فەرمان و کۆنترۆلا من بە"], type: [0, 4, 2, 3] },
+        { q: "١٠. چاوا سەرەدەرییێ دگەل چەوتی و خەلەتیێن خۆ دکەی؟", opts: ["وەک درس و وەرچەرخانەکه بهادا سەیری دکەم", "خۆ تاوانبار دکەم و دەروونا خۆ دئێشینم", "تۆرس هەیە کو خەڵک ڕەخنەیێن توند ل من بگرن", "ئەز چ جاران شاشییان ناکەم، ئەگەر هەبیت ژی ئەگەر یێ دی یە"], type: [7, 1, 2, 3] },
+        { q: "١١. پەیوندییا تە دگەل پارە و داراییێ چەوایە؟", opts: ["پلانڕێژییا درێژخایەن بۆ هەی", "بەلابڵاو و ل دوڤ پێدڤییێن دەمکی", "ترسەکا بەردەوام ژ برسیبوون و بێپارەییێ", "پارە هەنە بۆ خۆنیشادان و نیشادانا پێگەیێ من یێ بلند"], type: [0, 6, 2, 3] },
+        { q: "١٢. دەمێ تو فێری تشتەکێ نوو دبی، شێوازێ تە چەوایە؟", opts: ["تێگەهشتن ل بنەمایێن بنەڕەتی", "فێربوون ب هەڤکاری و هاریکاریا کەسێن دی", "ترسا فەوتاندنا تشتان و نەگەهشتنێ", "ئەز پێدڤی فێربوونێ نینم، چونکی شیانێن سروشتی ل دەف من هەنە"], type: [0, 6, 2, 3] },
+        { q: "١٣. د دەمێن خەباتا کومەلایەتی دا، تەکەلییا تە دگەل کەسان چەوایە؟", opts: ["ب ڕێکوپێکی و سنوردار", "پڕی ووزە، گەشبینی و حەز ژ ئاخفتنێ", "بێ دەنگ و شەرمن د گەهاندنێ دا", "خۆپەسند و پشتراست ل سەر مەزناهیا خۆ"], type: [0, 6, 2, 3] },
+        { q: "١٤. تۆ چەندە بڕیارێن خۆ دگوهۆڕی پشتی دایینێ؟", opts: ["تنێ ئەگەر داتایێن نوو هەبن", "گەلەک جار ل دوڤ دڵسۆزییا دلێ خەلکی", "بەردەوام د گومانێ دا مە و زوو بڕیارێن خۆ دگوهۆڕم", "بڕیارێن من دەستپێکێ چەند بڕیار بن، هەمان ڕاستی نینن"], type: [0, 4, 2, 3] },
+        { q: "١٥. ئاماژەیا کو تۆ سەرکەفتنێ پۆلین دکەی چییە؟", opts: ["بەرهەمێ کاری و بەردەوامییا ژیرانە", "دڵخۆشییا خێزان و کەسێن هێژا", "ڕزگاربوون ژ چەوساندن و شکاندنا کەسایەتییێ", "ب دەستخستنا هێز و پاشایەتییا تەمام ل سەر دەوروبەرێ خۆ"], type: [7, 4, 1, 3] },
+        { q: "١٦. ئایا تو حەز ژ کەسێن سەرکێش و نوی د ژیانا خۆ دا دکەی؟", opts: ["بەلێ، ئەگەر مەرج و پلانەک هەبیت", "حەز ژ ئارامییێ دکەم و سەیری سەرکێشییان ناکەم", "دترسم تووشی مەترسییەکێ ببم", "سەرکێشی کەیفا منە چونکی من هەمیشە دەستتێوەردان هەین"], type: [7, 0, 2, 8] },
+        { q: "١٧. دەمێ تو لە دەڤەرەکا نەناسیاوی دبی، ڕەفتارا تە چەوایە؟", opts: ["ل رێکان دگەڕێم ب نەخشە و زانیاری", "پەنا بۆ ئێکێ دبرم داکو ڕێکا من نیشان بدەت", "تۆرس و شێوانەک مەزن د ناخێ من دا دروست دبیت", "هەمی جهـ و ملکان ب ساناهی ل ژێر کۆنترۆلا خۆ دبینم"], type: [0, 6, 2, 3] },
+        { q: "١٨. هەستێ خەمۆکییا بێئەگەر چەندە تە دگرت؟", opts: ["کێم جار، چونکی مێشکێ من مژوولی کارانە", "گەلەک جار، چونکی من هەستێن هێدی هەین", "بەردەوام د دلگرانی و بێمەرەقیێ دا مە", "ئەز مەزنتر مە ژ ئەڤ تشتێن سادە و بێسەروبەر"], type: [0, 1, 2, 3] },
+        { q: "١٩. تشتێ هەرە مەزن یێ کو تو ژێ دترسی چییە؟", opts: ["نەگەهشتن ب ئارمانجێن مەزن یێن ژیانێ", "شکاندنا دڵێ کەسێن کو حەز ژێ دکەم", "شکەستن، کەوتن و بێباوەرییا تەمام ب خۆ", "کێمبوونا پێگێ و ڕێزگرتنا خەلکی بۆ من"], type: [7, 4, 2, 3] },
+        { q: "٢٠. ئایا تو چەندە گرنگییێ ب هزر و رایێن خەلکی د دەی ل سەر خۆ؟", opts: ["تنێ ئەگەر ڕەخنەیەکا زانستی و ئاڤاکەر بیت", "گەلەک گرنگییێ پێ ددەم چونکی دلێ من زوو دئێشیت", "بڕیارێن خەلکی دکەنە ژیانا من و من دپەستێنن", "رایێن خەلکی چ گرنگییێ بۆ من نینن، ئەز لوتکە مە"], type: [7, 1, 2, 3] },
+        { q: "٢١. شێوازێ خەو و ژیانا ڕۆژانە یا تە چەوایە؟", opts: ["سەرەتا و دووماهییا وێ ب پۆتین و سیستەمە", "ل دوڤ حەز و ووزەیا دەروونییا نوکە", "ناڕێک و ب کێماسی ژبەر فشارێن مێشکی", "سیستم بۆ کەسێن ئاسایییە، نە بۆ من"], type: [0, 6, 2, 3] },
+        { q: "٢٢. دەمێ تو دبن فشارەکا مەزنا دەروونی دا دبی، پێدڤی بە چ بکەی؟", opts: ["دوورکەفتن و بێهنڤەدانەکا زانستی", "پەیوەندیکردن ب کەسەکێ نێزیک و گۆتن", "گری و بێهۆشبوون ژ زێدەهیا باران", "سەلماندنا وێ چەندێ کو هیچ هێزەک نەشێت من بشکێنیت"], type: [0, 6, 1, 3] },
+        { q: "٢٣. جۆرێ په‌یوەندیێن جڤاکیێن تە چەوایە؟", opts: ["پەیوەندیێن کێم لێ قووڵ و ب بەهایە", "پەیوەندیێن بەرفرهەڤ و دگەل پتریا کەسان", "سنوردار، چونکی دترسم کەس دلێ من بشکێنێت", "تنێ ل گەل کەسێن شایستەی دیتنا من و خودان پلە"], type: [0, 6, 2, 3] },
+        { q: "٢٤. دەمێ ئاریشەیەک د ناڤ خێزانێ یان هەڤالان دا پەیدا دبيت، ڕۆلێ تە چییە؟", opts: ["ناڤبژێرەکێ لۆژیکی و چارەسەرکەر", "کەسەکێ کە کاریگەرییا هەستان ل سەر هەی", "خۆ ژ ئاریشەیان دوور ددەم چونکی دترسم", "بڕیارا من یا توند دەستپێکێ دڤێت بێتە جهـ"], type: [7, 4, 2, 3] },
+        { q: "٢٥. تەڤگەرا تە بەرامبەر دەمی (Time Management) چەوایە؟", opts: ["تایمینگ بۆ هەموو تشتان هەیە و ڕێکوپێکە", "گۆڕانکاری د دەمێن من دا هەنە ل دوڤ بارودۆخی", "هەمیشە د لەزێ دا مە و دەم ژ دەست من دچیت", "دەم ل ژێر فەرمان و ڕکێشا من دا تێ و دەرباز دبيت"], type: [0, 6, 2, 3] },
+        { q: "٢٦. تشتێ تە ددەتە پێشڤە و هانددەت د ژیانێ دا چییە؟", opts: ["پێشکەفتنا عەقڵی و دەستڤەدانا ئارمانجان", "پاراستنا کهنەپەرستی و دڵخۆشییا کەسێن نزیک", "ترسا ژ ناکامبوونێ و شکستێ", "حەزا کوڤاربوونێ و سەروەرییا بێسنوور"], type: [7, 4, 2, 3] },
+        { q: "٢٧. ئایا تو ب ڕووداوێن دەوروبەری ڤە زوو تێکدچوویی؟", opts: ["نەخێر، پتر داتایان هەڵسەنگینم", "بەلێ، زوو دەروونا من تێکدچووە", "بەلێ، هەست دکەم جیهان ل سەر من دڕزێت", "رووداو چ کاریگەرییەکێ ل سەر حوکمڕانییا من نینن"], type: [0, 1, 2, 3] },
+        { q: "٢٨. جۆرێ هزرا تە د پاشەڕوژێ دا پتر ل سەر چییە؟", opts: ["پلانڕێژییا پیشەیی و سەقامگیرییا مادی", "دڵخۆشییا خێزانی و هاریکاریا جڤاکی", "ترس ژ نەبوونا داهاتوو و گۆڕانکارییان", "دروستکرنا ئیمپراتۆرییەتەکا مەزن و ناسراو"], type: [0, 4, 2, 3] },
+        { q: "٢٩. تۆ چەندە پشتبەستنێ ل سەر کەسێن دی دکەی د ژیانێ دا؟", opts: ["کێم، پتر کارێن خۆ ب خۆ دکەم", "گەلەک، چونکی بێی وان من پێگە نینە", "بەردەوام د ترسێ دا مە کەس هاریکاریا من نەکەت", "کەس شیانێن وەک یێن من نینن، من پێدڤی کەسی نینە"], type: [0, 6, 2, 3] },
+        { q: "٣٠. هێما و وێنەیەکا دەروونی کو نیشانا تە ددەت چ چییە؟", opts: ["چیاکێ ب هێز یێ بلند و بەرگریبەر", "باخچەیەکێ گوڵان یێ پڕی هەست و دلۆڤانی", "مالەکا وێرانی یا پڕی هزرێن قووڵ و تاری", "قەسرەکا پاشایەتی یا مەزن و ئاڵتوونی ل لوتکەیێ"], type: [7, 4, 2, 3] }
     ];
 
     let currentQuoteIndex = 0;
@@ -699,10 +700,10 @@
                         <label class="quiz-opt-label">
                             <input type="radio" name="q_${qIndex}" value="1"> ${item.opts[1]}
                         </label>
-                        <label class="quiz-opt-label" style="border-color: rgba(255,121,121,0.3); background: rgba(255,121,121,0.03);">
+                        <label class="quiz-opt-label">
                             <input type="radio" name="q_${qIndex}" value="2"> ${item.opts[2]}
                         </label>
-                        <label class="quiz-opt-label" style="border-color: rgba(112,111,211,0.3); background: rgba(112,111,211,0.03);">
+                        <label class="quiz-opt-label">
                             <input type="radio" name="q_${qIndex}" value="3"> ${item.opts[3]}
                         </label>
                     </div>
@@ -729,12 +730,11 @@
     let lastResultText = "";
 
     function calculateQuizResult() {
-        // پشکنین کو ئایا هەمی ٣٠ پرسیار هاتینە بەرسڤدان یان نا
+        // پشکنین کو ئایا هەمی ٣٠ پرسیار هاتینە بەرسڤدان
         for (let i = 0; i < quizQuestions.length; i++) {
             const answered = document.querySelector(`input[name="q_${i}"]:checked`);
             if (!answered) {
                 alert(`⚠️ هێڤیە سەرنج بدە! پرسیارا (${i + 1}) هێشتا نەهاتییە بەرسڤدان. هەمیا بەرسڤ بدە دا ئەنجامێ تە دەرکەڤیت.`);
-                // چوونە سەر ئەو پرسیارا کو بەرسڤ نەدایێ
                 const qBoxes = document.querySelectorAll('.quiz-question-box');
                 if(qBoxes[i]) {
                     qBoxes[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -884,3 +884,892 @@
 </script>
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html lang="ku" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodocare</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <style>
+        :root {
+            --bg-color: #fdfbf7;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --accent-purple: #706fd3;
+            --accent-pink: #ff7979;
+            --text-main: #5c4033;
+            --text-muted: #8c7365;
+            --success-color: #2ed573;
+        }
+        [data-theme="dark"] {
+            --bg-color: #12121f;
+            --card-bg: rgba(22, 22, 42, 0.88);
+            --text-main: #ffffff;
+            --text-muted: #a4b0be;
+        }
+
+        [data-theme="dark"] input[type="text"], 
+        [data-theme="dark"] textarea { 
+            background: rgba(255, 255, 255, 0.1) !important; 
+            color: #ffffff !important; 
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(rgba(255, 182, 193, 0.25) 2px, transparent 2px), radial-gradient(rgba(112, 111, 211, 0.15) 2px, transparent 2px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fff0f5, #f3e7ff);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .intro-dodo {
+            font-size: 90px;
+            animation: bounceIntro 1.8s infinite alternate ease-in-out;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 10px 15px rgba(255, 121, 121, 0.3));
+        }
+
+        @keyframes bounceIntro {
+            0% { transform: translateY(0) scale(1) rotate(-3deg); }
+            100% { transform: translateY(-20px) scale(1.1) rotate(3deg); }
+        }
+
+        .intro-welcome-text {
+            font-size: 1.6rem;
+            color: var(--accent-purple);
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(112,111,211,0.2);
+            line-height: 1.6;
+        }
+
+        .intro-langs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .intro-lang-pill {
+            background: white;
+            color: var(--accent-purple);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(112,111,211,0.2);
+        }
+
+        .enter-site-btn {
+            background: var(--accent-purple);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(112,111,211,0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .container.show-app { opacity: 1; transform: translateY(0); }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .control-group { display: flex; gap: 6px; align-items: center; }
+
+        .theme-toggle, .color-picker-btn, .notify-btn {
+            background: var(--card-bg);
+            border: 2px dashed rgba(255,182,193,0.5);
+            padding: 8px 12px;
+            border-radius: 14px;
+            cursor: pointer;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        input[type="color"] {
+            appearance: none;
+            -webkit-appearance: none;
+            border: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            background: none;
+        }
+
+        h1 { color: var(--accent-purple); font-size: 2.2rem; margin-bottom: 2px; }
+        .subtitle { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; }
+
+        .top-mini-guide {
+            background: var(--card-bg);
+            border: 2px dashed rgba(255, 182, 193, 0.6);
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 2px dashed rgba(255, 182, 193, 0.5);
+            text-align: right;
+        }
+
+        .card > h3 {
+            font-size: 1.1rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dodo-box { font-size: 70px; text-align: center; width: 100%; }
+
+        .speech-bubble {
+            background: var(--accent-purple);
+            color: white;
+            padding: 18px 22px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            max-width: 90%;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .quote-actions { display: flex; justify-content: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+
+        .quote-action-btn {
+            background: rgba(255,255,255,0.8);
+            border: 1px solid rgba(112,111,211,0.3);
+            color: var(--accent-purple);
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .btn {
+            background: var(--accent-purple);
+            border: none;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px 0;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        /* Modern Mood Buttons with Animation */
+        .mood-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .mood-btn {
+            background: rgba(112, 111, 211, 0.08);
+            border: 2px solid rgba(112, 111, 211, 0.2);
+            padding: 12px 6px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text-main);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .mood-emoji {
+            font-size: 1.8rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .mood-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: var(--accent-purple);
+            background: rgba(112, 111, 211, 0.15);
+        }
+        .mood-btn:hover .mood-emoji {
+            animation: bounceEmoji 0.6s infinite alternate ease-in-out;
+        }
+        .mood-btn.active {
+            background: var(--accent-purple);
+            color: white;
+            border-color: var(--accent-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(112,111,211,0.4);
+        }
+        .mood-btn.active .mood-emoji {
+            animation: bounceEmoji 0.6s infinite alternate ease-in-out;
+        }
+
+        @keyframes bounceEmoji {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-6px) scale(1.15); }
+        }
+
+        .mood-result-box {
+            background: rgba(112, 111, 211, 0.1);
+            border: 1px dashed var(--accent-purple);
+            padding: 15px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-top: 15px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .mood-result-box.show { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Quiz Styling */
+        .quiz-question-box {
+            background: rgba(112, 111, 211, 0.04);
+            border: 1px solid rgba(112, 111, 211, 0.15);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 14px;
+            text-align: right;
+        }
+        .quiz-q-title {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+            margin-bottom: 10px;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .quiz-opt-label {
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.6);
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(112,111,211,0.1);
+            transition: background 0.2s;
+        }
+        [data-theme="dark"] .quiz-opt-label {
+            background: rgba(255,255,255,0.05);
+        }
+        .quiz-opt-label:hover {
+            background: rgba(112, 111, 211, 0.1);
+        }
+
+        /* Result Card Design */
+        .quiz-result-card {
+            background: linear-gradient(135deg, rgba(112,111,211,0.18), rgba(255,121,121,0.12));
+            border: 3px solid var(--accent-purple);
+            border-radius: 20px;
+            padding: 22px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(112,111,211,0.2);
+            display: none;
+            text-align: right;
+            position: relative;
+            overflow: hidden;
+        }
+        .quiz-result-card.show { display: block; }
+        
+        .result-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed rgba(112,111,211,0.3);
+            padding-bottom: 10px;
+        }
+        .result-card-icon { font-size: 2.5rem; }
+        .result-card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .card-action-btn {
+            background: var(--accent-purple);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.6s ease, opacity 0.4s ease;
+        }
+        .collapsible-content.show { max-height: 35000px; opacity: 1; margin-top: 15px; }
+
+        .favorites-list { margin-top: 10px; max-height: 220px; overflow-y: auto; }
+        .favorite-item {
+            background: rgba(112, 111, 211, 0.08);
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete-fav-btn {
+            background: rgba(255, 121, 121, 0.15);
+            border: 1px solid var(--accent-pink);
+            color: var(--accent-pink);
+            padding: 4px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        footer { margin-top: 40px; font-size: 0.85rem; color: var(--text-muted); text-align: center; }
+    </style>
+</head>
+<body id="body">
+
+    <div id="intro-screen">
+        <div class="intro-dodo">🐰</div>
+        <div class="intro-welcome-text" id="dynamic-greeting">خێرهاتن 😊</div>
+        <div class="intro-langs">
+            <div class="intro-lang-pill">کوردی (بادینی)</div>
+        </div>
+        <button class="enter-site-btn" onclick="openMainSite()">ڤەکرنا دەفتەرێ 📖</button>
+    </div>
+
+<div class="container" id="main-container">
+    <div class="top-bar">
+        <div class="control-group">
+            <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌓 مۆد</button>
+            <button class="notify-btn" onclick="requestNotificationPermissionDirectly()" id="notify-btn">🔔 نۆتیفیکەیشن</button>
+            <div class="color-picker-btn" title="ڕەنگێ خۆ هەلبژێرە">
+                <span>🎨</span>
+                <input type="color" id="colorPicker" oninput="changeAccentColor(this.value)" value="#706fd3">
+            </div>
+        </div>
+    </div>
+
+    <h1>Dodocare</h1>
+    <div class="subtitle" id="site-subtitle">هەڤالێ تە یێ دەروونی 🐰✨</div>
+
+    <div class="top-mini-guide" id="guide-box">
+        <div id="guide-text">
+            📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا.
+        </div>
+    </div>
+
+    <!-- بەشێ ١: پێڤەرێ مەزاجی -->
+    <div class="card">
+        <h3>پێڤەرێ مەزاجێ ئەڤرۆ 🎭</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">🐰 ئەڤرۆ د ناخێ خۆ دا هەست ب چ دکەی؟</p>
+        
+        <div class="mood-buttons-grid">
+            <button class="mood-btn" onclick="selectMood('happy', event)">
+                <span class="mood-emoji">😊</span>
+                <span>کەیفخۆش</span>
+            </button>
+            <button class="mood-btn" onclick="selectMood('tired', event)">
+                <span class="mood-emoji">😴</span>
+                <span>ماندی</span>
+            </button>
+            <button class="mood-btn" onclick="selectMood('bored', event)">
+                <span class="mood-emoji">😔</span>
+                <span>بێزار</span>
+            </button>
+            <button class="mood-btn" onclick="selectMood('anxious', event)">
+                <span class="mood-emoji">😰</span>
+                <span>قەلەق</span>
+            </button>
+            <button class="mood-btn" onclick="selectMood('strong', event)">
+                <span class="mood-emoji">🔥</span>
+                <span>بهێز</span>
+            </button>
+        </div>
+
+        <div id="mood-result-container" class="mood-result-box"></div>
+    </div>
+
+    <!-- بەشێ ٢: گۆتنا ڕۆژێ -->
+    <div class="card">
+        <h3 id="quote-card-title">گۆتنا ڕۆژێ 💬</h3>
+        <button class="btn" onclick="toggleSection('quote-content')" id="btn-quote-toggle">💬 ڤەکرنا گۆتان</button>
+        <div id="quote-content" class="collapsible-content">
+            <div class="dodo-box">🐰</div>
+            <div class="quote-container">
+                <div class="speech-bubble" id="daily-quote">“مەزنترین شانازی د ژیانێ دا نە د وێ دا یە کو چ جاران نەکەڤی، لێ د وێ دا یە کو هەر جارەکا بکەڤی بزڤری سەر پێیان.”<br><small style="opacity:0.8">— نێڵسۆن ماندێلا</small></div>
+                
+                <div class="quote-actions">
+                    <button class="quote-action-btn" onclick="changeRandomQuote()" id="change-quote-btn">⏭️ گۆتنا دی</button>
+                    <button class="quote-action-btn" onclick="saveToFavorites()" id="fav-btn">❤️ دلخواز</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; border-top: 1px dashed rgba(112,111,211,0.3); padding-top: 10px;">
+                <h4 style="color: var(--accent-purple); font-size: 0.9rem; margin-bottom: 8px;" id="fav-section-title">⭐ گۆتنێن من یێن دلخواز</h4>
+                <div class="favorites-list" id="favorites-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- بەشێ ٣: ٣٠ پرسیارێن دەروونی دگەل کەسایەتیێن پۆزەتیڤ و نێگەتیڤ -->
+    <div class="card">
+        <h3>کویزێ ٣٠ پرسیارێن دەروونی 🧠</h3>
+        <button class="btn" onclick="toggleSection('quiz-content')">🧠 ڤەکرنا کویزا بەرفرهەڤ</button>
+        
+        <div id="quiz-content" class="collapsible-content">
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; text-align: center;">
+                ڤان ٣٠ پرسیاران ب بژارەیێن جۆراوجۆر بەرسڤ بدە دا کارتا خۆ یا ڕاستەقینە ببیینی!
+            </p>
+
+            <div id="quiz-form-container"></div>
+
+            <button class="btn" style="margin-top: 15px;" onclick="calculateQuizResult()">🔍 نیشاندانا کارتا ئەنجامێ من</button>
+
+            <!-- کارتا ئەنجامی -->
+            <div id="quiz-result-card" class="quiz-result-card">
+                <div class="result-card-header">
+                    <div class="result-card-icon" id="card-icon">👑</div>
+                    <div>
+                        <h4 id="result-title" style="color: var(--accent-purple); margin: 0; font-size: 1.1rem;"></h4>
+                        <div id="result-traits" style="font-size: 0.8rem; font-weight: bold; color: var(--accent-purple); margin-top: 4px;"></div>
+                    </div>
+                </div>
+                <p id="result-desc" style="font-size: 0.88rem; line-height: 1.7; margin-bottom: 10px;"></p>
+                <div id="result-growth-tip" style="background: rgba(112,111,211,0.1); padding: 10px; border-radius: 10px; font-size: 0.83rem; line-height: 1.6; border-right: 3px solid var(--accent-purple);"></div>
+                
+                <div class="result-card-actions">
+                    <button class="card-action-btn" onclick="saveQuizResultCard()">💾 سەیڤکرنا کارتێ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>Created by Huda Shahin Sindi</footer>
+</div>
+
+<script>
+    // ٥ گۆتنێن سەرەکی و هاندەر
+    const quotesKU = [
+        "“مەزنترین شانازی د ژیانێ دا نە د وێ دا یە کو چ جاران نەکەڤی، لێ د وێ دا یە کو هەر جارەکا بکەڤی بزڤری سەر پێیان.”<br><small style='opacity:0.8'>— نێڵسۆن ماندێلا</small>",
+        "“دەستپێکرن، نیڤا کارێ سەرکەفتنێ یە؛ پێنگاڤا ئێکێ بڤە و ترسێ ژ ناڤ ببە.”<br><small style='opacity:0.8'>— ئەفلاتۆن</small>",
+        "“باوەریا ب خۆ هەبوون، کلیلا مەزنە بۆ ڤەکرنا دەرگەهێن نەدیار.”<br><small style='opacity:0.8'>— ڕاڵف واڵدۆ ئێمرسۆن</small>",
+        "“تۆ ١٠٠٪ ژ وان دەرفەتان ژ دەست ددەی یێن کو تۆ تاقی ناکەی؛ هەردەم بێرەوەر و ب وێرەکی بە.”<br><small style='opacity:0.8'>— وەین گرێتزکی</small>",
+        "“ئەگەر تە دڤێت ژیانەکا بەختەوەر بژی، گرێ بدە ب ئارمانجەکێ ڤە، نەک ب مرۆڤ یان تشتێن دەمکی ڤە.”<br><small style='opacity:0.8'>— ئەلبێرت ئەنیشتاین</small>"
+    ];
+
+    const moodData = {
+        happy: [
+            "ئەڤ هەستێ جوان یێ نوکە د دلێ تە دا، بەرهەمێ پاقژییا ناخێ تەیە. خوشیێ ژ ڤێ چرکەیێ وەربگرە و بهێلە ڕۆناهییا تە دەوروبەرێ تە ژی گەش بکەت.",
+            "چەند جوانە کو تۆ ئەڤرۆ یێ دلخۆشی؛ ئەڤێ ووزەیێ د ناخێ خۆ دا بپارێزە بۆ وان ڕۆژێن کو پێدڤی ب بیرئینانێ دبی کو ژیان هێشتا گەلەک تشتێن جوان تێدانە.",
+            "گرنژینا تە یا ئەڤرۆ جوانترین دیارییە بۆ خۆ و بۆ هەر کەسەکێ تە دبینیت، هەردەم هوسا گەش بمینە."
+        ],
+        tired: [
+            "هەر مرۆڤەک جار جار پێدڤی ب ڕاوەستان و بێهنڤەدانێ هەیە. ماندیبوونا تە نیشانا لاوازییا تە نینە، بەلکو بەلگەیە ل سەر وێ چەندێ کو تە هەولەکا مەزن دایە.",
+            "ئەڤرۆ خۆ نەچار نەکە کو هەموو تشتان تەمام بکەی. مافێ تەیە بێهنا خۆ ڤەدەی، مێشکێ خۆ ژ هزران ڤالا بکەی، و ب تنێ گرنگییێ ب ئارامییا خۆ بدەی.",
+            "جەستە و مێشکێ تە ئەڤرۆ گەلەک کار کر؛ نوکە دەمێ هندێ یە ب نەرمی سەرەدەرییێ دگەل خۆ بکەی و ڕێکێ بدەیە خۆ بێهنا خۆ ڤەدەی."
+        ],
+        bored: [
+            "پێدڤی ناکەت هەردەم خۆ ب هێز نیشان بدەی؛ دڵتەنگی بەشەکێ سروشتی یە ژ مرۆڤبوونێ. بێهنا خۆ فرەهـ بکە، ئەڤ عەورێن تاری ژی دێ بورن و ئەسمانێ تە دێ ساهی بیتەڤە.",
+            "هەر چەندە نوکە هەست ب تنێبوونێ یان بێزارییێ بکەی، ژبیر نەکە کو تۆ ژ ڤێ قۆناغێ گەلەک ب هێزتری. ئەڤ ئێشە دێ بیتە وانەیەک و دێ تە گهینیتە جهەکێ باشتر.",
+            "هێدی بێهنەکا کوویر هەڵکێشە؛ پێدڤی ناکەت هەمی تشتان نوکە تێبگەهی. ب تنێ ئەڤرۆ دەرباز بکە، سوبەهی دێ ب چاڤەکێ نوی سەحکەیە ژیانێ."
+        ],
+        anxious: [
+            "مێشکێ خۆ ژ هزرا سوبەهی ڕزگار بکە و بزڤڕە بۆ ڤێ چرکەیێ. تۆ نەشێی هەمی پاشەڕۆژێ د ئێک دەمژمێر دا چارەسەر بکەی، هەر تشتەک د دەمێ خۆ دا دێ رێکا خۆ بینیت.",
+            "ئەو ترس و قەلەقییا د مێشکێ تە دا هەی، ب تنێ هزرن و نە ڕاستی نە. دەستێ خۆ ل سەر دلێ خۆ دانە، بێهنەکا هێدی هەڵکێشە، تۆ یێ پاراستی یی و هەمی تشت دێ هێنە کۆنترۆلکرن.",
+            "ل سەر خۆ بە هەڤال؛ پێدڤی ناکەت لەزێ بکەی. هەر ئاریشەیەک دەرگەهەکێ چارەسەرییێ هەیە، ب تنێ کێمەک ئارامیێ بدە مێشکێ خۆ داکو ببینی."
+        ],
+        strong: [
+            "ئەڤ ووزە و ئیرادەیا د ناخێ تە دا هەی، کلیلەکا زێڕینە بۆ هەمی دەرگەهێن گرتی. ئەڤرۆ باشترین دەرفەتە داکو پێنگاڤەکێ بەر ب خەونێن خۆ بهاڤێژی.",
+            "باوەرییا تە ب خۆ د ڤێ چرکەیێ دا گەلەک مەزنە؛ ڤێ حەماسەتێ بکە کار و بێی ترس دەست پێ بکە، چونکی سەرکەفتن چاڤەڕێی کەسێن ب وێرەکە.",
+            "چ تشت نەشێت ل بەر ڕێکا کەسەکی بڕاوەستیت کو ب ڤێ ووزەیێ دەست پێ بکەت. ئەڤرۆ ڕۆژا تەیە، نیشانی خۆ بدە کا تۆ چەند ب شیانی!"
+        ]
+    };
+
+    // ٩ جۆرێن کەسایەتییێ
+    const personalityTypes = [
+        {
+            title: "1. کەسایەتییا ئارام و لۆژیکی",
+            emoji: "🧘‍♂️",
+            desc: "تۆ کەسەکێ گەلەک ب هزر و هێمن یی. ب مێشکێ خۆ بڕیاران ددەی نەک ب هەستان، و حەز دکەی هەموو تشت د ژیانا تە دا ب پلان و ڕێکوپێکی بن.",
+            traits: "ساخڵەت: واقیعی • ڕێکخستی • بێدەنگ",
+            growth: "💡 **تیپس و ڕێنمایی:** گەلەک جارێن ڕووتین و کارێن ئاسایی تە مژوول دکەن. هندەک جار پێدڤییە خۆ بەردەی و ڕێکێ بدەی گۆڕانکارییێن کتوپڕ ب سەر ژیانا تە دا بێن داکو نەبییە مرۆڤەکێ زێدە ڕووتین."
+        },
+        {
+            title: "2. کەسایەتییا هەستیار و دلشکەستی",
+            emoji: "🥺",
+            desc: "تە دڵەکێ گەلەک نەرم هەستیار هەیە و زوو گۆتنێن خەلکی کاریگەرییێ ل سەر تە دکەن. پتریا دەمان خەما دلێ خەلکی دخۆی بەری خەما خۆ بخوی.",
+            traits: "ساخڵەت: زوو دگری • نازک • گۆهدار",
+            growth: "💡 **تیپس و ڕێنمایی:** نە هەمی گۆتنێن خەلکی ڕاستن و نە هەمی کەس ژهەژی خەمخۆرییا تەنە. هێدی هێدی فێرببە گوهـ نەدەی هەمی ئاخفتنێن دەوروبەر."
+        },
+        {
+            title: "3. کەسایەتییا لاواز و بێ باوەری ب خۆ",
+            emoji: "🌧️",
+            desc: "تۆ گەلەک ترسی ژ خەلەتیان و ئاخفتنێن خەلکی. زوو بڕیارێن خۆ دگوهۆڕی و باوەرییا تە ب شیانێن تە ب خۆ نینە.",
+            traits: "ساخڵەت: ترسنۆک • خۆبچووککەر • دلگران",
+            growth: "💡 **تیپس و ڕێنمایی:** هەڤالێ هێژا، کەس ب زکماکی خودان باوەری نەبوویە! ژ خەلەتیان نەترسە، چونکی خەلەتی مامۆستایێ مرۆڤی نە. ڕۆژانە کارەکێ بچووک بکە کو ژێ بترسی داکو باوەرییا تە ب خۆ پەیدا ببیت."
+        },
+        {
+            title: "4. کەسایەتییا نەرجسی و خۆپەرەست",
+            emoji: "🦚",
+            desc: "تۆ تنێ گرنگییێ ب خۆ و پێگەیێ خۆ ددەی. دزانی چاوا سەرکەفتی بی، لێ هندەک جار سەیری خەلکی دکەی وەک کو ژ تە کێمتر بن.",
+            traits: "ساخڵەت: خۆپەرەست • غرور • توندڕەو",
+            growth: "💡 **تیپس و ڕێنمایی:** گەلەک جار زەحمەتی و بێسەروبەری دێ تە فێری هەستیاربوونێ کەن. کێمەکی گوهـ بدە دلێ خەلکی و خۆ بێخە جهێ وان داکو ببیە مرۆڤەکێ ب دلۆڤانتر."
+        },
+        {
+            title: "5. کەسایەتییا هەستیار و دلسۆز",
+            emoji: "🤍",
+            desc: "تە دڵەکێ گەلەک نەرم و میهرەبان هەیە و پتر ژ خۆ خەما دەوروبەرێ خۆ دخۆی. تۆ ب هەست و دلێ خۆ سەرەدەرییێ دگەل مرۆڤان دکەی و باوەرپێکری یی.",
+            traits: "ساخڵەت: میهرەبان • گوهدار • دلسۆز",
+            growth: "💡 **تیپس و ڕێنمایی:** ژبەر ڕازیکرنا دلێ خەلکی، هندەک جار مافێ خۆ ژ دەست ددەی. فێرببە ل جهەکێ گونجای بێژی 'نەخێر' دا کەس ب ساناهی دلێ تە نەشکێنێت."
+        },
+        {
+            title: "6. کەسایەتییا خەیاڵاوی و داهێنەر",
+            emoji: "✨",
+            desc: "تۆ مرۆڤەکێ کوویر یی و هەردەم هزرا تشتێن جیاواز و نوی دکەی. حەز ژ ئازادییێ دکەی و نەشێی د ناڤ یاسا و ڕۆتینێن ئاسایی دا بژی.",
+            traits: "ساخڵەت: داهێنەر • سەربەخۆ • کوویر",
+            growth: "💡 **تیپس و ڕێنمایی:** خەونێن تە گەلەک مەزنن، لێ دەمێ نەهێنە جیبەجێکرن تو بێ هیڤی دبی. هەول بدە وان خەونان بکەی بەش بەش و ب کارێن سادە دەست پێ بکەی."
+        },
+        {
+            title: "7. کەسایەتییا کۆمەڵایەتی و چالاک",
+            emoji: "🎉",
+            desc: "تۆ کەسەکێ پڕی ووزە و گەشبین یی و حەز ژ تێکەلبوونا خەلکی دکەی. ب ساناهی هەڤالان چێدکەی و ووزەیا ئەرێنی ددەیە دەوروبەرێ خۆ.",
+            traits: "ساخڵەت: گەشبین • چالاک • هەڤال-دۆست",
+            growth: "💡 **تیپس و ڕێنمایی:** تو پتریا دەمێ خۆ ددەیە خەلکی و بەلاڤکرنا ووزەی. پێدڤییە هندەک دەمێ تایبەت بۆ تنێ مانا خۆ و پاترییا دەروونێ خۆ دابینی."
+        },
+        {
+            title: "8. کەسایەتییا ب ئیرادە و سەرکردە",
+            emoji: "🦁",
+            desc: "تۆ کەسەکێ ب هێز و خۆڕاگر یی و دزانی کا تە چ دڤێت. ل دەمێ ئاریشەیان ناڕەڤی، بەلکو ب ئاقلانە چارەسەرییێ دبینی و بەرپرسیارەتییێ هەڵدگری.",
+            traits: "ساخڵەت: ب هێز • بەرپرسیار • بڕیاردەر",
+            growth: "💡 **تیپس و ڕێنمایی:** پێدڤی ناکەت هەموو بارێ جیهانێ ب خۆ هەڵگری. هندەک جار هاریکاریێ ژ کەسێن دی وەربگرە دا بارێ سەر ملێن تە ئاسانتر بیت."
+        },
+        {
+            title: "9. کەسایەتییا ئازاد و سەرکێش",
+            emoji: "🦅",
+            desc: "تۆ حەز ژ ژیانەکا سادە و بێ پلانێن ئاڵۆز دکەی. گرنگییێ ب گاڤا نوکە ددەی و حەز ژ هەردەم تشتێن نوی د ژیانێ دا تاقی بکەی.",
+            traits: "ساخڵەت: ئازاد • نەرم • سەرکێش",
+            growth: "💡 **تیپس و ڕێنمایی:** نەبوونا چ پلانەکێ بۆ پاشەڕۆژێ دێ هندەکجار تە تووشی بێ مەرەقبوونێ کەت. کێمەک پتر پێشبینییا سوبەهی بکە."
+        }
+    ];
+
+    // ٣٠ پرسیار ب بژارەیێن پرۆفیشناڵ، زانستی و ژیرانە (وەک سایتێن جیهانی)
+    const quizQuestions = [
+        { q: "١. ل دەمێ بڕیارێن گرنگ د ژیانێ دا، تۆ پتر پشتبەستنێ ب چی دکەی؟", opts: ["لۆژیک، داتا و هەڵسەنگاندنا واقیعی", "هەست و کاریگەریا ل سەر دلێ دەوروبەری", "ترس ژ شاشیکرنێ و پاشەکێشێ", "باوەرییا تەمام ب شیانێن بێوێنەیێن خۆ"], type: [0, 4, 2, 3] },
+        { q: "٢. دەمێ تو تووشی چەند ئەندیشە و فشارێن کار یان خواندنێ دبی، ڕەفتارا تە چەوایە؟", opts: ["کاران دپارچەم و ب سەربردن چارەسەر دکەم", "زەخت کاریگەریێ ل سەر دەروونا من دکەت و زوو ماندوو دبین", "پەنا بۆ کەسێن نێزیک دبرم داکو هاریکاریا من بکەن", "کەس شیانێن وەک یێن من نینن بۆ کۆنترۆلکرنا فشارێ"], type: [7, 1, 6, 3] },
+        { q: "٣. ئارمانجا تە یا سەرەکی د ڤێ جیهانێ دا چییە؟", opts: ["گەهشتن ب سەقامگیری و سەرکەفتنا پیشەیی", "پاراستنا ئارامیا دروونی و دڵخۆشییا کەسێن نێزیک", "ب دەستخستنا پێگەیەکێ بلند کو هەمی کەس ڕێزێ ل من بگرن", "ئازادیا تەمام و نەبوونا چ سنور و ڕۆتینان ل سەر ژیانا من"], type: [0, 4, 3, 8] },
+        { q: "٤. هەڵوێستا تە ل بەرامبەر گۆهۆڕینێن ناڤخوەیی و کتوپڕ د ژیانێ دا چییە؟", opts: ["پلانێ بۆ ددانم و زوی خۆ لێ دگونجینم", "کەمەک ب گومان سەیری گۆهۆڕینێ دکەم چونکی حەز ژ ڕووتینێ دکەم", "گۆهۆڕین من تووشی بێسەروبەری و ترسێ دکەت", "هەر گۆڕانکاریەک دڤێت ل ژێر ڕکێشا من و بەرژەوەندییا من دا بیت"], type: [0, 0, 2, 3] },
+        { q: "٥. پێگەیێ خۆ د ناڤ هەڤال و جهێ کارێ دا چەوایە؟", opts: ["ڕێڤەبەر یان یێ پشتراست ل سەر کاران", "کەسەکێ نەرم و میهرەبان کو گوهـ ددەتە هەمیان", "کەسەکێ بێدەنگ کو پتر حەز ژ تنێبوونێ دکەت", "سەنتەرێ سەرنجێ و ئەڤ کەسەیێ کۆنترۆلا گشتی دکەت"], type: [7, 4, 0, 3] },
+        { q: "٦. دەمێ ڕەخنەیەک ل سەر کارێ تە دهێتە گۆتن، بەرسڤا تە چەوایە؟", opts: ["ب شێوەیەکێ زانستی مفای ژ ڕەخنەی وەردگرم", "دلێ من زوو دئێشیت و گەلەک بیر لێ دکەم", "ڕەخنە باوەرییا من ب خۆ دکوژیت", "ئەو کەسێ ڕەخنە گرتن کەسەکێ نەزانە و شایستەی بەرسڤێ نینە"], type: [7, 1, 2, 3] },
+        { q: "٧. حەز ژ جورێن چ کلتۆر و چالاکی لە دەمێن ڤەشواردنا خۆ دکەی؟", opts: ["خوێندنا پەرتۆکێن فیکری و زانستی", "پەیوەندیکردن ب هەڤالان و پشکداریکردن د جڤاتا دا", "مەندەهۆشی و تنێبوون د ژوورا خۆ دا", "چالاکیێن پرۆفیشناڵ یێن ب دەنگەدەنگ و نیشادانا شیانان"], type: [0, 6, 0, 3] },
+        { q: "٨. هەستێ تەنهاییێ بۆ تە پتر چ رامانەکێ دگەهینیت؟", opts: ["فرسەتەک بۆ هزرکرن و پێشڤەبرنا خۆ", "نیشانا وێ چەندێ کو کەس پشتبەستنێ ل سەر من ناکەت", "دڵتەنگی و پێدڤیبوون ب مرۆڤێن دی", "لوتكەیا سەربووری و نەبوونا کەسەکێ شایستەی دیتنا من"], type: [0, 1, 6, 3] },
+        { q: "٩. تو چەندە متمانە ب پاشەڕۆژا خۆ دکەی؟", opts: ["تەڤایا بڕیاران ل سەر بناغەیەکێ زانستی نڤیسینە", "ب تەواوی سپاردەیە ب دەستێ چەندان هەستان و چارەنڤیسی", "ترسەکا مەزن هەیە کو نەگەهم و بێ هیڤی بم", "پاشەڕۆژ ب خوە دێ ل ژێر فەرمان و کۆنترۆلا من بە"], type: [0, 4, 2, 3] },
+        { q: "١٠. چاوا سەرەدەرییێ دگەل چەوتی و خەلەتیێن خۆ دکەی؟", opts: ["وەک درس و وەرچەرخانەکه بهادا سەیری دکەم", "خۆ تاوانبار دکەم و دەروونا خۆ دئێشینم", "تۆرس هەیە کو خەڵک ڕەخنەیێن توند ل من بگرن", "ئەز چ جاران شاشییان ناکەم، ئەگەر هەبیت ژی ئەگەر یێ دی یە"], type: [7, 1, 2, 3] },
+        { q: "١١. پەیوندییا تە دگەل پارە و داراییێ چەوایە؟", opts: ["پلانڕێژییا درێژخایەن بۆ هەی", "بەلابڵاو و ل دوڤ پێدڤییێن دەمکی", "ترسەکا بەردەوام ژ برسیبوون و بێپارەییێ", "پارە هەنە بۆ خۆنیشادان و نیشادانا پێگەیێ من یێ بلند"], type: [0, 6, 2, 3] },
+        { q: "١٢. دەمێ تو فێری تشتەکێ نوو دبی، شێوازێ تە چەوایە؟", opts: ["تێگەهشتن ل بنەمایێن بنەڕەتی", "فێربوون ب هەڤکاری و هاریکاریا کەسێن دی", "ترسا فەوتاندنا تشتان و نەگەهشتنێ", "ئەز پێدڤی فێربوونێ نینم، چونکی شیانێن سروشتی ل دەف من هەنە"], type: [0, 6, 2, 3] },
+        { q: "١٣. د دەمێن خەباتا کومەلایەتی دا، تەکەلییا تە دگەل کەسان چەوایە؟", opts: ["ب ڕێکوپێکی و سنوردار", "پڕی ووزە، گەشبینی و حەز ژ ئاخفتنێ", "بێ دەنگ و شەرمن د گەهاندنێ دا", "خۆپەسند و پشتراست ل سەر مەزناهیا خۆ"], type: [0, 6, 2, 3] },
+        { q: "١٤. تۆ چەندە بڕیارێن خۆ دگوهۆڕی پشتی دایینێ؟", opts: ["تنێ ئەگەر داتایێن نوو هەبن", "گەلەک جار ل دوڤ دڵسۆزییا دلێ خەلکی", "بەردەوام د گومانێ دا مە و زوو بڕیارێن خۆ دگوهۆڕم", "بڕیارێن من دەستپێکێ چەند بڕیار بن، هەمان ڕاستی نینن"], type: [0, 4, 2, 3] },
+        { q: "١٥. ئاماژەیا کو تۆ سەرکەفتنێ پۆلین دکەی چییە؟", opts: ["بەرهەمێ کاری و بەردەوامییا ژیرانە", "دڵخۆشییا خێزان و کەسێن هێژا", "ڕزگاربوون ژ چەوساندن و شکاندنا کەسایەتییێ", "ب دەستخستنا هێز و پاشایەتییا تەمام ل سەر دەوروبەرێ خۆ"], type: [7, 4, 1, 3] },
+        { q: "١٦. ئایا تو حەز ژ کەسێن سەرکێش و نوی د ژیانا خۆ دا دکەی؟", opts: ["بەلێ، ئەگەر مەرج و پلانەک هەبیت", "حەز ژ ئارامییێ دکەم و سەیری سەرکێشییان ناکەم", "دترسم تووشی مەترسییەکێ ببم", "سەرکێشی کەیفا منە چونکی من هەمیشە دەستتێوەردان هەین"], type: [7, 0, 2, 8] },
+        { q: "١٧. دەمێ تو لە دەڤەرەکا نەناسیاوی دبی، ڕەفتارا تە چەوایە؟", opts: ["ل رێکان دگەڕێم ب نەخشە و زانیاری", "پەنا بۆ ئێکێ دبرم داکو ڕێکا من نیشان بدەت", "تۆرس و شێوانەک مەزن د ناخێ من دا دروست دبیت", "هەمی جهـ و ملکان ب ساناهی ل ژێر کۆنترۆلا خۆ دبینم"], type: [0, 6, 2, 3] },
+        { q: "١٨. هەستێ خەمۆکییا بێئەگەر چەندە تە دگرت؟", opts: ["کێم جار، چونکی مێشکێ من مژوولی کارانە", "گەلەک جار، چونکی من هەستێن هێدی هەین", "بەردەوام د دلگرانی و بێمەرەقیێ دا مە", "ئەز مەزنتر مە ژ ئەڤ تشتێن سادە و بێسەروبەر"], type: [0, 1, 2, 3] },
+        { q: "١٩. تشتێ هەرە مەزن یێ کو تو ژێ دترسی چییە؟", opts: ["نەگەهشتن ب ئارمانجێن مەزن یێن ژیانێ", "شکاندنا دڵێ کەسێن کو حەز ژێ دکەم", "شکەستن، کەوتن و بێباوەرییا تەمام ب خۆ", "کێمبوونا پێگێ و ڕێزگرتنا خەلکی بۆ من"], type: [7, 4, 2, 3] },
+        { q: "٢٠. ئایا تو چەندە گرنگییێ ب هزر و رایێن خەلکی د دەی ل سەر خۆ؟", opts: ["تنێ ئەگەر ڕەخنەیەکا زانستی و ئاڤاکەر بیت", "گەلەک گرنگییێ پێ ددەم چونکی دلێ من زوو دئێشیت", "بڕیارێن خەلکی دکەنە ژیانا من و من دپەستێنن", "رایێن خەلکی چ گرنگییێ بۆ من نینن، ئەز لوتکە مە"], type: [7, 1, 2, 3] },
+        { q: "٢١. شێوازێ خەو و ژیانا ڕۆژانە یا تە چەوایە؟", opts: ["سەرەتا و دووماهییا وێ ب پۆتین و سیستەمە", "ل دوڤ حەز و ووزەیا دەروونییا نوکە", "ناڕێک و ب کێماسی ژبەر فشارێن مێشکی", "سیستم بۆ کەسێن ئاسایییە، نە بۆ من"], type: [0, 6, 2, 3] },
+        { q: "٢٢. دەمێ تو دبن فشارەکا مەزنا دەروونی دا دبی، پێدڤی بە چ بکەی؟", opts: ["دوورکەفتن و بێهنڤەدانەکا زانستی", "پەیوەندیکردن ب کەسەکێ نێزیک و گۆتن", "گری و بێهۆشبوون ژ زێدەهیا باران", "سەلماندنا وێ چەندێ کو هیچ هێزەک نەشێت من بشکێنیت"], type: [0, 6, 1, 3] },
+        { q: "٢٣. جۆرێ په‌یوەندیێن جڤاکیێن تە چەوایە؟", opts: ["پەیوەندیێن کێم لێ قووڵ و ب بەهایە", "پەیوەندیێن بەرفرهەڤ و دگەل پتریا کەسان", "سنوردار، چونکی دترسم کەس دلێ من بشکێنێت", "تنێ ل گەل کەسێن شایستەی دیتنا من و خودان پلە"], type: [0, 6, 2, 3] },
+        { q: "٢٤. دەمێ ئاریشەیەک د ناڤ خێزانێ یان هەڤالان دا پەیدا دبيت، ڕۆلێ تە چییە؟", opts: ["ناڤبژێرەکێ لۆژیکی و چارەسەرکەر", "کەسەکێ کە کاریگەرییا هەستان ل سەر هەی", "خۆ ژ ئاریشەیان دوور ددەم چونکی دترسم", "بڕیارا من یا توند دەستپێکێ دڤێت بێتە جهـ"], type: [7, 4, 2, 3] },
+        { q: "٢٥. تەڤگەرا تە بەرامبەر دەمی (Time Management) چەوایە؟", opts: ["تایمینگ بۆ هەموو تشتان هەیە و ڕێکوپێکە", "گۆڕانکاری د دەمێن من دا هەنە ل دوڤ بارودۆخی", "هەمیشە د لەزێ دا مە و دەم ژ دەست من دچیت", "دەم ل ژێر فەرمان و ڕکێشا من دا تێ و دەرباز دبيت"], type: [0, 6, 2, 3] },
+        { q: "٢٦. تشتێ تە ددەتە پێشڤە و هانددەت د ژیانێ دا چییە؟", opts: ["پێشکەفتنا عەقڵی و دەستڤەدانا ئارمانجان", "پاراستنا کهنەپەرستی و دڵخۆشییا کەسێن نزیک", "ترسا ژ ناکامبوونێ و شکستێ", "حەزا کوڤاربوونێ و سەروەرییا بێسنوور"], type: [7, 4, 2, 3] },
+        { q: "٢٧. ئایا تو ب ڕووداوێن دەوروبەری ڤە زوو تێکدچوویی؟", opts: ["نەخێر، پتر داتایان هەڵسەنگینم", "بەلێ، زوو دەروونا من تێکدچووە", "بەلێ، هەست دکەم جیهان ل سەر من دڕزێت", "رووداو چ کاریگەرییەکێ ل سەر حوکمڕانییا من نینن"], type: [0, 1, 2, 3] },
+        { q: "٢٨. جۆرێ هزرا تە د پاشەڕوژێ دا پتر ل سەر چییە؟", opts: ["پلانڕێژییا پیشەیی و سەقامگیرییا مادی", "دڵخۆشییا خێزانی و هاریکاریا جڤاکی", "ترس ژ نەبوونا داهاتوو و گۆڕانکارییان", "دروستکرنا ئیمپراتۆرییەتەکا مەزن و ناسراو"], type: [0, 4, 2, 3] },
+        { q: "٢٩. تۆ چەندە پشتبەستنێ ل سەر کەسێن دی دکەی د ژیانێ دا؟", opts: ["کێم، پتر کارێن خۆ ب خۆ دکەم", "گەلەک، چونکی بێی وان من پێگە نینە", "بەردەوام د ترسێ دا مە کەس هاریکاریا من نەکەت", "کەس شیانێن وەک یێن من نینن، من پێدڤی کەسی نینە"], type: [0, 6, 2, 3] },
+        { q: "٣٠. هێما و وێنەیەکا دەروونی کو نیشانا تە ددەت چ چییە؟", opts: ["چیاکێ ب هێز یێ بلند و بەرگریبەر", "باخچەیەکێ گوڵان یێ پڕی هەست و دلۆڤانی", "مالەکا وێرانی یا پڕی هزرێن قووڵ و تاری", "قەسرەکا پاشایەتی یا مەزن و ئاڵتوونی ل لوتکەیێ"], type: [7, 4, 2, 3] }
+    ];
+
+    let currentQuoteIndex = 0;
+
+    function renderQuiz() {
+        const container = document.getElementById('quiz-form-container');
+        if(!container) return;
+        let html = '';
+        quizQuestions.forEach((item, qIndex) => {
+            html += `
+                <div class="quiz-question-box">
+                    <div class="quiz-q-title">${item.q}</div>
+                    <div class="quiz-options">
+                        <label class="quiz-opt-label">
+                            <input type="radio" name="q_${qIndex}" value="0"> ${item.opts[0]}
+                        </label>
+                        <label class="quiz-opt-label">
+                            <input type="radio" name="q_${qIndex}" value="1"> ${item.opts[1]}
+                        </label>
+                        <label class="quiz-opt-label">
+                            <input type="radio" name="q_${qIndex}" value="2"> ${item.opts[2]}
+                        </label>
+                        <label class="quiz-opt-label">
+                            <input type="radio" name="q_${qIndex}" value="3"> ${item.opts[3]}
+                        </label>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function selectMood(mood, eventObj) {
+        const btns = document.querySelectorAll('.mood-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        if(eventObj && eventObj.currentTarget) {
+            eventObj.currentTarget.classList.add('active');
+        }
+
+        const msgs = moodData[mood];
+        const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
+        const box = document.getElementById('mood-result-container');
+        box.innerHTML = `🐰 <strong>پەیاما Dodocare بۆ تە:</strong><br><br>${randomMsg}`;
+        box.classList.add('show');
+    }
+
+    let lastResultText = "";
+
+    function calculateQuizResult() {
+        // پشکنین کو ئایا هەمی ٣٠ پرسیار هاتینە بەرسڤدان
+        for (let i = 0; i < quizQuestions.length; i++) {
+            const answered = document.querySelector(`input[name="q_${i}"]:checked`);
+            if (!answered) {
+                alert(`⚠️ هێڤیە سەرنج بدە! پرسیارا (${i + 1}) هێشتا نەهاتییە بەرسڤدان. هەمیا بەرسڤ بدە دا ئەنجامێ تە دەرکەڤیت.`);
+                const qBoxes = document.querySelectorAll('.quiz-question-box');
+                if(qBoxes[i]) {
+                    qBoxes[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+        }
+
+        let scores = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        quizQuestions.forEach((item, qIndex) => {
+            const selected = document.querySelector(`input[name="q_${qIndex}"]:checked`);
+            if(selected) {
+                const val = parseInt(selected.value);
+                const targetTypeIndex = item.type[val] !== undefined ? item.type[val] : (val % 9);
+                scores[targetTypeIndex]++;
+            }
+        });
+
+        let maxScore = -1;
+        let bestType = 0;
+        scores.forEach((s, idx) => {
+            if(s > maxScore) {
+                maxScore = s;
+                bestType = idx;
+            }
+        });
+
+        const res = personalityTypes[bestType];
+        document.getElementById('card-icon').innerText = res.emoji;
+        document.getElementById('result-title').innerText = res.title;
+        document.getElementById('result-traits').innerText = res.traits;
+        document.getElementById('result-desc').innerText = res.desc;
+        document.getElementById('result-growth-tip').innerHTML = res.growth;
+        document.getElementById('quiz-result-card').classList.add('show');
+
+        lastResultText = `ئەنجامێ کویزێ من ل Dodocare:\n${res.title}\n${res.desc}\n${res.traits}`;
+        
+        document.getElementById('quiz-result-card').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function saveQuizResultCard() {
+        if(!lastResultText) return;
+        const blob = new Blob([lastResultText], { type: 'text/plain;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'DodoCare_Personality_Result.txt';
+        link.click();
+    }
+
+    function changeRandomQuote() {
+        currentQuoteIndex = (currentQuoteIndex + 1) % quotesKU.length;
+        document.getElementById('daily-quote').innerHTML = quotesKU[currentQuoteIndex];
+    }
+
+    function openMainSite() {
+        requestNotificationPermissionDirectly();
+        const intro = document.getElementById('intro-screen');
+        const main = document.getElementById('main-container');
+        if(intro && main) {
+            intro.style.opacity = '0';
+            intro.style.visibility = 'hidden';
+            main.classList.add('show-app');
+            setTimeout(() => { intro.style.display = 'none'; }, 800);
+        }
+    }
+
+    function requestNotificationPermissionDirectly() {
+        if ("Notification" in window) {
+            Notification.requestPermission().then(permission => {});
+        }
+    }
+
+    function toggleSection(sectionId) {
+        const content = document.getElementById(sectionId);
+        if (content) { content.classList.toggle('show'); }
+    }
+
+    function saveToFavorites() {
+        let favs = JSON.parse(localStorage.getItem('dodo_favorites') || '[]');
+        let currentText = document.getElementById('daily-quote').innerHTML;
+        if(!favs.includes(currentText)) {
+            favs.push(currentText);
+            localStorage.setItem('dodo_favorites', JSON.stringify(favs));
+            renderFavorites();
+        } else {
+            alert("📌 ئەڤ گۆتنە بەری نوکه د دلخوازێن تە دا هەیە.");
+        }
+    }
+
+    function removeFavorite(index) {
+        let favs = JSON.parse(localStorage.getItem('dodo_favorites') || '[]');
+        favs.splice(index, 1);
+        localStorage.setItem('dodo_favorites', JSON.stringify(favs));
+        renderFavorites();
+    }
+
+    function renderFavorites() {
+        let favs = JSON.parse(localStorage.getItem('dodo_favorites') || '[]');
+        const container = document.getElementById('favorites-container');
+        if(container) {
+            if(favs.length === 0) {
+                container.innerHTML = `<div style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">چ گۆتن هێشتا نێنە د دلخوازان دا.</div>`;
+            } else {
+                let html = '';
+                favs.forEach((item, index) => {
+                    html += `
+                        <div class="favorite-item">
+                            <div>${item}</div>
+                            <button class="delete-fav-btn" onclick="removeFavorite(${index})">🗑️ ژێبرن</button>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            }
+        }
+    }
+
+    function toggleTheme() {
+        const body = document.getElementById('body');
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            localStorage.setItem('dodo_theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('dodo_theme', 'dark');
+        }
+    }
+
+    function changeAccentColor(color) {
+        document.documentElement.style.setProperty('--accent-purple', color);
+        localStorage.setItem('dodo_color', color);
+    }
+
+    window.onload = function() {
+        renderQuiz();
+        renderFavorites();
+
+        if (localStorage.getItem('dodo_theme') === 'dark') {
+            document.getElementById('body').setAttribute('data-theme', 'dark');
+        }
+        if (localStorage.getItem('dodo_color')) {
+            const savedColor = localStorage.getItem('dodo_color');
+            document.documentElement.style.setProperty('--accent-purple', savedColor);
+            document.getElementById('colorPicker').value = savedColor;
+        }
+    };
+</script>
+</body>
+</html>
+
